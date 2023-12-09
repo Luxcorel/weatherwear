@@ -1,8 +1,11 @@
 "use client";
 
 import { FormEvent } from "react";
+import { useRouter } from "next/navigation";
 
 export default function Home() {
+    const router = useRouter();
+
     function cursedInsertIntoDom(data: any) {
         const paragraphElement = document.createElement("p");
         const textNode = document.createTextNode(data.message);
@@ -50,11 +53,14 @@ export default function Home() {
 
     return (
         <div>
-            <h1 className={"mb-5 mt-5 text-center text-2xl"}>NextJS api test</h1>
+            <h1 className={"my-5 text-center text-2xl"}>NextJS api test</h1>
 
             <button className={"m-5 mx-auto flex bg-teal-600 p-5"} onClick={handleGetButtonClick}>
                 GET /api/hello
-                {}
+            </button>
+
+            <button className={"m-5 mx-auto flex bg-teal-600 p-5"} onClick={() => router.push("/me")}>
+                Go to protected page
             </button>
 
             <form onSubmit={onSubmit}>
