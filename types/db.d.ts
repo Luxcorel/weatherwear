@@ -34,7 +34,7 @@ export interface Clothing {
 }
 
 export interface Location {
-  id: string;
+  id: Generated<string>;
   latitude: number;
   longitude: number;
   name: string;

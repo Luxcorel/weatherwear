@@ -2,6 +2,7 @@ import { z } from "zod";
 import { db } from "@/dbConfig";
 import { auth } from "@/authConfig";
 
+//TODO Add proper error handling
 export async function GET(request: Request) {
   const session = await auth();
   if (!session) {
@@ -9,18 +10,19 @@ export async function GET(request: Request) {
   }
 
   // prettier-ignore
-  const result = await db
+  const clothing = await db
     .selectFrom("Clothing")
     .selectAll()
     .where("Clothing.owner", "=", session.user.id)
     .execute();
 
   return Response.json({
-    clothes: result,
+    clothes: clothing,
     status: 200,
   });
 }
 
+//TODO Add proper error handling and clean up zod code
 export async function POST(request: Request) {
   const clothingSchema = z.object({
     name: z.string(),
