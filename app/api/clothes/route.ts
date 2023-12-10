@@ -1,11 +1,63 @@
-export async function GET(request: Request) {}
+import { z } from "zod";
+import { db } from "@/dbConfig";
+import { auth } from "@/authConfig";
 
-export async function HEAD(request: Request) {}
+export async function GET(request: Request) {
+  const session = await auth();
+  if (!session) {
+    return Response.json({ status: 401 });
+  }
 
-export async function POST(request: Request) {}
+  // prettier-ignore
+  const result = await db
+    .selectFrom("Clothing")
+    .selectAll()
+    .where("Clothing.owner", "=", session.user.id)
+    .execute();
 
-export async function PUT(request: Request) {}
+  return Response.json({
+    clothes: result,
+    status: 200,
+  });
+}
 
-export async function DELETE(request: Request) {}
+export async function POST(request: Request) {
+  const clothingSchema = z.object({
+    name: z.string(),
+    precipitation_compatible: z.boolean(),
+    season: z.string(),
+    temperature_high: z.number(),
+    temperature_low: z.number(),
+  });
 
-export async function PATCH(request: Request) {}
+  const session = await auth();
+  if (!session) {
+    return Response.json({ status: 401 });
+  }
+
+  const body = await request.json();
+  try {
+    clothingSchema.parse(body);
+  } catch (error) {
+    if (error instanceof z.ZodError) {
+      return Response.json({
+        status: 400,
+        error: error.issues,
+      });
+    }
+  }
+
+  const result = await db
+    .insertInto("Clothing")
+    .values({
+      owner: session.user.id,
+      name: body.name,
+      season: body.season,
+      precipitation_compatible: body.precipitation_compatible,
+      temperature_high: body.temperature_high,
+      temperature_low: body.temperature_low,
+    })
+    .executeTakeFirst();
+
+  return Response.json({ status: 200 });
+}
