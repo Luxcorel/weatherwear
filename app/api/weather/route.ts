@@ -4,8 +4,8 @@ import { WEATHER_API_BASE_URL, WeatherData } from "@/types/weather-data";
 export async function GET(request: Request) {
   const weatherApi = WEATHER_API_BASE_URL + `&q=55.609, 13.00&aqi=no`;
 
-  //TODO: Fix API error handling
-  const weatherResponse = await fetch(weatherApi);
+  //TODO: Fix API error handling & research tag/time caching
+  const weatherResponse = await fetch(weatherApi, { next: { revalidate: 300 } });
   const weatherData: WeatherData = await weatherResponse.json();
 
   return Response.json({
