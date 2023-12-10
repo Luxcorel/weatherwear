@@ -6,13 +6,17 @@ export default function Home() {
         <div>
             <h1 className={"my-5 text-center text-2xl"}>NextJS api test</h1>
 
-            <Link href={"/api/weather"}>
-                <Button className={"m-5 mx-auto flex bg-teal-600 p-5"}>Weather test page</Button>
-            </Link>
+            <div className={"m-5 flex justify-center"}>
+                <Link href={"/api/weather"}>
+                    <Button>Weather test page</Button>
+                </Link>
+            </div>
 
-            <Link href={"/me"}>
-                <Button className={"m-5 mx-auto flex bg-teal-600 p-5"}>Protected page test page</Button>
-            </Link>
+            <div className={"m-5 flex justify-center"}>
+                <Link href={"/me"}>
+                    <Button>Protected page test page</Button>
+                </Link>
+            </div>
         </div>
     );
 }
