@@ -174,3 +174,10 @@ dist
 
 # End of https://www.toptal.com/developers/gitignore/api/nextjs,node
 
+.idea/dataSources.local.xml
+.idea/dataSources.xml
+.idea/dataSources/4ad5c87a-cb1a-4573-a381-4877a93a06b6.xml
+.idea/dataSources/4ad5c87a-cb1a-4573-a381-4877a93a06b6/storage_v2/_src_/database/verceldb.hSjLiA.meta
+.idea/dataSources/4ad5c87a-cb1a-4573-a381-4877a93a06b6/storage_v2/_src_/database/verceldb.hSjLiA/schema/information_schema.FNRwLQ.meta
+.idea/dataSources/4ad5c87a-cb1a-4573-a381-4877a93a06b6/storage_v2/_src_/database/verceldb.hSjLiA/schema/pg_catalog.0S1ZNQ.meta
+.idea/dataSources/4ad5c87a-cb1a-4573-a381-4877a93a06b6/storage_v2/_src_/database/verceldb.hSjLiA/schema/public.abK9xQ.meta
