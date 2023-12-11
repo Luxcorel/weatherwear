@@ -1,11 +1,11 @@
 "use client";
 
 import React, { useEffect, useState } from "react";
-import { TestWeatherDTO } from "@/dto/TestWeatherDTO";
+import { WeatherTestDTO } from "@/dto/weather-test-DTO";
 
 //TODO: Delete this
 export default function WeatherTest() {
-    const [weatherData, setWeatherData] = useState<TestWeatherDTO | undefined>();
+    const [weatherData, setWeatherData] = useState<WeatherTestDTO | undefined>();
 
     useEffect(() => {
         async function fetchWeatherData(latitude: number, longitude: number) {
@@ -26,12 +26,14 @@ export default function WeatherTest() {
 
     return (
         <div>
-            {weatherData && (
+            {weatherData ? (
                 <div className={"text-center"}>
                     <p>Location: {weatherData.location}</p>
                     <p>Precipitation: {weatherData.precipitation}</p>
                     <p>Temperature: {weatherData.degrees}C</p>
                 </div>
+            ) : (
+                <p className={"animate-pulse text-center text-2xl"}>Loading weather data...</p>
             )}
         </div>
     );

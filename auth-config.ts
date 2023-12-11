@@ -1,7 +1,7 @@
 import NextAuth, { NextAuthConfig } from "next-auth";
 import GitHub from "next-auth/providers/github";
 import { KyselyAdapter } from "@auth/kysely-adapter";
-import { db } from "@/dbConfig";
+import { db } from "@/db-config";
 
 export const authConfig = {
   // @ts-ignore

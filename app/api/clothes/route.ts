@@ -1,6 +1,6 @@
 import { z } from "zod";
-import { db } from "@/dbConfig";
-import { auth } from "@/authConfig";
+import { db } from "@/db-config";
+import { auth } from "@/auth-config";
 
 const clothingAddSchema = z.object({
   name: z.string(),

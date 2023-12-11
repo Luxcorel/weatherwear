@@ -1,5 +1,5 @@
-import { auth } from "@/authConfig";
-import { db } from "@/dbConfig";
+import { auth } from "@/auth-config";
+import { db } from "@/db-config";
 import { z } from "zod";
 
 const submitLocationSchema = z.object({

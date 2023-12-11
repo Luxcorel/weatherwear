@@ -1,5 +1,5 @@
-import { auth } from "@/authConfig";
-import { db } from "@/dbConfig";
+import { auth } from "@/auth-config";
+import { db } from "@/db-config";
 
 //TODO Add proper error handling
 export async function DELETE(request: Request, { params }: { params: { id: string } }) {

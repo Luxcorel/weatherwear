@@ -9,7 +9,7 @@ async function getWeatherData() {
 }
  */
 
-import WeatherTest from "@/components/WeatherTest";
+import WeatherTest from "@/components/weather-test";
 
 export default function Weather() {
     //const weatherData = await getWeatherData();
