@@ -2,8 +2,8 @@ import type { Metadata } from "next";
 import React from "react";
 
 export const metadata: Metadata = {
-    title: "NextJS test app",
-    description: "A NextJS test app",
+    title: "User info",
+    description: "A NextJS app",
 };
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
