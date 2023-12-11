@@ -9,10 +9,20 @@ const locationSchema = z.object({
 
 export async function GET(request: NextRequest) {
   const searchParams = request.nextUrl.searchParams;
+  const latitude = searchParams.get("latitude");
+  const longitude = searchParams.get("longitude");
+  if (!latitude || !longitude) {
+    return Response.json(
+      {
+        error: "Did not specify latitude and longitude",
+      },
+      { status: 400 },
+    );
+  }
 
   const requestBody = locationSchema.safeParse({
-    latitude: Number(searchParams.get("latitude")),
-    longitude: Number(searchParams.get("longitude")),
+    latitude: Number(latitude),
+    longitude: Number(longitude),
   });
   if (!requestBody.success) {
     return Response.json(
