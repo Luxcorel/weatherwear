@@ -2,7 +2,7 @@ import { auth } from "@/authConfig";
 import { db } from "@/dbConfig";
 import { z } from "zod";
 
-const locationAddSchema = z.object({
+const submitLocationSchema = z.object({
   name: z.string(),
   latitude: z.number(),
   longitude: z.number(),
@@ -12,7 +12,7 @@ const locationAddSchema = z.object({
 export async function GET(request: Request) {
   const session = await auth();
   if (!session) {
-    return Response.json({ status: 401 });
+    return Response.json({}, { status: 401 });
   }
 
   // prettier-ignore
@@ -34,12 +34,14 @@ export async function POST(request: Request) {
     return Response.json({ status: 401 });
   }
 
-  const requestBody = locationAddSchema.safeParse(await request.json());
+  const requestBody = submitLocationSchema.safeParse(await request.json());
   if (!requestBody.success) {
-    return Response.json({
-      status: 400,
-      error: requestBody.error.issues,
-    });
+    return Response.json(
+      {
+        error: requestBody.error.issues,
+      },
+      { status: 400 },
+    );
   }
 
   const result = await db
@@ -52,7 +54,9 @@ export async function POST(request: Request) {
     })
     .executeTakeFirst();
 
-  return Response.json({
-    status: 200,
-  });
+  if (result.numInsertedOrUpdatedRows === BigInt(0)) {
+    return Response.json({}, { status: 400 });
+  }
+
+  return Response.json({}, { status: 200 });
 }

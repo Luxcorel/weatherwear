@@ -14,10 +14,8 @@ export const authConfig = {
     },
     authorized({ auth, request: { nextUrl } }) {
       const isLoggedIn = !!auth?.user;
-      const protectedPaths = ["/me"];
-      const isProtected = protectedPaths.some((path) => nextUrl.pathname.startsWith(path));
 
-      if (isProtected && !isLoggedIn) {
+      if (!isLoggedIn) {
         const redirectUrl = new URL("api/auth/signin", nextUrl.origin);
         redirectUrl.searchParams.append("callbackUrl", nextUrl.href);
         return Response.redirect(redirectUrl);

@@ -1,7 +1,8 @@
 import { constants } from "http2";
-import { SafeParseError, SafeParseSuccess, z } from "zod";
+import { z } from "zod";
 
-export async function GET(request: Request) {
+//NOTE: GET FUNCTION WITHOUT "request: Request" WILL BE CACHED AUTOMATICALLY!
+export async function GET() {
   //console.log(request.headers); //headers from client
   return Response.json(
     //using Response API
@@ -21,15 +22,15 @@ export async function HEAD(request: Request) {
 }
 
 export async function POST(request: Request) {
-  const schema = z.string().email("You must enter a valid email!");
+  const emailSchema = z.string().email("You must enter a valid email!");
   const requestBody = await request.json();
   const emailReceived = requestBody.email;
 
-  const emailCheck: SafeParseSuccess<string> | SafeParseError<string> = schema.safeParse(emailReceived);
+  const emailCheck = emailSchema.safeParse(emailReceived);
 
   let emailToSend;
   if (emailCheck.success) {
-    emailToSend = emailCheck;
+    emailToSend = emailCheck.data;
   } else {
     emailToSend = emailCheck.error.message;
   }
