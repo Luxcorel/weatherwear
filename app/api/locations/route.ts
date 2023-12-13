@@ -3,31 +3,30 @@ import { db } from "@/db-config";
 import { z } from "zod";
 
 const submitLocationSchema = z.object({
-  name: z.string(),
-  latitude: z.number(),
-  longitude: z.number(),
+  location_name: z.string(),
+  latitude: z.number().min(-90).max(90),
+  longitude: z.number().min(-180).max(180),
 });
 
-//TODO Add proper error handling
+// API CONTRACT IMPL
 export async function GET(request: Request) {
   const session = await auth();
   if (!session) {
     return Response.json({}, { status: 401 });
   }
 
-  // prettier-ignore
   const locations = await db
     .selectFrom("Location")
-    .selectAll()
+    .select(["Location.id", "Location.location_name", "Location.latitude", "Location.longitude"])
     .where("Location.owner", "=", session.user.id)
     .execute();
 
   return Response.json({
-    locations: locations,
+    favorite_locations: locations,
   });
 }
 
-//TODO Add proper error handling
+// API CONTRACT IMPL
 export async function POST(request: Request) {
   const session = await auth();
   if (!session) {
@@ -36,27 +35,19 @@ export async function POST(request: Request) {
 
   const requestBody = submitLocationSchema.safeParse(await request.json());
   if (!requestBody.success) {
-    return Response.json(
-      {
-        error: requestBody.error.issues,
-      },
-      { status: 400 },
-    );
-  }
-
-  const result = await db
-    .insertInto("Location")
-    .values({
-      owner: session.user.id,
-      name: requestBody.data.name,
-      latitude: requestBody.data.latitude,
-      longitude: requestBody.data.longitude,
-    })
-    .executeTakeFirst();
-
-  if (result.numInsertedOrUpdatedRows === BigInt(0)) {
     return Response.json({}, { status: 400 });
   }
 
-  return Response.json({}, { status: 200 });
+  const dbInsert = await db
+    .insertInto("Location")
+    .values({
+      owner: session.user.id,
+      location_name: requestBody.data.location_name,
+      latitude: requestBody.data.latitude,
+      longitude: requestBody.data.longitude,
+    })
+    .returning(["Location.id", "Location.location_name", "Location.latitude", "Location.longitude"])
+    .executeTakeFirst();
+
+  return Response.json(dbInsert, { status: 200 });
 }
