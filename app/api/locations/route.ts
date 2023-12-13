@@ -17,7 +17,7 @@ export async function GET(request: Request) {
     return Response.json({}, { status: 401 });
   }
 
-  const locations = await db
+  const userLocations = await db
     .selectFrom("Location")
     .select(["Location.id", "Location.location_name", "Location.latitude", "Location.longitude"])
     .where("Location.owner", "=", session.user.id)
@@ -25,7 +25,7 @@ export async function GET(request: Request) {
 
   return Response.json(
     {
-      favorite_locations: locations,
+      favorite_locations: userLocations,
     },
     { status: 200 },
   );

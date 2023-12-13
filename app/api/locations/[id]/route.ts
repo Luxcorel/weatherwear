@@ -17,18 +17,18 @@ export async function GET(request: Request, { params }: { params: { id: string }
     return Response.json({}, { status: 401 });
   }
 
-  const location = await db
+  const userLocation = await db
     .selectFrom("Location")
     .select(["Location.id", "Location.location_name", "Location.latitude", "Location.longitude"])
     .where("Location.id", "=", `${params.id}`)
     .where("Location.owner", "=", session.user.id)
     .executeTakeFirst();
 
-  if (!location) {
+  if (!userLocation) {
     return Response.json({}, { status: 404 });
   }
 
-  return Response.json(location, { status: 200 });
+  return Response.json(userLocation, { status: 200 });
 }
 
 // API CONTRACT IMPL
