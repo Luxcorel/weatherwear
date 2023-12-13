@@ -24,20 +24,19 @@ export interface Account {
 }
 
 export interface Clothing {
+  clothing_name: string;
+  clothing_type: number;
+  color: string;
   id: Generated<string>;
-  name: string;
-  owner: string | null;
-  precipitation_compatible: boolean;
-  season: string;
-  temperature_high: number;
-  temperature_low: number;
+  owner: string;
+  size: string;
 }
 
 export interface Location {
   id: Generated<string>;
   latitude: number;
+  location_name: string;
   longitude: number;
-  name: string;
   owner: string;
 }
 
