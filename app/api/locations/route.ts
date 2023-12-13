@@ -21,16 +21,19 @@ export async function GET(request: Request) {
     .where("Location.owner", "=", session.user.id)
     .execute();
 
-  return Response.json({
-    favorite_locations: locations,
-  });
+  return Response.json(
+    {
+      favorite_locations: locations,
+    },
+    { status: 200 },
+  );
 }
 
 // API CONTRACT IMPL
 export async function POST(request: Request) {
   const session = await auth();
   if (!session) {
-    return Response.json({ status: 401 });
+    return Response.json({}, { status: 401 });
   }
 
   const requestBody = submitLocationSchema.safeParse(await request.json());
