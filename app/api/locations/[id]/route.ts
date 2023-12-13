@@ -2,6 +2,8 @@ import { auth } from "@/auth-config";
 import { db } from "@/db-config";
 import { z } from "zod";
 
+//TODO: error checking for failed db queries
+
 const updateLocationSchema = z.object({
   location_name: z.string(),
   latitude: z.number().min(-90).max(90),

@@ -24,8 +24,7 @@ export interface Account {
 }
 
 export interface Clothing {
-  clothing_name: string;
-  clothing_type: number;
+  clothing_type: string;
   color: string;
   id: Generated<string>;
   owner: string;
