@@ -12,11 +12,11 @@ export const metadata: Metadata = {
     description: "A NextJS test app",
 };
 
-export default function RootLayout({ children }: { children: React.ReactNode }) {
+export default function RootLayout({ children }: { readonly children: React.ReactNode }) {
     return (
         <html lang="en">
             <body className={inter.className}>
-                <ThemeProvider attribute="class" defaultTheme="system" enableSystem disableTransitionOnChange>
+                <ThemeProvider enableSystem disableTransitionOnChange attribute="class" defaultTheme="system">
                     <nav className={""}>
                         <Navbar />
                     </nav>

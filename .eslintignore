@@ -1,3 +1,6 @@
+# shadcn ui library
+/components/ui
+
 # dependencies
 /node_modules
 /.pnp
