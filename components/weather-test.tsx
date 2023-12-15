@@ -1,7 +1,7 @@
 "use client";
 
 import React, { useEffect, useState } from "react";
-import { WeatherTestDTO } from "@/dto/weather-test-DTO";
+import { WeatherTestDTO } from "@/frontend-dto/weather-test-DTO";
 
 //TODO: Delete this
 export default function WeatherTest() {
