@@ -2,7 +2,7 @@ import { auth } from "@/auth-config";
 import { db } from "@/db-config";
 import { z } from "zod";
 
-//TODO: error checking for failed db queries
+// TODO: error checking for failed db queries
 
 const updateLocationSchema = z.object({
   location_name: z.string(),
@@ -13,7 +13,7 @@ const updateLocationSchema = z.object({
 // API CONTRACT IMPL
 export async function GET(request: Request, { params }: { params: { id: string } }) {
   const session = await auth();
-  if (!session) {
+  if (!session?.user) {
     return Response.json({}, { status: 401 });
   }
 
@@ -34,7 +34,7 @@ export async function GET(request: Request, { params }: { params: { id: string }
 // API CONTRACT IMPL
 export async function PUT(request: Request, { params }: { params: { id: string } }) {
   const session = await auth();
-  if (!session) {
+  if (!session?.user) {
     return Response.json({}, { status: 401 });
   }
 
@@ -65,7 +65,7 @@ export async function PUT(request: Request, { params }: { params: { id: string }
 // API CONTRACT IMPL
 export async function DELETE(request: Request, { params }: { params: { id: string } }) {
   const session = await auth();
-  if (!session) {
+  if (!session?.user) {
     return Response.json({}, { status: 401 });
   }
 

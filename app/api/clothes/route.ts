@@ -2,7 +2,7 @@ import { z } from "zod";
 import { db } from "@/db-config";
 import { auth } from "@/auth-config";
 
-//TODO: error checking for failed db queries
+// TODO: error checking for failed db queries
 
 const clothingAddSchema = z.object({
   clothing_type: z.string(),
@@ -13,11 +13,10 @@ const clothingAddSchema = z.object({
 // API CONTRACT IMPL
 export async function GET(request: Request) {
   const session = await auth();
-  if (!session) {
+  if (!session?.user) {
     return Response.json({}, { status: 401 });
   }
 
-  // prettier-ignore
   const clothes = await db
     .selectFrom("Clothing")
     .select(["Clothing.id", "Clothing.clothing_type", "Clothing.color", "Clothing.size"])
@@ -26,16 +25,16 @@ export async function GET(request: Request) {
 
   return Response.json(
     {
-      clothes: clothes,
+      clothes,
     },
     { status: 200 },
   );
 }
 
-//TODO: Implement ClothingType enum and check that input strings conform
+// TODO: Implement ClothingType enum and check that input strings conform
 export async function POST(request: Request) {
   const session = await auth();
-  if (!session) {
+  if (!session?.user) {
     return Response.json({}, { status: 401 });
   }
 

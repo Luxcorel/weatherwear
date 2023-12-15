@@ -8,7 +8,7 @@ const locationSchema = z.object({
 });
 
 export async function GET(request: NextRequest) {
-  const searchParams = request.nextUrl.searchParams;
+  const { searchParams } = request.nextUrl;
   const latitude = searchParams.get("latitude");
   const longitude = searchParams.get("longitude");
   if (!latitude || !longitude) {
@@ -35,7 +35,7 @@ export async function GET(request: NextRequest) {
 
   const weatherApi = WEATHER_API_BASE_URL + `&q=${requestBody.data.latitude}, ${requestBody.data.longitude}&aqi=no`;
 
-  //TODO: Add API error handling
+  // TODO: Add API error handling
   const weatherResponse = await fetch(weatherApi, { next: { revalidate: 300 } });
   const weatherData: WeatherData = await weatherResponse.json();
 

@@ -1,7 +1,11 @@
 {
-  "extends": [
-    "plugin:tailwindcss/recommended",
-    "next/core-web-vitals",
-    "prettier"
-  ]
+  "extends": ["xo", "xo-react", "plugin:tailwindcss/recommended", "next/core-web-vitals", "prettier"],
+  "rules": {
+    "react/jsx-curly-brace-presence": "off",
+    "camelcase": "off",
+    "no-warning-comments": "off",
+    "capitalized-comments": "off",
+    "spaced-comment": "off",
+    "no-unused-vars": "off"
+  }
 }

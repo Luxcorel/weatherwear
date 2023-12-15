@@ -2,7 +2,7 @@ import { auth } from "@/auth-config";
 import { db } from "@/db-config";
 import { z } from "zod";
 
-//TODO: error checking for failed db queries
+// TODO: error checking for failed db queries
 
 const submitLocationSchema = z.object({
   location_name: z.string(),
@@ -13,7 +13,7 @@ const submitLocationSchema = z.object({
 // API CONTRACT IMPL
 export async function GET(request: Request) {
   const session = await auth();
-  if (!session) {
+  if (!session?.user) {
     return Response.json({}, { status: 401 });
   }
 
@@ -34,7 +34,7 @@ export async function GET(request: Request) {
 // API CONTRACT IMPL
 export async function POST(request: Request) {
   const session = await auth();
-  if (!session) {
+  if (!session?.user) {
     return Response.json({}, { status: 401 });
   }
 
