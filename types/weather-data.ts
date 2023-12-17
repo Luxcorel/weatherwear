@@ -39,6 +39,3 @@ export interface WeatherData {
     gust_kph: number;
   };
 }
-
-//TODO make proper api call helper
-export const WEATHER_API_BASE_URL = `https://api.weatherapi.com/v1/current.json?key=${process.env.WEATHER_API_KEY}`;

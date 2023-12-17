@@ -19,7 +19,7 @@ export default function WeatherTest() {
                 fetchWeatherData(location.coords.latitude, location.coords.longitude);
             },
             (error) => {
-                console.log("Could not fetch weather!");
+                console.log("Could not fetch weather: " + error);
             },
         );
     }, []);
@@ -29,8 +29,10 @@ export default function WeatherTest() {
             {weatherData ? (
                 <div className={"text-center"}>
                     <p>Location: {weatherData.location}</p>
+                    <p>Local time: {weatherData.local_time}</p>
                     <p>Precipitation: {weatherData.precipitation}</p>
                     <p>Temperature: {weatherData.degrees}C</p>
+                    <p>Condition: {weatherData.condition}</p>
                 </div>
             ) : (
                 <p className={"animate-pulse text-center text-2xl"}>Loading weather data...</p>
