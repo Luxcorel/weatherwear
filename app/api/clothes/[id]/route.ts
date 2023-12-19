@@ -10,7 +10,6 @@ const updateClothingSchema = z.object({
   size: z.string(),
 });
 
-// API CONTRACT IMPL
 export async function GET(request: Request, { params }: { params: { id: string } }) {
   const session = await auth();
   if (!session?.user) {
@@ -31,7 +30,6 @@ export async function GET(request: Request, { params }: { params: { id: string }
   return Response.json(clothing, { status: 200 });
 }
 
-// API CONTRACT IMPL
 export async function PUT(request: Request, { params }: { params: { id: string } }) {
   const session = await auth();
   if (!session?.user) {

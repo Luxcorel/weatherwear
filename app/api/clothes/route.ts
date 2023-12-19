@@ -10,7 +10,6 @@ const clothingAddSchema = z.object({
   size: z.string(),
 });
 
-// API CONTRACT IMPL
 export async function GET(request: Request) {
   const session = await auth();
   if (!session?.user) {
