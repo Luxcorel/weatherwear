@@ -1,15 +1,19 @@
 import { z } from "zod";
 import { db } from "@/db-config";
 import { auth } from "@/auth-config";
+import { ClothingType } from "@/types/clothing-type";
+import { Season } from "@/types/season";
 
 // TODO: error checking for failed db queries
-
 const clothingAddSchema = z.object({
-  clothing_type: z.string(),
-  color: z.string(),
-  size: z.string(),
+  clothing_type: z.nativeEnum(ClothingType),
+  season: z.nativeEnum(Season),
+  name: z.string(),
+  is_precipitation_proof: z.boolean(),
+  icon_path: z.string(),
 });
 
+// Fetch all clothes for the current user
 export async function GET(request: Request) {
   const session = await auth();
   if (!session?.user) {
@@ -18,7 +22,14 @@ export async function GET(request: Request) {
 
   const clothes = await db
     .selectFrom("Clothing")
-    .select(["Clothing.id", "Clothing.clothing_type", "Clothing.color", "Clothing.size"])
+    .select([
+      "Clothing.id",
+      "Clothing.clothing_type",
+      "Clothing.season",
+      "Clothing.name",
+      "Clothing.is_precipitation_proof",
+      "Clothing.icon_path",
+    ])
     .where("Clothing.owner", "=", session.user.id)
     .execute();
 
@@ -30,7 +41,6 @@ export async function GET(request: Request) {
   );
 }
 
-// TODO: Implement ClothingType enum and check that input strings conform
 export async function POST(request: Request) {
   const session = await auth();
   if (!session?.user) {
@@ -47,10 +57,19 @@ export async function POST(request: Request) {
     .values({
       owner: session.user.id,
       clothing_type: requestBody.data.clothing_type,
-      color: requestBody.data.color,
-      size: requestBody.data.size,
+      season: requestBody.data.season,
+      name: requestBody.data.name,
+      is_precipitation_proof: requestBody.data.is_precipitation_proof,
+      icon_path: requestBody.data.icon_path,
     })
-    .returning(["Clothing.id", "Clothing.clothing_type", "Clothing.color", "Clothing.size"])
+    .returning([
+      "Clothing.id",
+      "Clothing.clothing_type",
+      "Clothing.season",
+      "Clothing.name",
+      "Clothing.is_precipitation_proof",
+      "Clothing.icon_path",
+    ])
     .executeTakeFirst();
 
   return Response.json(dbInsert, { status: 200 });
