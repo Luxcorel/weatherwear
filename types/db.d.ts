@@ -25,10 +25,11 @@ export interface Account {
 
 export interface Clothing {
   clothing_type: string;
-  color: string;
   id: Generated<string>;
+  is_precipitation_proof: boolean;
+  name: string;
   owner: string;
-  size: string;
+  season: number;
 }
 
 export interface Location {
