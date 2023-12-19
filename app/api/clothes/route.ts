@@ -1,12 +1,13 @@
 import { z } from "zod";
 import { db } from "@/db-config";
 import { auth } from "@/auth-config";
+import { ClothingType } from "@/types/clothing-type";
+import { Season } from "@/types/season";
 
 // TODO: error checking for failed db queries
-
 const clothingAddSchema = z.object({
-  clothing_type: z.string(),
-  season: z.number(),
+  clothing_type: z.nativeEnum(ClothingType),
+  season: z.nativeEnum(Season),
   name: z.string(),
   is_precipitation_proof: z.boolean(),
   icon_path: z.string(),
@@ -40,7 +41,6 @@ export async function GET(request: Request) {
   );
 }
 
-// TODO: Implement ClothingType enum and check that input strings conform
 export async function POST(request: Request) {
   const session = await auth();
   if (!session?.user) {
