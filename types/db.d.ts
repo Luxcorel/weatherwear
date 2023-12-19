@@ -25,6 +25,7 @@ export interface Account {
 
 export interface Clothing {
   clothing_type: string;
+  icon_path: string;
   id: Generated<string>;
   is_precipitation_proof: boolean;
   name: string;
