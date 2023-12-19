@@ -63,7 +63,6 @@ export async function POST(request: Request) {
       icon_path: requestBody.data.icon_path,
     })
     .returning([
-      "Clothing.owner",
       "Clothing.id",
       "Clothing.clothing_type",
       "Clothing.season",
