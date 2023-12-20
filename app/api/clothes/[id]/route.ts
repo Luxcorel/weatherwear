@@ -1,13 +1,17 @@
 import { auth } from "@/auth-config";
 import { db } from "@/db-config";
 import { z } from "zod";
+import { ClothingType } from "@/types/clothing-type";
+import { Season } from "@/types/season";
 
 // TODO: error checking for failed db queries
 
 const updateClothingSchema = z.object({
-  clothing_type: z.string(),
-  color: z.string(),
-  size: z.string(),
+  clothing_type: z.nativeEnum(ClothingType),
+  season: z.nativeEnum(Season),
+  name: z.string(),
+  is_precipitation_proof: z.boolean(),
+  icon_path: z.string(),
 });
 
 export async function GET(request: Request, { params }: { params: { id: string } }) {
@@ -18,7 +22,14 @@ export async function GET(request: Request, { params }: { params: { id: string }
 
   const clothing = await db
     .selectFrom("Clothing")
-    .select(["Clothing.id", "Clothing.clothing_type", "Clothing.color", "Clothing.size"])
+    .select([
+      "Clothing.id",
+      "Clothing.clothing_type",
+      "Clothing.season",
+      "Clothing.name",
+      "Clothing.is_precipitation_proof",
+      "Clothing.icon_path",
+    ])
     .where("Clothing.id", "=", `${params.id}`)
     .where("Clothing.owner", "=", session.user.id)
     .executeTakeFirst();
@@ -45,12 +56,21 @@ export async function PUT(request: Request, { params }: { params: { id: string }
     .updateTable("Clothing")
     .set({
       clothing_type: requestBody.data.clothing_type,
-      color: requestBody.data.color,
-      size: requestBody.data.size,
+      season: requestBody.data.season,
+      name: requestBody.data.name,
+      is_precipitation_proof: requestBody.data.is_precipitation_proof,
+      icon_path: requestBody.data.icon_path,
     })
     .where("Clothing.id", "=", `${params.id}`)
     .where("Clothing.owner", "=", `${session.user.id}`)
-    .returning(["Clothing.id", "Clothing.clothing_type", "Clothing.color", "Clothing.size"])
+    .returning([
+      "Clothing.id",
+      "Clothing.clothing_type",
+      "Clothing.season",
+      "Clothing.name",
+      "Clothing.is_precipitation_proof",
+      "Clothing.icon_path",
+    ])
     .executeTakeFirst();
 
   if (!dbUpdate) {
