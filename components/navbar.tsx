@@ -24,6 +24,12 @@ export default function Navbar() {
                     <Button variant={"outline"}>User info</Button>
                 </Link>
             </div>
+
+            <div className={"flex justify-center"}>
+                <Link href={"/test"}>
+                    <Button variant={"outline"}>Outfit suggestions testing</Button>
+                </Link>
+            </div>
         </div>
     );
 }
