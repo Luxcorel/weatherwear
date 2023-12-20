@@ -8,8 +8,8 @@ import Navbar from "@/components/navbar";
 const inter = Inter({ subsets: ["latin"] });
 
 export const metadata: Metadata = {
-    title: "NextJS App",
-    description: "A NextJS test app",
+    title: "Weatherwear",
+    description: "Weatherwear - outfit suggestions based on weather",
 };
 
 export default function RootLayout({ children }: { readonly children: React.ReactNode }) {
