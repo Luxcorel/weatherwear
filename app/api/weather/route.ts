@@ -34,7 +34,7 @@ export async function GET(request: NextRequest) {
     );
   }
 
-  const weatherResponse = await fetchWeatherByLocation(requestBody.data.latitude, requestBody.data.longitude, 15);
+  const weatherResponse = await fetchWeatherByLocation(requestBody.data.latitude, requestBody.data.longitude);
   if (!weatherResponse.ok) {
     return Response.json(
       {
