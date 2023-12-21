@@ -3,7 +3,7 @@ import { Season } from "@/frontend-types/season";
 
 export type ClothingDTO = {
   id: string;
-  clothing_type: ClothingType;
+  clothing_type: ClothingType | string;
   season: Season;
   name: string;
   is_precipitation_proof: boolean;

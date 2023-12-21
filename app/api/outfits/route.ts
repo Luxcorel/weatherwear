@@ -4,8 +4,8 @@ import { ClothingDTO } from "@/types/clothing-dto";
 import { fetchWeatherByLocation } from "@/lib/weather-api-requests";
 import { db } from "@/db-config";
 import { z } from "zod";
-import { WeatherData } from "@/types/weather-data";
 import { WEATHER_CONDITIONS } from "@/types/weather-conditions";
+import { weatherDataSchema } from "@/types/weather-data";
 
 async function fetchWeatherByCurrentLocation(latitude: number, longitude: number) {
   return fetchWeatherByLocation(latitude, longitude);
@@ -87,6 +87,17 @@ export async function GET(request: NextRequest) {
     );
   }
 
+  const weatherData = await weatherResponse.json();
+  const weather = weatherDataSchema.safeParse(weatherData);
+  if (!weather.success) {
+    return Response.json(
+      {
+        error: "Weather data error",
+      },
+      { status: 500 },
+    );
+  }
+
   const wardrobe = await db
     .selectFrom("Clothing")
     .select([
@@ -100,20 +111,25 @@ export async function GET(request: NextRequest) {
     .where("Clothing.owner", "=", `${session.user.id}`)
     .execute();
 
-  const weatherData: WeatherData = await weatherResponse.json();
-  const generalWeatherCondition =
+  // this is the weather-keyword: "unknown", "sunny", "cloudy", "rainy", "snowy"
+  const weatherKeyword =
     WEATHER_CONDITIONS.find((condition) => weatherData.current.condition.code === condition.code)?.generalCondition ||
     "unknown";
+  // this is the array that is supposed to contain the clothes that will make up the outfit
   const outfit: ClothingDTO[] = [];
-  // TODO add outfit-building logic here (pick appropriate clothing based on weather data)
+  // weather data is available through the following variable: weather.data
+  //weather.data
 
+  // TODO: add outfit-building logic here (pick appropriate clothing based on weather data)
+
+  // the return is set up here per the API documentation (with the addition of _debug)
   return Response.json(
     {
       outfit,
       degrees_c: weatherData.current.temp_c,
-      weather_keyword: generalWeatherCondition,
-      weather_picture: `/public/icons/${generalWeatherCondition}.png`,
-      _debug: { wardrobe, weatherData, generalWeatherCondition },
+      weather_keyword: weatherKeyword,
+      weather_picture: `/public/icons/${weatherKeyword}.png`,
+      _debug: { wardrobe, weatherData, weatherKeyword },
     },
     { status: 200 },
   );

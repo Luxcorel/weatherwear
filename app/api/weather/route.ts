@@ -1,5 +1,5 @@
 import { z } from "zod";
-import { WeatherData } from "@/types/weather-data";
+import { weatherDataSchema } from "@/types/weather-data";
 import { NextRequest } from "next/server";
 import { fetchWeatherByLocation } from "@/lib/weather-api-requests";
 
@@ -44,15 +44,24 @@ export async function GET(request: NextRequest) {
     );
   }
 
-  const weatherData: WeatherData = await weatherResponse.json();
+  const weatherData: unknown = await weatherResponse.json();
+  const weather = weatherDataSchema.safeParse(weatherData);
+  if (!weather.success) {
+    return Response.json(
+      {
+        error: "Weather data error",
+      },
+      { status: 500 },
+    );
+  }
 
   return Response.json(
     {
-      location: weatherData.location.name,
-      local_time: weatherData.location.localtime,
-      precipitation: weatherData.current.precip_mm,
-      degrees: weatherData.current.temp_c,
-      condition: weatherData.current.condition.text,
+      location: weather.data.location.name,
+      local_time: weather.data.location.localtime,
+      precipitation: weather.data.current.precip_mm,
+      degrees: weather.data.current.temp_c,
+      condition: weather.data.current.condition.text,
     },
     { status: 200 },
   );
