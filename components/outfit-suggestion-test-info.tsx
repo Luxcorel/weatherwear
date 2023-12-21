@@ -39,7 +39,7 @@ export default function OutfitSuggestionTestInfo() {
                     <>
                         <ul>
                             {data.outfit.map((clothing) => (
-                                <li key={clothing.id} />
+                                <li key={clothing.id}>{JSON.stringify(clothing)}</li>
                             ))}
                         </ul>
                         <ul>
