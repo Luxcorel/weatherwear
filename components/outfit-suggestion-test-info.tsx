@@ -37,6 +37,9 @@ export default function OutfitSuggestionTestInfo() {
 
                 {data ? (
                     <>
+                        {data.outfit ? (
+                            <p className={"animate-bounce text-2xl text-red-700"}>No outfit received</p>
+                        ) : null}
                         <ul>
                             {data.outfit.map((clothing) => (
                                 <li key={clothing.id}>{JSON.stringify(clothing)}</li>
