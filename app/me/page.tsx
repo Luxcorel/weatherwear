@@ -1,6 +1,8 @@
 import UserProfile from "@/components/user-info";
 import { Suspense } from "react";
 
+export const runtime = "edge";
+
 export default function Page() {
     return (
         <div>
