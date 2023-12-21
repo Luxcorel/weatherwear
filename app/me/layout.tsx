@@ -6,6 +6,8 @@ export const metadata: Metadata = {
     description: "A NextJS app",
 };
 
+export const runtime = "edge";
+
 export default function RootLayout({ children }: { readonly children: React.ReactNode }) {
     return <div>{children}</div>;
 }

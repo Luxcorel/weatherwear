@@ -5,8 +5,6 @@ import { ThemeProvider } from "@/components/theme-provider";
 import React from "react";
 import Navbar from "@/components/navbar";
 
-export const runtime = "edge";
-
 const inter = Inter({ subsets: ["latin"] });
 
 export const metadata: Metadata = {
