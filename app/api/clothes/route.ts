@@ -4,7 +4,6 @@ import { auth } from "@/auth-config";
 import { ClothingType } from "@/types/clothing-type";
 import { Season } from "@/types/season";
 
-// TODO: error checking for failed db queries
 const clothingAddSchema = z.object({
   clothing_type: z.nativeEnum(ClothingType),
   season: z.nativeEnum(Season),
@@ -71,6 +70,10 @@ export async function POST(request: Request) {
       "Clothing.icon_path",
     ])
     .executeTakeFirst();
+
+  if (!dbInsert) {
+    return Response.json({}, { status: 500 });
+  }
 
   return Response.json(dbInsert, { status: 200 });
 }

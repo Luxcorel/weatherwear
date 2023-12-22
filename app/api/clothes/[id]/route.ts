@@ -4,8 +4,6 @@ import { z } from "zod";
 import { ClothingType } from "@/types/clothing-type";
 import { Season } from "@/types/season";
 
-// TODO: error checking for failed db queries
-
 const updateClothingSchema = z.object({
   clothing_type: z.nativeEnum(ClothingType),
   season: z.nativeEnum(Season),
