@@ -44,8 +44,8 @@ export async function GET(request: NextRequest) {
     );
   }
 
-  const weatherData: unknown = await weatherResponse.json();
-  const weather = weatherDataSchema.safeParse(weatherData);
+  const weatherResponseBody = (await weatherResponse.json()) as unknown;
+  const weather = weatherDataSchema.safeParse(weatherResponseBody);
   if (!weather.success) {
     return Response.json(
       {

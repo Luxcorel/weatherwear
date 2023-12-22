@@ -87,8 +87,8 @@ export async function GET(request: NextRequest) {
     );
   }
 
-  const weatherData = await weatherResponse.json();
-  const weather = weatherDataSchema.safeParse(weatherData);
+  const weatherResponseBody = (await weatherResponse.json()) as unknown;
+  const weather = weatherDataSchema.safeParse(weatherResponseBody);
   if (!weather.success) {
     return Response.json(
       {
@@ -111,25 +111,26 @@ export async function GET(request: NextRequest) {
     .where("Clothing.owner", "=", `${session.user.id}`)
     .execute();
 
-  // this is the weather-keyword: "unknown", "sunny", "cloudy", "rainy", "snowy"
-  const weatherKeyword =
-    WEATHER_CONDITIONS.find((condition) => weatherData.current.condition.code === condition.code)?.generalCondition ||
-    "unknown";
-  // this is the array that is supposed to contain the clothes that will make up the outfit
-  const outfit: ClothingDTO[] = [];
+  const weatherKeyword = WEATHER_CONDITIONS[weather.data.current.condition.code].weather_keyword || undefined;
+  if (!weatherKeyword) {
+    return Response.json({}, { status: 500 });
+  }
+
   // weather data is available through the following variable: weather.data
-  //weather.data
+  // weather keyword ("sunny", "cloudy", "rainy", "snowy") is available through the variable: weatherKeyword
+  // this is the array that is supposed to contain the clothes that will make up the outfit:
+  const outfit: ClothingDTO[] = [];
 
   // TODO: add outfit-building logic here (pick appropriate clothing based on weather data)
 
-  // the return is set up here per the API documentation (with the addition of _debug)
+  // the return is set up here per the API documentation (with the addition of "_debug" for testing purposes)
   return Response.json(
     {
       outfit,
-      degrees_c: weatherData.current.temp_c,
+      degrees_c: weather.data.current.temp_c,
       weather_keyword: weatherKeyword,
       weather_picture: `/public/icons/${weatherKeyword}.png`,
-      _debug: { wardrobe, weatherData, weatherKeyword },
+      _debug: { wardrobe, weather, weatherKeyword },
     },
     { status: 200 },
   );
