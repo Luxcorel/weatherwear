@@ -8,43 +8,79 @@ export default async function Navbar() {
     const session = await auth();
 
     return (
-        <div className={"flex flex-wrap justify-start"}>
+        <div className={"flex h-14 items-center justify-around bg-blue-100 duration-700 ease-in hover:drop-shadow"}>
             <ThemeToggle />
 
-            <div className={"flex justify-center"}>
+            <div>
                 <Link href={"/"}>
-                    <Button variant={"outline"}>Home</Button>
+                    <Button
+                        className={
+                            "rounded-3xl border-2 border-gray-500 bg-blue-100 text-lg text-black duration-500 ease-in-out hover:border-green-500 hover:bg-white"
+                        }
+                    >
+                        Home
+                    </Button>
                 </Link>
             </div>
 
-            <div className={"flex justify-center"}>
+            <div>
                 <Link href={"/weather"}>
-                    <Button variant={"outline"}>Weather</Button>
+                    <Button
+                        className={
+                            "rounded-3xl border-2 border-gray-500 bg-blue-100 text-lg text-black duration-500 ease-in-out hover:border-green-500 hover:bg-white"
+                        }
+                    >
+                        Weather
+                    </Button>
                 </Link>
             </div>
 
-            <div className={"flex justify-center"}>
+            <div>
                 <Link href={"/me"}>
-                    <Button variant={"outline"}>User info</Button>
+                    <Button
+                        className={
+                            "rounded-3xl border-2 border-gray-500 bg-blue-100 text-lg text-black duration-500 ease-in-out hover:border-green-500 hover:bg-white"
+                        }
+                    >
+                        User info
+                    </Button>
                 </Link>
             </div>
 
-            <div className={"flex justify-center"}>
+            <div>
                 <Link href={"/test"}>
-                    <Button variant={"outline"}>Outfit testing</Button>
+                    <Button
+                        className={
+                            "rounded-3xl border-2 border-gray-500 bg-blue-100 text-lg text-black duration-500 ease-in-out hover:border-green-500 hover:bg-white"
+                        }
+                    >
+                        Outfit testing
+                    </Button>
                 </Link>
             </div>
 
             {session ? (
-                <div className={"flex justify-center"}>
+                <div>
                     <Link href={"/api/auth/signout"}>
-                        <Button variant={"outline"}>Logout ({session.user.name})</Button>
+                        <Button
+                            className={
+                                "rounded-3xl border-2 border-gray-500 bg-blue-100 text-lg text-black duration-500 ease-in-out hover:border-green-500 hover:bg-white"
+                            }
+                        >
+                            Logout ({session.user.name})
+                        </Button>
                     </Link>
                 </div>
             ) : (
-                <div className={"flex justify-center"}>
+                <div>
                     <Link href={"/api/auth/signin"}>
-                        <Button variant={"outline"}>Login</Button>
+                        <Button
+                            className={
+                                "rounded-3xl border-2 border-gray-500 bg-blue-100 text-lg text-black duration-500 ease-in-out hover:border-red-500 hover:bg-white"
+                            }
+                        >
+                            Login
+                        </Button>
                     </Link>
                 </div>
             )}
