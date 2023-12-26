@@ -8,7 +8,11 @@ export default async function Navbar() {
     const session = await auth();
 
     return (
-        <div className={"flex h-14 items-center justify-around bg-blue-100 duration-700 ease-in hover:drop-shadow"}>
+        <div
+            className={
+                "flex h-14 min-w-fit items-center justify-around bg-blue-100 duration-700 ease-in hover:drop-shadow"
+            }
+        >
             <ThemeToggle />
 
             <div>
