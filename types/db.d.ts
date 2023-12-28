@@ -10,7 +10,7 @@ export type Timestamp = ColumnType<Date, Date | string, Date | string>;
 
 export interface Account {
   access_token: string | null;
-  expires_at: Int8 | null;
+  expires_at: bigint | null;
   id: Generated<string>;
   id_token: string | null;
   provider: string;
