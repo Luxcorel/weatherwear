@@ -4,7 +4,7 @@ import React, { useEffect, useState } from "react";
 import { WeatherTestDTO } from "@/frontend-types/weather-test-DTO";
 import { Location } from "@/frontend-types/location";
 import useSWR from "swr";
-import { fetcher } from "@/lib/data-fetcher";
+import { fetcher } from "@/lib/swr-fetcher";
 
 // TODO: Don't use this
 export default function WeatherTest() {

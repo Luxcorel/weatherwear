@@ -1,7 +1,7 @@
 "use client";
 
 import useSWR from "swr";
-import { fetcher } from "@/lib/data-fetcher";
+import { fetcher } from "@/lib/swr-fetcher";
 import { SuggestionDTO } from "@/frontend-types/suggestion-dto";
 import React, { useEffect, useState } from "react";
 import { Location } from "@/frontend-types/location";
