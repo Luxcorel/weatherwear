@@ -1,6 +1,5 @@
 import type { NextAuthConfig } from "next-auth";
 import NextAuth from "next-auth";
-import GitHub from "next-auth/providers/github";
 import { KyselyAdapter } from "@auth/kysely-adapter";
 import { db } from "@/db-config";
 import Spotify from "@auth/core/providers/spotify";
@@ -10,7 +9,6 @@ export const authConfig = {
   // @ts-ignore
   adapter: KyselyAdapter(db),
   providers: [
-    GitHub,
     Spotify({ clientId: process.env.AUTH_SPOTIFY_CLIENT_ID, clientSecret: process.env.AUTH_SPOTIFY_CLIENT_SECRET }),
   ],
   callbacks: {
