@@ -47,7 +47,7 @@ export const authConfig = {
         return session;
       }
 
-      if (Number(result.expires_at) * 1000 < Date.now() && result.provider === "spotify") {
+      if (Number(result.expires_at) * 1000 < Date.now() + 60000 && result.provider === "spotify") {
         try {
           const response = await fetch("https://accounts.spotify.com/api/token", {
             headers: {
