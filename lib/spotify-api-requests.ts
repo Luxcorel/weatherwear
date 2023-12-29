@@ -2,7 +2,7 @@ import { Session } from "next-auth";
 
 const DEFAULT_CACHE_TIME = 60;
 
-export async function authGet(url: string, session: Session, cacheTime: number | null) {
+export async function spotifyGet(url: string, session: Session, cacheTime: number | null) {
   const cacheRevalidate = cacheTime ? cacheTime : DEFAULT_CACHE_TIME;
 
   return fetch(url, {
