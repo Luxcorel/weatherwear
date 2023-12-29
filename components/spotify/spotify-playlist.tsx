@@ -22,7 +22,7 @@ export default async function SpotifyPlaylist(props: { readonly weatherKeyword: 
 
     return (
         <div>
-            <SpotifyEmbedPlayer magicId={playlist.split(regex)[1]} />
+            <SpotifyEmbedPlayer mediaId={playlist.split(regex)[1]} mediaType={"playlist"} />
         </div>
     );
 }
