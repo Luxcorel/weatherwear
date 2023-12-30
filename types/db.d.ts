@@ -30,7 +30,7 @@ export interface Clothing {
   is_precipitation_proof: boolean;
   name: string;
   owner: string;
-  season: number;
+  usable_temperature_range: number;
 }
 
 export interface Location {
