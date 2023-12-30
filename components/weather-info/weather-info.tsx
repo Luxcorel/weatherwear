@@ -1,55 +1,27 @@
-"use client";
-
-import React, { useEffect, useState } from "react";
+import React from "react";
 import { WeatherTestDTO } from "@/frontend-types/weather-test-DTO";
-import { Location } from "@/frontend-types/location";
-import useSWR from "swr";
-import { fetcher } from "@/lib/swr-fetcher";
 
-// TODO: Don't use this
-export default function WeatherInfo() {
-    const [locationInfo, setLocationInfo] = useState<Location>();
+type Props = {
+    readonly latitude: number;
+    readonly longitude: number;
+};
 
-    const {
-        data: weatherData,
-        error,
-        isLoading,
-    } = useSWR<WeatherTestDTO>(
-        `${locationInfo ? `api/weather?latitude=${locationInfo.latitude}&longitude=${locationInfo.longitude}` : ""}`,
-        fetcher,
-        {
-            onSuccess(data) {
-                document.title = `Weather in ${data.location}`;
-            },
-        },
-    );
+async function getWeatherInfo(latitude: number, longitude: number) {
+    const response = await fetch(`${process.env.BASE_URL}/api/weather?latitude=${latitude}&longitude=${longitude}`);
+    return (await response.json()) as WeatherTestDTO;
+}
 
-    useEffect(() => {
-        getLocation();
-    }, []);
-
-    function getLocation() {
-        navigator.geolocation.getCurrentPosition(
-            (location) => {
-                setLocationInfo({ latitude: location.coords.latitude, longitude: location.coords.longitude });
-            },
-            (error) => {
-                console.log("Could not get location: " + error);
-            },
-        );
-    }
+export default async function WeatherInfo(props: Props) {
+    const weatherData = await getWeatherInfo(props.latitude, props.longitude);
 
     return (
         <>
-            {isLoading ? <p className={"mb-5 animate-pulse text-center text-xl"}>Loading...</p> : null}
-            {weatherData ? (
-                <ul className={"text-center"}>
-                    <li>Location: {weatherData.location}</li>
-                    <li>Local time: {weatherData.local_time}</li>
-                    <li>Temperature: {weatherData.degrees}C</li>
-                    <li>Condition: {weatherData.condition}</li>
-                </ul>
-            ) : null}
+            <ul className={"text-center"}>
+                <li>Location: {weatherData.location}</li>
+                <li>Local time: {weatherData.local_time}</li>
+                <li>Temperature: {weatherData.degrees}C</li>
+                <li>Condition: {weatherData.condition}</li>
+            </ul>
         </>
     );
 }
