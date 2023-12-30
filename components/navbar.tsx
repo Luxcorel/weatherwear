@@ -2,15 +2,17 @@ import Link from "next/link";
 import { Button } from "@/components/ui/button";
 import { ThemeToggle } from "@/components/theme-toggle";
 import { auth } from "@/auth-config";
+import React from "react";
 
 // this is just a temporary navbar. it is supposed to be better in the future.
 export default async function Navbar() {
     const session = await auth();
 
+    // TODO fix navbar so that it is dynamic
     return (
         <div
             className={
-                "flex h-14 min-w-fit items-center justify-around bg-blue-100 duration-700 ease-in hover:drop-shadow"
+                "flex h-14 min-w-fit flex-wrap items-center justify-around bg-blue-100 duration-700 ease-in hover:drop-shadow"
             }
         >
             <ThemeToggle />
