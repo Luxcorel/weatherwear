@@ -1,4 +1,4 @@
-type WeatherKeyword = "sunny" | "cloudy" | "rainy" | "snowy";
+export type WeatherKeyword = "sunny" | "cloudy" | "rainy" | "snowy";
 
 interface WeatherCondition {
   code: number;
