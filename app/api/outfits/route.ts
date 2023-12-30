@@ -129,7 +129,6 @@ export async function GET(request: NextRequest) {
   return Response.json(
     {
       outfit,
-      degrees_c: weather.data.current.temp_c,
       weather_keyword: weatherKeyword,
       weather_picture: `/public/icons/${weatherKeyword}.png`,
       _debug: { wardrobe, weather, weatherKeyword },

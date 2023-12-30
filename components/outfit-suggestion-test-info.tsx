@@ -46,7 +46,6 @@ export default function OutfitSuggestionTestInfo() {
                             ))}
                         </ul>
                         <ul>
-                            <li>Degrees celsius: {data?.degrees_c}</li>
                             <li>Weather keyword: {data?.weather_keyword}</li>
                             <li>Weather picture: {data?.weather_picture}</li>
                         </ul>
