@@ -8,8 +8,8 @@ import Navbar from "@/components/navbar";
 const inter = Inter({ subsets: ["latin"] });
 
 export const metadata: Metadata = {
-    title: "Weatherwear",
-    description: "Weatherwear - outfit suggestions based on weather",
+    title: "WeatherWear",
+    description: "WeatherWear - outfit suggestions based on weather",
 };
 
 export default function RootLayout({ children }: { readonly children: React.ReactNode }) {

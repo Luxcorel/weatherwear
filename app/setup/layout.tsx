@@ -2,8 +2,7 @@ import type { Metadata } from "next";
 import React from "react";
 
 export const metadata: Metadata = {
-    title: "Weatherwear",
-    description: "Weatherwear - outfit suggestions based on weather",
+    title: "Choose location | WeatherWear",
 };
 
 export default function Layout({ children }: { readonly children: React.ReactNode }) {
