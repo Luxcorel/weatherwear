@@ -9,16 +9,15 @@ export default function LocationChooser() {
     function getLocation() {
         navigator.geolocation.getCurrentPosition(
             (location) => {
-                const date = new Date();
-                const value = location.coords;
+                const { longitude, latitude } = location.coords;
 
+                const date = new Date();
                 // Set it expire in 7 days
                 date.setTime(date.getTime() + 7 * 24 * 60 * 60 * 1000);
 
-                // Set it
-                document.cookie = "latitude=" + value.latitude + "; expires=" + date.toUTCString() + "; path=/";
-                document.cookie = "longitude=" + value.longitude + "; expires=" + date.toUTCString() + "; path=/";
-                router.replace("/");
+                document.cookie = `latitude=${latitude}; expires=${date.toUTCString()}; path=/; SameSite=Strict; Secure=true`;
+                document.cookie = `longitude=${longitude}; expires=${date.toUTCString()}; path=/; SameSite=Strict; Secure=true`;
+                router.push("/");
             },
             (error) => {},
         );

@@ -1,4 +1,4 @@
-import LocationChooser from "@/components/LocationChooser";
+import LocationChooser from "@/components/location-chooser";
 
 export default function Page() {
     return (
