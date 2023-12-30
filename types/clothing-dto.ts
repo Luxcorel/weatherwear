@@ -1,10 +1,10 @@
 import { ClothingType } from "@/types/clothing-type";
-import { Season } from "@/types/season";
+import { UsableTemperatureRange } from "@/types/usableTemperatureRange";
 
 export interface ClothingDTO {
   id: string;
   clothing_type: ClothingType | string;
-  season: Season;
+  usableTemperatureRange: UsableTemperatureRange;
   name: string;
   is_precipitation_proof: boolean;
   icon_path: string;

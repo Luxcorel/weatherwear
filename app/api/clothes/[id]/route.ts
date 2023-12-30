@@ -2,11 +2,11 @@ import { auth } from "@/auth-config";
 import { db } from "@/db-config";
 import { z } from "zod";
 import { ClothingType } from "@/types/clothing-type";
-import { Season } from "@/types/season";
+import { UsableTemperatureRange } from "@/types/usableTemperatureRange";
 
 const updateClothingSchema = z.object({
   clothing_type: z.nativeEnum(ClothingType),
-  season: z.nativeEnum(Season),
+  usableTemperatureRange: z.nativeEnum(UsableTemperatureRange),
   name: z.string(),
   is_precipitation_proof: z.boolean(),
   icon_path: z.string(),
@@ -23,7 +23,7 @@ export async function GET(request: Request, { params }: { params: { id: string }
     .select([
       "Clothing.id",
       "Clothing.clothing_type",
-      "Clothing.season",
+      "Clothing.usable_temperature_range",
       "Clothing.name",
       "Clothing.is_precipitation_proof",
       "Clothing.icon_path",
@@ -54,7 +54,7 @@ export async function PUT(request: Request, { params }: { params: { id: string }
     .updateTable("Clothing")
     .set({
       clothing_type: requestBody.data.clothing_type,
-      season: requestBody.data.season,
+      usable_temperature_range: requestBody.data.usableTemperatureRange,
       name: requestBody.data.name,
       is_precipitation_proof: requestBody.data.is_precipitation_proof,
       icon_path: requestBody.data.icon_path,
@@ -64,7 +64,7 @@ export async function PUT(request: Request, { params }: { params: { id: string }
     .returning([
       "Clothing.id",
       "Clothing.clothing_type",
-      "Clothing.season",
+      "Clothing.usable_temperature_range",
       "Clothing.name",
       "Clothing.is_precipitation_proof",
       "Clothing.icon_path",
