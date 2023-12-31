@@ -4,7 +4,6 @@ import useSWR from "swr";
 import { fetcher } from "@/lib/swr-fetcher";
 import { Locations, SavedLocation } from "@/frontend-types/locations";
 import { Button } from "@/components/ui/button";
-import { useRouter } from "next/navigation";
 
 export default function SavedLocations() {
     //const router = useRouter();
