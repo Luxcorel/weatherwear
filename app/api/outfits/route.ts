@@ -7,6 +7,7 @@ import { z } from "zod";
 import { WEATHER_CONDITIONS } from "@/types/weather-conditions";
 import { weatherDataSchema } from "@/types/weather-data";
 import { UsableTemperatureRange } from "@/types/usableTemperatureRange";
+import { ClothingType } from "@/types/clothing-type";
 
 async function fetchWeatherByCurrentLocation(latitude: number, longitude: number) {
   return fetchWeatherByLocation(latitude, longitude);
@@ -145,15 +146,6 @@ function clothesPicker(wardrobe: ClothingDTO[], weather: z.infer<typeof weatherD
   const temperatureRange = mapTemperatureToRange(weather.current.temp_c);
   const fallbackTemperatureRange = fallbackMapTemperatureToRange(weather.current.temp_c, temperatureRange);
 
-  const dummyObject = {
-    id: "",
-    clothing_type: "none",
-    usable_temperature_range: 0,
-    name: "",
-    is_precipitation_proof: false,
-    icon_path: "",
-  };
-
   for (const clothing of wardrobe) {
     switch (clothing.clothing_type) {
       case "Shirt":
@@ -195,7 +187,7 @@ function clothesPicker(wardrobe: ClothingDTO[], weather: z.infer<typeof weatherD
   }
 
   if (outfit.length !== 1) {
-    outfit.push(dummyObject);
+    outfit.push(getDummyClothing(ClothingType.SHIRT));
   }
 
   // OUTWEAR
@@ -216,7 +208,7 @@ function clothesPicker(wardrobe: ClothingDTO[], weather: z.infer<typeof weatherD
   }
 
   if (outfit.length !== 2) {
-    outfit.push(dummyObject);
+    outfit.push(getDummyClothing(ClothingType.OUTWEAR));
   }
 
   // BOTTOM
@@ -237,10 +229,21 @@ function clothesPicker(wardrobe: ClothingDTO[], weather: z.infer<typeof weatherD
   }
 
   if (outfit.length !== 3) {
-    outfit.push(dummyObject);
+    outfit.push(getDummyClothing(ClothingType.BOTTOM));
   }
 
   return outfit;
+}
+
+function getDummyClothing(clothingType: ClothingType) {
+  return {
+    id: "",
+    clothing_type: clothingType,
+    usable_temperature_range: 0,
+    name: "",
+    is_precipitation_proof: false,
+    icon_path: "",
+  };
 }
 
 //https://en.wikipedia.org/wiki/Fisher%E2%80%93Yates_shuffle
