@@ -45,10 +45,6 @@ export default function OutfitSuggestionTestInfo() {
                                 <li key={clothing.id}>{JSON.stringify(clothing)}</li>
                             ))}
                         </ul>
-                        <ul>
-                            <li>Weather keyword: {data?.weather_keyword}</li>
-                            <li>Weather picture: {data?.weather_picture}</li>
-                        </ul>
                     </>
                 ) : null}
             </div>

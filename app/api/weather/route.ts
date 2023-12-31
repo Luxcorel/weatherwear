@@ -2,6 +2,7 @@ import { z } from "zod";
 import { weatherDataSchema } from "@/types/weather-data";
 import { NextRequest } from "next/server";
 import { fetchWeatherByLocation } from "@/lib/weather-api-requests";
+import { WEATHER_CONDITIONS } from "@/types/weather-conditions";
 
 const locationSchema = z.object({
   latitude: z.number().min(-90).max(90),
@@ -55,6 +56,11 @@ export async function GET(request: NextRequest) {
     );
   }
 
+  const weatherKeyword = WEATHER_CONDITIONS[weather.data.current.condition.code].weather_keyword || undefined;
+  if (!weatherKeyword) {
+    return Response.json({}, { status: 500 });
+  }
+
   return Response.json(
     {
       location: weather.data.location.name,
@@ -62,6 +68,8 @@ export async function GET(request: NextRequest) {
       precipitation: weather.data.current.precip_mm,
       degrees: weather.data.current.temp_c,
       condition: weather.data.current.condition.text,
+      weather_keyword: weatherKeyword,
+      weather_picture: `/public/icons/${weatherKeyword}.png`,
     },
     { status: 200 },
   );
