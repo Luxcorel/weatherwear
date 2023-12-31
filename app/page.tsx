@@ -3,12 +3,22 @@ import { cookies } from "next/headers";
 import { redirect } from "next/navigation";
 import { Suspense } from "react";
 import SpotifyPlaylist from "@/components/spotify/spotify-playlist";
+import { WeatherInfoDTO } from "@/frontend-types/weather-info-DTO";
 
-export default function Home() {
+async function getWeatherInfo(latitude: number, longitude: number) {
+    const response = await fetch(`${process.env.BASE_URL}/api/weather?latitude=${latitude}&longitude=${longitude}`, {
+        next: { revalidate: 300 },
+    });
+    //TODO: should validate this
+    return (await response.json()) as WeatherInfoDTO;
+}
+
+export default async function Home() {
     const cookieStore = cookies();
     const latitude = cookieStore.get("latitude");
     const longitude = cookieStore.get("longitude");
-    //TODO: set latitude and longitude from saved location on frontend instead of passing savedLocation id?
+    //TODO: Add cookie for choosing preferred music genre?
+    //TODO: Set latitude and longitude from saved location on frontend instead of passing savedLocation id?
     // const savedLocation = cookieStore.get("saved_location");
 
     if (!(latitude && longitude)) {
@@ -17,9 +27,10 @@ export default function Home() {
 
     const latitudeValue = Number(latitude.value);
     const longitudeValue = Number(longitude.value);
+    const weather = await getWeatherInfo(latitudeValue, longitudeValue);
 
     // TODO fix h-[40vh] with a better solution
-    // TODO customize weatherKeyword to use keyword from outfit endpoint.
+    // TODO: Add logic that personalizes weather keyword (user's preferred genre)
     return (
         <>
             <div className={"flex h-[40vh] w-full p-2"}>
@@ -31,7 +42,7 @@ export default function Home() {
             </div>
 
             <div className={"w-full p-4"}>
-                <SpotifyPlaylist weatherKeyword={"sunny"} />
+                <SpotifyPlaylist weatherKeyword={weather.weather_keyword} />
             </div>
         </>
     );
