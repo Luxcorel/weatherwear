@@ -7,7 +7,9 @@ type Props = {
 };
 
 async function getWeatherInfo(latitude: number, longitude: number) {
-    const response = await fetch(`${process.env.BASE_URL}/api/weather?latitude=${latitude}&longitude=${longitude}`);
+    const response = await fetch(`${process.env.BASE_URL}/api/weather?latitude=${latitude}&longitude=${longitude}`, {
+        next: { revalidate: 300 },
+    });
     return (await response.json()) as WeatherTestDTO;
 }
 
