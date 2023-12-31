@@ -8,12 +8,15 @@ export default function Home() {
     const cookieStore = cookies();
     const latitude = cookieStore.get("latitude");
     const longitude = cookieStore.get("longitude");
-    //TODO: get latitude and longitude from saved location on frontend
+    //TODO: set latitude and longitude from saved location on frontend instead of passing savedLocation id?
     // const savedLocation = cookieStore.get("saved_location");
 
     if (!(latitude && longitude)) {
         redirect("/setup");
     }
+
+    const latitudeValue = Number(latitude.value);
+    const longitudeValue = Number(longitude.value);
 
     // TODO fix h-[40vh] with a better solution
     // TODO customize weatherKeyword to use keyword from outfit endpoint.
@@ -22,7 +25,7 @@ export default function Home() {
             <div className={"flex h-[40vh] w-full p-2"}>
                 <div className={"m-2 w-full rounded-[12px] bg-red-500 dark:bg-slate-700"}>
                     <Suspense fallback={<p className={"mb-5 animate-pulse text-center text-xl"}>Loading weather...</p>}>
-                        <WeatherInfo latitude={Number(latitude.value)} longitude={Number(longitude.value)} />
+                        <WeatherInfo latitude={latitudeValue} longitude={longitudeValue} />
                     </Suspense>
                 </div>
             </div>
