@@ -8,7 +8,7 @@ import OutfitSuggestion from "@/components/outfit-suggestion/outfit-suggestion";
 
 async function getWeatherInfo(latitude: number, longitude: number) {
     const response = await fetch(`${process.env.BASE_URL}/api/weather?latitude=${latitude}&longitude=${longitude}`, {
-        next: { revalidate: 300 },
+        next: { revalidate: 60 },
     });
     //TODO: should validate this
     return (await response.json()) as WeatherInfoDTO;
