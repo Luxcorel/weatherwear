@@ -1,5 +1,5 @@
 import React from "react";
-import { WeatherTestDTO } from "@/frontend-types/weather-test-DTO";
+import { WeatherInfoDTO } from "@/frontend-types/weather-info-DTO";
 
 type Props = {
     readonly latitude: number;
@@ -10,7 +10,7 @@ async function getWeatherInfo(latitude: number, longitude: number) {
     const response = await fetch(`${process.env.BASE_URL}/api/weather?latitude=${latitude}&longitude=${longitude}`, {
         next: { revalidate: 300 },
     });
-    return (await response.json()) as WeatherTestDTO;
+    return (await response.json()) as WeatherInfoDTO;
 }
 
 export default async function WeatherInfo(props: Props) {

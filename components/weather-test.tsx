@@ -1,7 +1,7 @@
 "use client";
 
 import React, { useEffect, useState } from "react";
-import { WeatherTestDTO } from "@/frontend-types/weather-test-DTO";
+import { WeatherInfoDTO } from "@/frontend-types/weather-info-DTO";
 import { Location } from "@/frontend-types/location";
 import useSWR from "swr";
 import { fetcher } from "@/lib/swr-fetcher";
@@ -14,7 +14,7 @@ export default function WeatherTest() {
         data: weatherData,
         error,
         isLoading,
-    } = useSWR<WeatherTestDTO>(
+    } = useSWR<WeatherInfoDTO>(
         `${locationInfo ? `api/weather?latitude=${locationInfo.latitude}&longitude=${locationInfo.longitude}` : ""}`,
         fetcher,
         {
