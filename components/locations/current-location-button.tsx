@@ -3,10 +3,10 @@
 import { Button } from "@/components/ui/button";
 import { useRouter } from "next/navigation";
 
-export default function LocationChooser() {
-    const router = useRouter();
+export default function CurrentLocationButton() {
+    //const router = useRouter();
 
-    function getLocation() {
+    function setCurrentLocation() {
         navigator.geolocation.getCurrentPosition(
             (location) => {
                 const { longitude, latitude } = location.coords;
@@ -17,23 +17,20 @@ export default function LocationChooser() {
 
                 document.cookie = `latitude=${latitude}; expires=${date.toUTCString()}; path=/; SameSite=Strict; Secure=true`;
                 document.cookie = `longitude=${longitude}; expires=${date.toUTCString()}; path=/; SameSite=Strict; Secure=true`;
-                router.push("/");
+
+                //router.push("/"); using vanilla redirect to avoid stale location data
+                window.location.href = "/";
             },
             (error) => {},
         );
     }
 
     const handleCurrLocationClick = () => {
-        getLocation();
-    };
-
-    //TODO: Implement saved location by fetching from DB
-    const handleSavedLocationClick = () => {
-        console.log("not implemented yet");
+        setCurrentLocation();
     };
 
     return (
-        <div>
+        <>
             <Button
                 className={
                     "rounded-3xl border-2 border-gray-500 bg-blue-100 text-lg text-black duration-500 ease-in-out hover:border-green-500 hover:bg-white"
@@ -43,15 +40,6 @@ export default function LocationChooser() {
             >
                 Use current location
             </Button>
-            <Button
-                className={
-                    "rounded-3xl border-2 border-gray-500 bg-blue-100 text-lg text-black duration-500 ease-in-out hover:border-green-500 hover:bg-white"
-                }
-                type={"button"}
-                onClick={handleSavedLocationClick}
-            >
-                Use saved location
-            </Button>
-        </div>
+        </>
     );
 }
