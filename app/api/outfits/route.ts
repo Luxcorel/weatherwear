@@ -5,7 +5,7 @@ import { fetchWeatherByLocation } from "@/lib/weather-api-requests";
 import { db } from "@/db-config";
 import { z } from "zod";
 import { WEATHER_CONDITIONS } from "@/types/weather-conditions";
-import { weatherDataSchema } from "@/types/weather-data";
+import { WeatherData, weatherDataSchema } from "@/types/weather-data";
 import { UsableTemperatureRange } from "@/types/usableTemperatureRange";
 import { ClothingType } from "@/types/clothing-type";
 
@@ -136,7 +136,7 @@ export async function GET(request: NextRequest) {
   );
 }
 
-function clothesPicker(wardrobe: ClothingDTO[], weather: z.infer<typeof weatherDataSchema>) {
+function clothesPicker(wardrobe: ClothingDTO[], weather: WeatherData) {
   const outfit: ClothingDTO[] = [];
 
   const shirts: ClothingDTO[] = [];
