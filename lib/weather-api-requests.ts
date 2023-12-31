@@ -7,6 +7,6 @@ export const BASE_URL_WEATHER_API = `https://api.weatherapi.com/v1/current.json?
  */
 export function fetchWeatherByLocation(latitude: number, longitude: number) {
   return fetch(BASE_URL_WEATHER_API + `&q=${latitude}, ${longitude}`, {
-    next: { revalidate: 900 },
+    next: { revalidate: 60 },
   });
 }
