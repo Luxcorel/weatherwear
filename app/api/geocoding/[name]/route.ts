@@ -24,11 +24,15 @@ export async function GET(request: Request, { params }: { params: { name: string
 
   const locationResponse = await fetchLocationByName(params.name);
   const locationData = await locationResponse.json();
-  const location = locationSchema.safeParse(locationData);
+  if (!locationData) {
+    return Response.json({}, { status: 404 });
+  }
+
+  const location = locationSchema.safeParse(locationData[0]);
 
   if (!location.success) {
     return Response.json({}, { status: 404 });
   }
 
-  return Response.json(location, { status: 200 });
+  return Response.json(location.data, { status: 200 });
 }
