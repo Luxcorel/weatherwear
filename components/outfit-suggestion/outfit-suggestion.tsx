@@ -36,7 +36,7 @@ export default function OutfitSuggestion(props: Props) {
                             clothing.id ? (
                                 <li key={clothing.id}>{JSON.stringify(clothing)}</li>
                             ) : (
-                                <li key={undefined}>No {clothing.clothing_type}</li>
+                                <li key={undefined}>No {clothing.clothing_type} received</li>
                             ),
                         )}
                     </ul>
