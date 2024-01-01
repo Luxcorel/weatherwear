@@ -1,5 +1,5 @@
 import { z } from "zod";
-import { weatherDataSchema } from "@/types/weather-data";
+import { WEATHER_DATA_SCHEMA } from "@/types/weather-data";
 import { NextRequest } from "next/server";
 import { fetchWeatherByLocation } from "@/lib/weather-api-requests";
 import { WEATHER_CONDITIONS } from "@/types/weather-conditions";
@@ -46,7 +46,7 @@ export async function GET(request: NextRequest) {
   }
 
   const weatherResponseBody = (await weatherResponse.json()) as unknown;
-  const weather = weatherDataSchema.safeParse(weatherResponseBody);
+  const weather = WEATHER_DATA_SCHEMA.safeParse(weatherResponseBody);
   if (!weather.success) {
     return Response.json(
       {

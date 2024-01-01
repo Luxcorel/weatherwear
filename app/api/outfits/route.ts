@@ -1,13 +1,12 @@
 import { NextRequest } from "next/server";
 import { auth } from "@/auth-config";
-import { ClothingDTO } from "@/types/clothing-dto";
 import { fetchWeatherByLocation } from "@/lib/weather-api-requests";
 import { db } from "@/db-config";
 import { z } from "zod";
 import { WEATHER_CONDITIONS } from "@/types/weather-conditions";
-import { WeatherData, weatherDataSchema } from "@/types/weather-data";
+import { WeatherData, WEATHER_DATA_SCHEMA } from "@/types/weather-data";
 import { UsableTemperatureRange } from "@/types/usableTemperatureRange";
-import { ClothingType } from "@/types/clothing-type";
+import { ClothingDTO, ClothingType } from "@/types/clothing-types";
 
 async function fetchWeatherByCurrentLocation(latitude: number, longitude: number) {
   return fetchWeatherByLocation(latitude, longitude);
@@ -60,7 +59,7 @@ export async function GET(request: NextRequest) {
   }
 
   const weatherResponseBody = (await weatherResponse.json()) as unknown;
-  const weather = weatherDataSchema.safeParse(weatherResponseBody);
+  const weather = WEATHER_DATA_SCHEMA.safeParse(weatherResponseBody);
   if (!weather.success) {
     return Response.json(
       {

@@ -3,8 +3,8 @@ import { cookies } from "next/headers";
 import { redirect } from "next/navigation";
 import { Suspense } from "react";
 import SpotifyPlaylist from "@/components/spotify/spotify-playlist";
-import { WeatherInfoDTO } from "@/frontend-types/weather-info-DTO";
 import OutfitSuggestion from "@/components/outfit-suggestion/outfit-suggestion";
+import { WeatherInfoDTO } from "@/frontend-types/weather-types";
 
 async function getWeatherInfo(latitude: number, longitude: number) {
     const response = await fetch(`${process.env.BASE_URL}/api/weather?latitude=${latitude}&longitude=${longitude}`, {

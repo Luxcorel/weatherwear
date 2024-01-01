@@ -1,6 +1,6 @@
 import { z } from "zod";
 
-export interface WeatherData {
+export type WeatherData = {
   location: {
     name: string;
     region: string;
@@ -40,9 +40,9 @@ export interface WeatherData {
     gust_mph: number;
     gust_kph: number;
   };
-}
+};
 
-export const weatherDataSchema = z.object({
+export const WEATHER_DATA_SCHEMA = z.object({
   location: z.object({
     name: z.string(),
     region: z.string(),

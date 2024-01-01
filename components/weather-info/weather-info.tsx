@@ -1,5 +1,6 @@
 import React from "react";
-import { WeatherInfoDTO } from "@/frontend-types/weather-info-DTO";
+
+import { WeatherInfoDTO } from "@/frontend-types/weather-types";
 
 type Props = {
     readonly latitude: number;

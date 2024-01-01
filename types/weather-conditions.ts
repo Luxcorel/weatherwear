@@ -1,12 +1,12 @@
 export type WeatherKeyword = "sunny" | "cloudy" | "rainy" | "snowy";
 
-interface WeatherCondition {
+type WeatherCondition = {
   code: number;
   day: string;
   night: string;
   icon: number;
   weather_keyword: WeatherKeyword;
-}
+};
 export const WEATHER_CONDITIONS: Record<number, WeatherCondition> = {
   1000: {
     code: 1000,
