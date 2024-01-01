@@ -14,9 +14,8 @@ async function fetchWeatherByCurrentLocation(latitude: number, longitude: number
 }
 
 const locationSchema = z.object({
-  latitude: z.number().min(-90).max(90).optional(),
-  longitude: z.number().min(-180).max(180).optional(),
-  location_id: z.string().uuid().optional(),
+  latitude: z.number().min(-90).max(90),
+  longitude: z.number().min(-180).max(180),
 });
 
 // TODO refactor this endpoint at some point
@@ -30,17 +29,15 @@ export async function GET(request: NextRequest) {
   const { searchParams } = request.nextUrl;
   const latitude = searchParams.get("latitude");
   const longitude = searchParams.get("longitude");
-  const savedLocationId = searchParams.get("saved_location");
   // no location given - return bad request error
-  if (!(latitude && longitude) && !savedLocationId) {
+  if (!(latitude && longitude)) {
     return Response.json({}, { status: 400 });
   }
 
   // validate client input
   const requestBody = locationSchema.safeParse({
-    latitude: latitude ? Number.parseFloat(latitude) : undefined,
-    longitude: longitude ? Number.parseFloat(longitude) : undefined,
-    location_id: savedLocationId ? savedLocationId : undefined,
+    latitude: Number.parseFloat(latitude),
+    longitude: Number.parseFloat(longitude),
   });
   if (!requestBody.success) {
     return Response.json(
@@ -51,35 +48,8 @@ export async function GET(request: NextRequest) {
     );
   }
 
-  // select target location (saved location prioritized over current location if it exists)
-  let targetLocation: { latitude: number; longitude: number };
-  if (savedLocationId) {
-    const savedLocation = await db
-      .selectFrom("Location")
-      .select(["Location.latitude", "Location.longitude"])
-      .where("Location.id", "=", `${savedLocationId}`)
-      .where("Location.owner", "=", `${session.user.id}`)
-      .executeTakeFirst();
-
-    if (!savedLocation) {
-      return Response.json(
-        {
-          error: "Could not find the specified location",
-        },
-        { status: 400 },
-      );
-    }
-
-    targetLocation = savedLocation;
-  } else if (requestBody.data.latitude && requestBody.data.longitude) {
-    targetLocation = { latitude: requestBody.data.latitude, longitude: requestBody.data.longitude };
-  } else {
-    // this should be impossible, but you never know...
-    return Response.json({}, { status: 400 });
-  }
-
   // fetch weather for the target location
-  const weatherResponse = await fetchWeatherByCurrentLocation(targetLocation.latitude, targetLocation.longitude);
+  const weatherResponse = await fetchWeatherByCurrentLocation(requestBody.data.latitude, requestBody.data.longitude);
   if (!weatherResponse.ok) {
     return Response.json(
       {
