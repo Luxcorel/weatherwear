@@ -34,8 +34,9 @@ export default async function Home() {
     // TODO: Add logic that personalizes weather keyword (user's preferred genre)
     return (
         <>
-            <div className={"flex h-[40vh] w-full p-2"}>
-                <div className={"m-2 w-full rounded-[12px] bg-red-500 dark:bg-slate-700"}>
+        <div className="flex flew-wrap">
+            <div className={"w-full md:w-1/2 p-2"}>
+                <div className={"m-9 w-full md:w-1/2  rounded-[12px] bg-blue-100 dark:bg-slate-700 h-[45vh] lg:h-[35vh] flex items-center justify-center"}>
                     {/* Suspense is used to stream server components to the client as data is fetched in them.
                     This can not be used with client components as they are sent straight away to the client.
                      To customize the loading state you can pass JSX to the fallback prop in the <Suspense /> component
@@ -43,13 +44,20 @@ export default async function Home() {
                     <Suspense fallback={<p className={"mb-5 animate-pulse text-center text-xl"}>Loading weather...</p>}>
                         <WeatherInfo latitude={latitudeValue} longitude={longitudeValue} />
                     </Suspense>
-                    <OutfitSuggestion latitude={latitudeValue} longitude={longitudeValue} />
                 </div>
             </div>
+
+            <div className={"w-full md:w-1/2 p-2"}>
+                <div className={"m-9 w-full md:w-1/2 rounded-[12px] bg-blue-100 dark:bg-slate-700 h-[45vh] lg:h-[35vh] flex items-center justify-center"}>
+                    <OutfitSuggestion latitude={latitudeValue} longitude={longitudeValue} />
+                        </div>
+                    </div>
+             </div>
 
             <div className={"w-full p-4"}>
                 <SpotifyPlaylist weatherKeyword={weather.weather_keyword} />
             </div>
         </>
     );
+
 }
