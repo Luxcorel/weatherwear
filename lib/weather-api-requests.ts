@@ -12,13 +12,13 @@ export function fetchWeatherByLocation(latitude: number, longitude: number) {
   });
 }
 
-export function searchLocationByName(query: string) {
+export function fetchLocationByName(query: string) {
   return fetch(BASE_URL_WEATHER_API_LOCATION + `&q=${query}`, {
     next: { revalidate: 60 },
   });
 }
 
-export type LocationAPIResponse = {
+export type GeocodingResponse = {
   id: number;
   name: string;
   region: string;
@@ -28,7 +28,7 @@ export type LocationAPIResponse = {
   url: string;
 };
 
-export type LocationAPIResponseFailure = {
+export type GeocodingResponseFailure = {
   code: number;
   message: string;
 };
