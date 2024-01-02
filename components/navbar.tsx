@@ -12,7 +12,7 @@ export default async function Navbar() {
     return (
         <div
             className={
-                "flex h-14 min-w-fit flex-wrap items-center justify-around bg-blue-100 duration-700 ease-in hover:drop-shadow"
+                "flex h-14 min-w-fit flex-wrap items-center justify-evenly bg-blue-100 duration-700 ease-in hover:drop-shadow dark:bg-black"
             }
         >
             <ThemeToggle />
@@ -21,14 +21,14 @@ export default async function Navbar() {
                 <Link href={"/"}>
                     <Button
                         className={
-                            "rounded-3xl border-2 border-gray-500 bg-blue-100 text-lg text-black duration-500 ease-in-out hover:border-green-500 hover:bg-white"
+                            "rounded-3xl border-2 border-gray-500 bg-blue-100 text-lg text-black duration-500 ease-in-out hover:border-green-500 hover:bg-white dark:bg-black dark:text-white"
                         }
                     >
                         Home
                     </Button>
                 </Link>
             </div>
-
+            {/*  
             <div>
                 <Link href={"/setup"}>
                     <Button
@@ -45,22 +45,22 @@ export default async function Navbar() {
                 <Link href={"/weather"}>
                     <Button
                         className={
-                            "rounded-3xl border-2 border-gray-500 bg-blue-100 text-lg text-black duration-500 ease-in-out hover:border-green-500 hover:bg-white"
+                            "rounded-3xl border-2 border-gray-500 bg-blue-100 dark:bg-black dark:text-white  text-lg text-black duration-500 ease-in-out hover:border-green-500 hover:bg-white"
                         }
                     >
                         Weather
                     </Button>
                 </Link>
             </div>
-
+*/}
             <div>
                 <Link href={"/me"}>
                     <Button
                         className={
-                            "rounded-3xl border-2 border-gray-500 bg-blue-100 text-lg text-black duration-500 ease-in-out hover:border-green-500 hover:bg-white"
+                            "rounded-3xl border-2 border-gray-500 bg-blue-100 text-lg text-black duration-500 ease-in-out hover:border-green-500 hover:bg-white dark:bg-black dark:text-white"
                         }
                     >
-                        User info
+                        Profile
                     </Button>
                 </Link>
             </div>
@@ -69,7 +69,7 @@ export default async function Navbar() {
                 <Link href={"/test"}>
                     <Button
                         className={
-                            "rounded-3xl border-2 border-gray-500 bg-blue-100 text-lg text-black duration-500 ease-in-out hover:border-green-500 hover:bg-white"
+                            "rounded-3xl border-2 border-gray-500 bg-blue-100 text-lg text-black  duration-500 ease-in-out hover:border-green-500 hover:bg-white dark:bg-black dark:text-white"
                         }
                     >
                         Outfit testing
@@ -82,7 +82,7 @@ export default async function Navbar() {
                     <Link href={"/api/auth/signout"}>
                         <Button
                             className={
-                                "rounded-3xl border-2 border-gray-500 bg-blue-100 text-lg text-black duration-500 ease-in-out hover:border-green-500 hover:bg-white"
+                                "rounded-3xl border-2 border-gray-500 bg-blue-100 text-lg text-black duration-500 ease-in-out hover:border-green-500 hover:bg-white dark:bg-black dark:text-white"
                             }
                         >
                             Logout ({session.user.name})
@@ -94,7 +94,7 @@ export default async function Navbar() {
                     <Link href={"/api/auth/signin"}>
                         <Button
                             className={
-                                "rounded-3xl border-2 border-gray-500 bg-blue-100 text-lg text-black duration-500 ease-in-out hover:border-red-500 hover:bg-white"
+                                "rounded-3xl border-2 border-gray-500 bg-blue-100 text-lg text-black duration-500 ease-in-out hover:border-red-500 hover:bg-white dark:bg-black dark:text-white"
                             }
                         >
                             Login

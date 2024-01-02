@@ -33,10 +33,25 @@ export default async function Home() {
     // TODO: Add logic that personalizes weather keyword (user's preferred genre)
     return (
         <>
-            <div className={"flex h-[40vh] w-full p-2"}>
-                <div className={"m-2 w-full rounded-[12px] bg-red-500 dark:bg-slate-700"}>
-                    <WeatherInfo latitude={latitudeValue} longitude={longitudeValue} />
-                    <OutfitSuggestion latitude={latitudeValue} longitude={longitudeValue} />
+            <div className="flex flex-wrap">
+                <div className={"w-full p-2 md:w-1/2"}>
+                    <div
+                        className={
+                            "m-9 flex h-[45vh]  w-full items-center justify-center rounded-[12px] bg-blue-100 dark:bg-slate-700 md:w-1/2 lg:h-[35vh]"
+                        }
+                    >
+                        <WeatherInfo latitude={latitudeValue} longitude={longitudeValue} />
+                    </div>
+                </div>
+
+                <div className={"w-full p-2 md:w-1/2"}>
+                    <div
+                        className={
+                            "m-9 flex h-[45vh] w-full items-center justify-center rounded-[12px] bg-blue-100 dark:bg-slate-700 md:w-1/2 lg:h-[35vh]"
+                        }
+                    >
+                        <OutfitSuggestion latitude={latitudeValue} longitude={longitudeValue} />
+                    </div>
                 </div>
             </div>
 
