@@ -1,3 +1,5 @@
+import { WeatherData } from "@/types/weather-data";
+
 const BASE_URL_WEATHER_API_CURRENT_WEATHER = `https://api.weatherapi.com/v1/current.json?key=${process.env.WEATHER_API_KEY}`;
 const BASE_URL_WEATHER_API_LOCATION = `https://api.weatherapi.com/v1/search.json?key=${process.env.WEATHER_API_KEY}`;
 
@@ -6,11 +8,27 @@ const BASE_URL_WEATHER_API_LOCATION = `https://api.weatherapi.com/v1/search.json
  * @param latitude latitude of location
  * @param longitude longitude of location
  */
-export function fetchWeatherByLocation(latitude: number, longitude: number) {
-  return fetch(BASE_URL_WEATHER_API_CURRENT_WEATHER + `&q=${latitude}, ${longitude}`, {
+export async function fetchWeatherByLocation(latitude: number, longitude: number) {
+  // weatherapi.com sometimes serves stale weather data 1 time before revalidating data.
+  // That is: it serves stale data THEN revalidates on server.
+  // yes I'm losing my mind
+  const weatherResponse = await fetch(BASE_URL_WEATHER_API_CURRENT_WEATHER + `&q=${latitude}, ${longitude}`, {
     next: { revalidate: 60 },
-    cache: "no-cache",
   });
+
+  const weatherData = (await weatherResponse.json()) as WeatherData;
+
+  const contentUpdatedAt = new Date(weatherData.location.localtime_epoch);
+  const currentDate = new Date();
+  const timeDifference = currentDate.getTime() - contentUpdatedAt.getTime();
+  const thirtyMinMillis = 30 * 60 * 1000;
+  if (timeDifference > thirtyMinMillis) {
+    return fetch(BASE_URL_WEATHER_API_CURRENT_WEATHER + `&q=${latitude}, ${longitude}`, {
+      next: { revalidate: 0 },
+    });
+  }
+
+  return weatherResponse;
 }
 
 export function fetchLocationByName(query: string) {

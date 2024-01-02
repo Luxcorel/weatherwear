@@ -9,10 +9,6 @@ import { WeatherData, weatherDataSchema } from "@/types/weather-data";
 import { UsableTemperatureRange } from "@/types/usableTemperatureRange";
 import { ClothingType } from "@/types/clothing-type";
 
-async function fetchWeatherByCurrentLocation(latitude: number, longitude: number) {
-  return fetchWeatherByLocation(latitude, longitude);
-}
-
 const locationSchema = z.object({
   latitude: z.number().min(-90).max(90),
   longitude: z.number().min(-180).max(180),
@@ -49,7 +45,7 @@ export async function GET(request: NextRequest) {
   }
 
   // fetch weather for the target location
-  const weatherResponse = await fetchWeatherByCurrentLocation(requestBody.data.latitude, requestBody.data.longitude);
+  const weatherResponse = await fetchWeatherByLocation(requestBody.data.latitude, requestBody.data.longitude);
   if (!weatherResponse.ok) {
     return Response.json(
       {
