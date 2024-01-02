@@ -28,7 +28,19 @@ export default async function Navbar() {
                     </Button>
                 </Link>
             </div>
-            {/*  
+
+            <div>
+                <Link href={"/wardrobe"}>
+                    <Button
+                        className={
+                            "rounded-3xl border-2 border-gray-500 bg-blue-100 text-lg text-black duration-500 ease-in-out hover:border-green-500 hover:bg-white dark:bg-black dark:text-white"
+                        }
+                    >
+                        Wardrobe
+                    </Button>
+                </Link>
+            </div>
+            {/*
             <div>
                 <Link href={"/setup"}>
                     <Button
