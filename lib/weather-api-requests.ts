@@ -9,6 +9,7 @@ const BASE_URL_WEATHER_API_LOCATION = `https://api.weatherapi.com/v1/search.json
 export function fetchWeatherByLocation(latitude: number, longitude: number) {
   return fetch(BASE_URL_WEATHER_API_CURRENT_WEATHER + `&q=${latitude}, ${longitude}`, {
     next: { revalidate: 60 },
+    cache: "no-cache",
   });
 }
 
