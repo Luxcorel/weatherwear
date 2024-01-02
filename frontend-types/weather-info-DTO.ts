@@ -1,6 +1,6 @@
 import { WeatherKeyword } from "@/frontend-types/outfit-response";
 
-export interface WeatherInfoDTO {
+export type WeatherInfoDTO = {
   location: string;
   local_time: string;
   precipitation: number;
@@ -8,4 +8,4 @@ export interface WeatherInfoDTO {
   condition: string;
   weather_keyword: WeatherKeyword;
   weather_picture: string;
-}
+};

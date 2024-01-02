@@ -70,6 +70,7 @@ export async function GET(request: NextRequest) {
       condition: weather.data.current.condition.text,
       weather_keyword: weatherKeyword,
       weather_picture: `/public/icons/${weatherKeyword}.png`,
+      _time: new Date().toTimeString(),
     },
     { status: 200 },
   );

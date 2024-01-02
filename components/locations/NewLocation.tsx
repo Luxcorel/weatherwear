@@ -25,7 +25,7 @@ export default function NewLocation() {
         }
     };
 
-    const handleLocationSelect = async () => {
+    const handleLocationAdd = async () => {
         const response = await fetch("api/locations", {
             method: "POST",
             headers: {
@@ -55,7 +55,7 @@ export default function NewLocation() {
                 <Button type="submit">Search</Button>
             </form>
             {fetchedLocation?.name ? (
-                <Button onClick={handleLocationSelect}>{`Add ${fetchedLocation.name}`}</Button>
+                <Button onClick={handleLocationAdd}>{`Add ${fetchedLocation.name}`}</Button>
             ) : null}
         </div>
     );

@@ -26,7 +26,7 @@ export default function OutfitSuggestion(props: Props) {
 
     return (
         <div className={"text-center"}>
-            {isLoading ? <p className={"mb-5 animate-pulse text-center text-xl"}>Loading...</p> : null}
+            {isLoading ? <p className={"mb-5 animate-pulse text-center text-xl"}>Loading outfit...</p> : null}
 
             {data ? (
                 <div>

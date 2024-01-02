@@ -1,7 +1,6 @@
 import WeatherInfo from "@/components/weather-info/weather-info";
 import { cookies } from "next/headers";
 import { redirect } from "next/navigation";
-import { Suspense } from "react";
 import SpotifyPlaylist from "@/components/spotify/spotify-playlist";
 import { WeatherInfoDTO } from "@/frontend-types/weather-info-DTO";
 import OutfitSuggestion from "@/components/outfit-suggestion/outfit-suggestion";
@@ -36,13 +35,7 @@ export default async function Home() {
         <>
             <div className={"flex h-[40vh] w-full p-2"}>
                 <div className={"m-2 w-full rounded-[12px] bg-red-500 dark:bg-slate-700"}>
-                    {/* Suspense is used to stream server components to the client as data is fetched in them.
-                    This can not be used with client components as they are sent straight away to the client.
-                     To customize the loading state you can pass JSX to the fallback prop in the <Suspense /> component
-                     */}
-                    <Suspense fallback={<p className={"mb-5 animate-pulse text-center text-xl"}>Loading weather...</p>}>
-                        <WeatherInfo latitude={latitudeValue} longitude={longitudeValue} />
-                    </Suspense>
+                    <WeatherInfo latitude={latitudeValue} longitude={longitudeValue} />
                     <OutfitSuggestion latitude={latitudeValue} longitude={longitudeValue} />
                 </div>
             </div>

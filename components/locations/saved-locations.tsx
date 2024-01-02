@@ -1,6 +1,6 @@
 "use client";
 
-import useSWR from "swr";
+import useSWR, { mutate } from "swr";
 import { fetcher } from "@/lib/swr-fetcher";
 import { Locations, SavedLocation } from "@/frontend-types/locations";
 import { Button } from "@/components/ui/button";
@@ -10,7 +10,7 @@ export default function SavedLocations() {
 
     const { data, error, isLoading } = useSWR<Locations>(`api/locations`, fetcher);
 
-    const handleLocationClick = (location: SavedLocation) => {
+    const handleLocationClick = async (location: SavedLocation) => {
         const date = new Date();
         // Set it expire in 7 days
         date.setTime(date.getTime() + 7 * 24 * 60 * 60 * 1000);
@@ -22,7 +22,10 @@ export default function SavedLocations() {
             location.longitude
         }; expires=${date.toUTCString()}; path=/; SameSite=Strict; Secure=true`;
 
-        //router.push("/"); using vanilla redirect to avoid stale location data
+        // using vanilla redirect to avoid stale location data (props aren't updated unless new request to server is made)
+        // should probably use locally stored location info but this works...
+        await mutate(`api/weather?latitude=${location.latitude}&longitude=${location.longitude}`);
+        await mutate(`api/outfits?latitude=${location.latitude}&longitude=${location.longitude}`);
         window.location.href = "/";
     };
 
