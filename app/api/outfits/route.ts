@@ -46,7 +46,7 @@ export async function GET(request: NextRequest) {
 
   // fetch weather for the target location
   const weatherResponse = await fetchWeatherByLocation(requestBody.data.latitude, requestBody.data.longitude);
-  if (!weatherResponse.ok) {
+  if (!weatherResponse.location) {
     return Response.json(
       {
         error: "Could not find weather for that location",
@@ -55,8 +55,7 @@ export async function GET(request: NextRequest) {
     );
   }
 
-  const weatherResponseBody = (await weatherResponse.json()) as unknown;
-  const weather = weatherDataSchema.safeParse(weatherResponseBody);
+  const weather = weatherDataSchema.safeParse(weatherResponse);
   if (!weather.success) {
     return Response.json(
       {

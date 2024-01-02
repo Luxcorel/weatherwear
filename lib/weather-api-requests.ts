@@ -18,22 +18,24 @@ export async function fetchWeatherByLocation(latitude: number, longitude: number
 
   const weatherData = (await weatherResponse.json()) as WeatherData;
 
-  const contentUpdatedAt = new Date(weatherData.location.localtime_epoch);
+  const fixedTimestamp = weatherData.current.last_updated_epoch * 1000;
+  const contentUpdatedAt = new Date(fixedTimestamp);
   const currentDate = new Date();
   const timeDifference = currentDate.getTime() - contentUpdatedAt.getTime();
+
   const thirtyMinMillis = 30 * 60 * 1000;
   if (timeDifference > thirtyMinMillis) {
     return fetch(BASE_URL_WEATHER_API_CURRENT_WEATHER + `&q=${latitude}, ${longitude}`, {
       next: { revalidate: 0 },
-    });
+    }).then(async (response) => (await response.json()) as WeatherData);
   }
 
-  return weatherResponse;
+  return weatherData;
 }
 
 export function fetchLocationByName(query: string) {
   return fetch(BASE_URL_WEATHER_API_LOCATION + `&q=${query}`, {
-    next: { revalidate: 60 },
+    next: { revalidate: 86400 },
   });
 }
 
