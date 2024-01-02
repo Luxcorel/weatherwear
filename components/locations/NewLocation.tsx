@@ -3,6 +3,7 @@
 import { ChangeEvent, FormEvent, useState } from "react";
 import { Button } from "@/components/ui/button";
 import { GeocodingResponse } from "@/lib/weather-api-requests";
+import { mutate } from "swr";
 
 export default function NewLocation() {
     const [locationQuery, setLocationQuery] = useState("");
@@ -37,7 +38,8 @@ export default function NewLocation() {
             }),
         });
 
-        window.location.reload();
+        //invalidate saved location data in <SavedLocation />
+        await mutate("api/locations");
     };
 
     return (
