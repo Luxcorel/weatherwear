@@ -26,26 +26,29 @@ export default function NewLocation() {
     };
 
     const handleLocationAdd = async () => {
-        const response = await fetch("api/locations", {
-            method: "POST",
-            headers: {
-                "Content-Type": "application/json",
-            },
-            body: JSON.stringify({
-                location_name: fetchedLocation?.name,
-                latitude: fetchedLocation?.lat,
-                longitude: fetchedLocation?.lon,
-            }),
-        });
+        if (fetchedLocation) {
+            const response = await fetch("api/locations", {
+                method: "POST",
+                headers: {
+                    "Content-Type": "application/json",
+                },
+                body: JSON.stringify({
+                    location_name: fetchedLocation.name,
+                    latitude: fetchedLocation.latitude,
+                    longitude: fetchedLocation.longitude,
+                }),
+            });
 
-        //invalidate saved location data in <SavedLocation />
-        await mutate("api/locations");
+            //invalidate saved location data in <SavedLocation />
+            await mutate("api/locations");
+        }
     };
 
     return (
         <div className={"flex-wrap"}>
             <form onSubmit={handleSearchSubmit}>
                 <input
+                    required
                     className="rounded-md border px-4 py-2 focus:outline-none"
                     type="text"
                     placeholder="Add a new location"

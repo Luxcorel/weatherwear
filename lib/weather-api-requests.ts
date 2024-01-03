@@ -38,18 +38,3 @@ export function fetchLocationByName(query: string) {
     next: { revalidate: 86400 },
   });
 }
-
-export type GeocodingResponse = {
-  id: number;
-  name: string;
-  region: string;
-  country: string;
-  lat: number;
-  lon: number;
-  url: string;
-};
-
-export type GeocodingResponseFailure = {
-  code: number;
-  message: string;
-};
