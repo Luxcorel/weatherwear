@@ -2,8 +2,12 @@ import { Suspense } from "react";
 import ReadonlySavedLocations from "@/components/locations/readonly-saved-locations";
 import { auth } from "@/auth-config";
 import { redirect } from "next/navigation";
-
 import NewLocationPicker from "@/components/locations/new-location-picker";
+
+export async function generateMetadata() {
+    const session = await auth();
+    return session ? { title: `${session.user.name}'s profile | WeatherWear` } : {};
+}
 
 export default async function Page() {
     const session = await auth();
