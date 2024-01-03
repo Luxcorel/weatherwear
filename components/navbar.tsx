@@ -4,7 +4,6 @@ import { ThemeToggle } from "@/components/theme-toggle";
 import { auth } from "@/auth-config";
 import React from "react";
 
-// this is just a temporary navbar. it is supposed to be better in the future.
 export default async function Navbar() {
     const session = await auth();
 
@@ -73,18 +72,6 @@ export default async function Navbar() {
                         }
                     >
                         Profile
-                    </Button>
-                </Link>
-            </div>
-
-            <div>
-                <Link href={"/test"}>
-                    <Button
-                        className={
-                            "rounded-3xl border-2 border-gray-500 bg-blue-100 text-lg text-black  duration-500 ease-in-out hover:border-green-500 hover:bg-white dark:bg-black dark:text-white"
-                        }
-                    >
-                        Outfit testing
                     </Button>
                 </Link>
             </div>
