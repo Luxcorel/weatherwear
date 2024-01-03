@@ -1,10 +1,10 @@
 "use client";
 
 import useSWR from "swr";
-import { SuggestionDTO } from "@/frontend-types/suggestion-dto";
 import { fetcher } from "@/lib/swr-fetcher";
 import React from "react";
 import { useRouter } from "next/navigation";
+import { SuggestionDTO } from "@/frontend-types/clothing-types";
 
 type Props = {
     readonly latitude: number;

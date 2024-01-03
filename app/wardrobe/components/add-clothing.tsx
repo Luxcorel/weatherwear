@@ -2,7 +2,7 @@
 
 import { useState } from "react";
 import { Button } from "@/components/ui/button";
-import { ClothingType } from "@/frontend-types/clothing-type";
+import { ClothingType } from "@/frontend-types/clothing-types";
 import { UsableTemperatureRange } from "@/types/usableTemperatureRange";
 import { mutate } from "swr";
 

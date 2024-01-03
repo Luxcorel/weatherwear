@@ -2,12 +2,12 @@
 
 import useSWR from "swr";
 import { fetcher } from "@/lib/swr-fetcher";
-import { ClothingResponse } from "@/frontend-types/clothing-response";
 import Link from "next/link";
 import { Button } from "@/components/ui/button";
+import { AllSavedClothingResponse } from "@/frontend-types/clothing-types";
 
 export default function SavedClothing() {
-    const { data, error, isLoading } = useSWR<ClothingResponse>(`api/clothes`, fetcher);
+    const { data, error, isLoading } = useSWR<AllSavedClothingResponse>(`api/clothes`, fetcher);
 
     return (
         <>

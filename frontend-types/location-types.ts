@@ -13,3 +13,13 @@ export type SavedLocation = {
 export type SavedLocationsResponse = {
   favorite_locations: SavedLocation[];
 };
+
+export type GeocodingResponse = {
+  id: number;
+  name: string;
+  region: string;
+  country: string;
+  lat: number;
+  lon: number;
+  url: string;
+};
