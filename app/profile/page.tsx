@@ -1,13 +1,35 @@
-import UserProfile from "@/components/user-info";
 import { Suspense } from "react";
+import ReadonlySavedLocations from "@/components/locations/readonly-saved-locations";
+import { auth } from "@/auth-config";
+import { redirect } from "next/navigation";
 
-export default function Page() {
+import NewLocationPicker from "@/components/locations/new-location-picker";
+
+export default async function Page() {
+    const session = await auth();
+    if (!session) {
+        redirect("/setup");
+    }
+
     return (
-        <div>
-            <h1 className={"my-5 text-center text-2xl"}>Your profile</h1>
-            <Suspense fallback={<p className={"animate-pulse text-center text-2xl"}>Loading profile info...</p>}>
-                <UserProfile />
-            </Suspense>
-        </div>
+        <>
+            <div>
+                <Suspense fallback={<p className={"animate-pulse text-center text-2xl"}>Loading profile...</p>}>
+                    <h1 className={"my-5 text-center text-2xl"}>{session.user.name}&apos;s profile</h1>
+                </Suspense>
+            </div>
+
+            <div>{/* TODO: Create new component that allows editing/deletion of location */}</div>
+
+            <h2 className={"my-5 text-center text-xl"}>Saved locations</h2>
+
+            <div className={"my-5 flex justify-center"}>
+                <NewLocationPicker />
+            </div>
+
+            <div>
+                <ReadonlySavedLocations />
+            </div>
+        </>
     );
 }

@@ -1,11 +1,11 @@
 "use client";
 
 import { ChangeEvent, FormEvent, useState } from "react";
-import { Button } from "@/components/ui/button";
-import { mutate } from "swr";
 import { GeocodingResponse } from "@/frontend-types/location-types";
+import { mutate } from "swr";
+import { Button } from "@/components/ui/button";
 
-export default function NewLocation() {
+export default function NewLocationPicker() {
     const [locationQuery, setLocationQuery] = useState("");
     const [fetchedLocation, setFetchedLocation] = useState<GeocodingResponse>();
 

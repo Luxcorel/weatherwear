@@ -5,7 +5,7 @@ import { fetcher } from "@/lib/swr-fetcher";
 import { Button } from "@/components/ui/button";
 import { SavedLocationsResponse, SavedLocation } from "@/frontend-types/location-types";
 
-export default function SavedLocations() {
+export default function ReadonlySavedLocations() {
     //const router = useRouter();
 
     const { data, error, isLoading } = useSWR<SavedLocationsResponse>(`api/locations`, fetcher);
