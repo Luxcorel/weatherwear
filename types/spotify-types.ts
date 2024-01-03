@@ -1,4 +1,4 @@
-export interface SpotifyUser {
+export type SpotifyUser = {
   display_name: string;
   external_urls: {
     spotify: string;
@@ -10,4 +10,4 @@ export interface SpotifyUser {
   uri: string;
   followers: { href: string; total: number };
   email: string;
-}
+};

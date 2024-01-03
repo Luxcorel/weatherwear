@@ -1,4 +1,4 @@
-import { WeatherKeyword } from "@/frontend-types/outfit-response";
+export type WeatherKeyword = "sunny" | "cloudy" | "rainy" | "snowy";
 
 export type WeatherInfoDTO = {
   location: string;

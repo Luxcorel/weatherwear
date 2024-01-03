@@ -4,7 +4,8 @@ import useSWR from "swr";
 import { fetcher } from "@/lib/swr-fetcher";
 import { SuggestionDTO } from "@/frontend-types/suggestion-dto";
 import React, { useEffect, useState } from "react";
-import { Location } from "@/frontend-types/location";
+
+import { Location } from "@/frontend-types/location-types";
 
 // TODO: Don't use this
 export default function OutfitSuggestionTestInfo() {

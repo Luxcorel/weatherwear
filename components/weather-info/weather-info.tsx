@@ -1,7 +1,7 @@
 "use client";
 
 import React from "react";
-import { WeatherInfoDTO } from "@/frontend-types/weather-info-DTO";
+import { WeatherInfoDTO } from "@/frontend-types/weather-types";
 import { fetcher } from "@/lib/swr-fetcher";
 import useSWR from "swr";
 

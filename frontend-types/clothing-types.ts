@@ -1,5 +1,10 @@
-import { ClothingType } from "@/frontend-types/clothing-type";
 import { Season } from "@/frontend-types/season";
+
+export enum ClothingType {
+  SHIRT = "Shirt",
+  OUTWEAR = "Outwear",
+  BOTTOM = "Bottom",
+}
 
 export type ClothingDTO = {
   id: string;

@@ -1,10 +1,10 @@
 "use client";
 
 import React, { useEffect, useState } from "react";
-import { WeatherInfoDTO } from "@/frontend-types/weather-info-DTO";
-import { Location } from "@/frontend-types/location";
 import useSWR from "swr";
 import { fetcher } from "@/lib/swr-fetcher";
+import { Location } from "@/frontend-types/location-types";
+import { WeatherInfoDTO } from "@/frontend-types/weather-types";
 
 // TODO: Don't use this
 export default function WeatherTest() {

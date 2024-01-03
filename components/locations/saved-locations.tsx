@@ -2,13 +2,13 @@
 
 import useSWR, { mutate } from "swr";
 import { fetcher } from "@/lib/swr-fetcher";
-import { Locations, SavedLocation } from "@/frontend-types/locations";
 import { Button } from "@/components/ui/button";
+import { SavedLocationsResponse, SavedLocation } from "@/frontend-types/location-types";
 
 export default function SavedLocations() {
     //const router = useRouter();
 
-    const { data, error, isLoading } = useSWR<Locations>(`api/locations`, fetcher);
+    const { data, error, isLoading } = useSWR<SavedLocationsResponse>(`api/locations`, fetcher);
 
     const handleLocationClick = async (location: SavedLocation) => {
         const date = new Date();

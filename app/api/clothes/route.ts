@@ -1,8 +1,8 @@
 import { z } from "zod";
 import { db } from "@/db-config";
 import { auth } from "@/auth-config";
-import { ClothingType } from "@/types/clothing-type";
 import { UsableTemperatureRange } from "@/types/usableTemperatureRange";
+import { ClothingType } from "@/types/clothing-types";
 
 const clothingAddSchema = z.object({
   clothing_type: z.nativeEnum(ClothingType),
