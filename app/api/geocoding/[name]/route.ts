@@ -34,5 +34,13 @@ export async function GET(request: Request, { params }: { params: { name: string
     return Response.json({}, { status: 404 });
   }
 
-  return Response.json(location.data, { status: 200 });
+  const locationReturn = {
+    name: location.data.name,
+    latitude: location.data.lat,
+    longitude: location.data.lon,
+    region: location.data.region,
+    country: location.data.country,
+  };
+
+  return Response.json(locationReturn, { status: 200 });
 }

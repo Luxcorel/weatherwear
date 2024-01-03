@@ -15,11 +15,9 @@ export type SavedLocationsResponse = {
 };
 
 export type GeocodingResponse = {
-  id: number;
   name: string;
+  latitude: number;
+  longitude: number;
   region: string;
   country: string;
-  lat: number;
-  lon: number;
-  url: string;
 };
