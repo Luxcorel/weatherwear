@@ -65,7 +65,7 @@ export default async function Navbar() {
             </div>
 */}
             <div>
-                <Link href={"/me"}>
+                <Link href={"/profile"}>
                     <Button
                         className={
                             "rounded-3xl border-2 border-gray-500 bg-blue-100 text-lg text-black duration-500 ease-in-out hover:border-green-500 hover:bg-white dark:bg-black dark:text-white"
