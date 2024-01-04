@@ -39,6 +39,9 @@ export default function NewLocationPicker() {
                 }),
             });
 
+            setLocationQuery("");
+            setFetchedLocation(undefined);
+
             //invalidate saved location data in <SavedLocation />
             await mutate("api/locations");
         }
@@ -57,8 +60,12 @@ export default function NewLocationPicker() {
                 />
                 <Button type="submit">Search</Button>
             </form>
-            {fetchedLocation?.name ? (
-                <Button onClick={handleLocationAdd}>{`Add ${fetchedLocation.name}`}</Button>
+            {fetchedLocation ? (
+                fetchedLocation?.name ? (
+                    <Button onClick={handleLocationAdd}>{`Add ${fetchedLocation.name}`}</Button>
+                ) : (
+                    <p>No result found</p>
+                )
             ) : null}
         </div>
     );
