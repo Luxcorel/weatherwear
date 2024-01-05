@@ -70,7 +70,7 @@ export default async function Home() {
             <div className={"w-full p-4"}>
                 <SpotifyPlaylist
                     searchQuery={
-                        musicGenre ? weather.weather_keyword + " " + musicGenre.value : weather.weather_keyword
+                        musicGenre?.value ? weather.weather_keyword + " " + musicGenre.value : weather.weather_keyword
                     }
                 />
             </div>
