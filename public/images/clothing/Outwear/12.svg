@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="iso-8859-1"?>
+<!-- Uploaded to: SVG Repo, www.svgrepo.com, Generator: SVG Repo Mixer Tools -->
+<svg version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" 
+	 viewBox="0 0 512 512" xml:space="preserve">
+<path style="fill:#FAA85F;" d="M32,254.4V480h448V254.4c-54.4-8-96-54.4-96-110.4V32h-49.6c-8,36.8-40,64-78.4,64
+	s-70.4-27.2-78.4-64H128v112C128,200,86.4,246.4,32,254.4z"/>
+<rect x="32" y="304" style="fill:#FFFFFF;" width="448" height="112"/>
+<path style="fill:#00384E;" d="M496,224c-44.8,0-80-35.2-80-80V0H304v16c0,27.2-20.8,48-48,48s-48-20.8-48-48V0H96v144
+	c0,44.8-35.2,80-80,80H0v288h512V224H496z M334.4,32H384v112c0,56,41.6,102.4,96,110.4V272H272V94.4C304,88,328,64,334.4,32z
+	 M240,376v40H32V304h208v40h-24v32H240z M272,376h24v-32h-24v-40h208v112H272V376z M128,144V32h49.6C184,64,208,88,240,94.4V272H32
+	v-17.6C86.4,246.4,128,200,128,144z M32,448h208v32H32V448z M272,480v-32h208v32H272z"/>
+</svg>
