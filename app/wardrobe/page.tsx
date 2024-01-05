@@ -5,8 +5,13 @@ import SavedClothing from "@/app/wardrobe/components/SavedClothing";
 export default function Page() {
     return (
         <>
-            <AddClothing />
-            <SavedClothing />
+            <div>
+                <AddClothing />
+            </div>
+
+            <div className={"flex justify-center"}>
+                <SavedClothing />
+            </div>
         </>
     );
 }
