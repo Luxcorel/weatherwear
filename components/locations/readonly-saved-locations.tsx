@@ -36,9 +36,7 @@ export default function ReadonlySavedLocations() {
                     ? data.favorite_locations.map((value, index, array) => (
                           <Button
                               key={value.latitude + value.longitude}
-                              className={
-                                  "rounded-3xl border-2 border-gray-500 bg-blue-100 text-lg text-black duration-500 ease-in-out hover:border-green-500 hover:bg-white"
-                              }
+                              className={"m-auto"}
                               onClick={() => handleLocationClick(value)}
                           >
                               {value.location_name}

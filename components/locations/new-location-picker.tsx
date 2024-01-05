@@ -48,11 +48,11 @@ export default function NewLocationPicker() {
     };
 
     return (
-        <div className={"flex-wrap"}>
-            <form onSubmit={handleSearchSubmit}>
+        <div className={"w-3/4 flex-wrap"}>
+            <form className={"flex w-full flex-col"} onSubmit={handleSearchSubmit}>
                 <input
                     required
-                    className="rounded-md border px-4 py-2 focus:outline-none"
+                    className="m-2 rounded-md border px-4 py-2 placeholder:text-slate-500 focus:outline-none dark:bg-slate-700 dark:text-slate-400"
                     type="text"
                     placeholder="Add a new location"
                     value={locationQuery}
@@ -62,7 +62,9 @@ export default function NewLocationPicker() {
             </form>
             {fetchedLocation ? (
                 fetchedLocation?.name ? (
-                    <Button onClick={handleLocationAdd}>{`Add ${fetchedLocation.name}`}</Button>
+                    <Button className={"mt-2"} onClick={handleLocationAdd}>
+                        {`Add ${fetchedLocation.name}`}
+                    </Button>
                 ) : (
                     <p>No result found</p>
                 )
