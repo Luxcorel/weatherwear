@@ -73,11 +73,15 @@ export default function AddClothing() {
     };
 
     return (
-        <div className={"m-auto my-2 flex w-2/3 justify-center rounded-xl bg-blue-100 dark:bg-black"}>
+        <div
+            className={
+                "m-auto my-36 flex w-2/3 justify-center rounded-xl bg-blue-100 shadow-md drop-shadow-md dark:bg-slate-800  dark:shadow-blue-950"
+            }
+        >
             <form onSubmit={handleSubmit}>
-                <div className={""}>
+                <div className={"flex h-80 flex-col justify-center align-middle "}>
                     <div className={"m-2 flex "}>
-                        <label className={"m-1"}>
+                        <label className={"m-1 dark:text-slate-400"}>
                             <input
                                 type="radio"
                                 value={ClothingType.SHIRT}
@@ -87,7 +91,7 @@ export default function AddClothing() {
                             Shirt
                         </label>
 
-                        <label className={"m-1"}>
+                        <label className={"m-1 dark:text-slate-400"}>
                             <input
                                 type="radio"
                                 value={ClothingType.OUTWEAR}
@@ -97,7 +101,7 @@ export default function AddClothing() {
                             Outwear
                         </label>
 
-                        <label className={"m-1"}>
+                        <label className={"m-1 dark:text-slate-400"}>
                             <input
                                 type="radio"
                                 value={ClothingType.BOTTOM}
@@ -110,7 +114,7 @@ export default function AddClothing() {
 
                     {/* Usable Temperature Range */}
                     <div className={"m-2 flex"}>
-                        <label className={"m-1"}>
+                        <label className={"m-1 dark:text-slate-400"}>
                             <input
                                 type="radio"
                                 value={UsableTemperatureRange.FREEZING}
@@ -120,7 +124,7 @@ export default function AddClothing() {
                             FREEZING
                         </label>
 
-                        <label className={"m-1"}>
+                        <label className={"m-1 dark:text-slate-400"}>
                             <input
                                 type="radio"
                                 value={UsableTemperatureRange.COLD}
@@ -130,7 +134,7 @@ export default function AddClothing() {
                             COLD
                         </label>
 
-                        <label className={"m-1"}>
+                        <label className={"m-1 dark:text-slate-400"}>
                             <input
                                 type="radio"
                                 value={UsableTemperatureRange.WARM}
@@ -140,7 +144,7 @@ export default function AddClothing() {
                             WARM
                         </label>
 
-                        <label className={"m-1"}>
+                        <label className={"m-1 dark:text-slate-400"}>
                             <input
                                 type="radio"
                                 value={UsableTemperatureRange.HOT}
@@ -153,7 +157,7 @@ export default function AddClothing() {
 
                     {/*Water Proof*/}
                     <div className={"m-2 flex"}>
-                        <label className={"m-1"}>
+                        <label className={"m-1 dark:text-slate-400"}>
                             <input
                                 type="radio"
                                 value="true"
@@ -163,7 +167,7 @@ export default function AddClothing() {
                             Waterproof
                         </label>
 
-                        <label className={"m-1"}>
+                        <label className={"m-1 dark:text-slate-400"}>
                             <input
                                 type="radio"
                                 value="false"
@@ -177,17 +181,16 @@ export default function AddClothing() {
                     {/*Clothing name*/}
 
                     <input
-                        className="m-2 rounded-md border px-4 py-2 focus:outline-none"
+                        className="m-2 rounded-md border px-4 py-2 placeholder:text-slate-500 focus:outline-none dark:bg-slate-700 dark:text-slate-400"
                         type="text"
                         placeholder="Name for item"
                         value={clothingName}
                         onChange={handleClothingNameChange}
                     />
+                    <Button className={"m-2"} type="submit" variant={"default"}>
+                        Add Item
+                    </Button>
                 </div>
-
-                <Button className={"m-2"} type="submit">
-                    Add Item
-                </Button>
             </form>
         </div>
     );

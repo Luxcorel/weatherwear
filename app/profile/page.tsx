@@ -17,10 +17,16 @@ export default async function Page() {
     }
 
     return (
-        <>
+        <div
+            className={
+                "m-auto my-36 flex w-5/6 flex-col justify-center rounded-md bg-blue-100 drop-shadow-md dark:bg-slate-800 dark:shadow-blue-900"
+            }
+        >
             <div>
                 <Suspense fallback={<p className={"animate-pulse text-center text-2xl"}>Loading profile...</p>}>
-                    <h1 className={"my-5 text-center text-2xl"}>{session.user.name}&apos;s profile</h1>
+                    <h1 className={"my-5 text-center text-2xl dark:text-slate-400"}>
+                        {session.user.name}&apos;s profile
+                    </h1>
                 </Suspense>
             </div>
 
@@ -30,15 +36,15 @@ export default async function Page() {
 
             <div>{/* TODO: Create new component that allows editing/deletion of location */}</div>
 
-            <h2 className={"my-5 text-center text-xl"}>Saved locations</h2>
+            <h2 className={"mt-5 text-center text-xl dark:text-slate-400"}>Saved locations</h2>
 
-            <div className={"my-5 flex justify-center"}>
+            <div className={"mb-8 mt-3 flex justify-center"}>
                 <NewLocationPicker />
             </div>
 
             <div>
                 <ReadonlySavedLocations />
             </div>
-        </>
+        </div>
     );
 }

@@ -26,11 +26,11 @@ export default function MusicGenreSelector() {
     };
 
     return (
-        <>
-            <form onSubmit={handleSubmit}>
+        <div className={"w-3/4 flex-wrap"}>
+            <form className={"flex w-full flex-col"} onSubmit={handleSubmit}>
                 <input
                     id={"submit"}
-                    className={`rounded-md border px-4 py-2 focus:outline-none`}
+                    className="m-2 rounded-md border px-4 py-2 placeholder:text-slate-500 focus:outline-none dark:bg-slate-700 dark:text-slate-400"
                     type="text"
                     placeholder="Set genre (empty to disable)"
                     value={musicGenre}
@@ -38,6 +38,6 @@ export default function MusicGenreSelector() {
                 />
                 <Button type="submit">Set new genre</Button>
             </form>
-        </>
+        </div>
     );
 }
