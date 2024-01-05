@@ -68,8 +68,7 @@ export async function GET(request: NextRequest) {
       degrees: weather.data.current.temp_c,
       condition: weather.data.current.condition.text,
       weather_keyword: weatherKeyword,
-      weather_picture: `/public/icons/${weatherKeyword}.png`,
-      _time: new Date().toTimeString(),
+      weather_picture: `/images/weather/${weatherKeyword}.svg`,
     },
     { status: 200 },
   );

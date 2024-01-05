@@ -3,21 +3,21 @@ import { auth } from "@/auth-config";
 import { redirect } from "next/navigation";
 import SpotifyEmbedPlayer from "@/components/spotify/spotify-embed-player";
 
-async function getPlaylist(weatherKeyword: string) {
+async function getPlaylist(searchQuery: string) {
     const session = await auth();
     if (!session || session.error) {
         redirect("/api/auth/signin");
     }
 
-    const url = `https://api.spotify.com/v1/search?q=${weatherKeyword}&type=playlist&market=SE&limit=1`;
+    const url = `https://api.spotify.com/v1/search?q=${searchQuery}&type=playlist&market=SE&limit=1`;
 
     const data = await spotifyGet(url, session, null);
 
     return data.playlists.items[0].uri;
 }
 
-export default async function SpotifyPlaylist(props: { readonly weatherKeyword: string }) {
-    const playlist = await getPlaylist(props.weatherKeyword);
+export default async function SpotifyPlaylist(props: { readonly searchQuery: string }) {
+    const playlist = await getPlaylist(props.searchQuery);
     const regex = "spotify:playlist:";
 
     return (

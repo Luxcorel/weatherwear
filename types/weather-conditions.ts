@@ -20,7 +20,7 @@ export const WEATHER_CONDITIONS: Record<number, WeatherCondition> = {
     day: "Partly cloudy",
     night: "Partly cloudy",
     icon: 116,
-    weather_keyword: "sunny",
+    weather_keyword: "cloudy",
   },
   1006: {
     code: 1006,

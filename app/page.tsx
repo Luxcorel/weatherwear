@@ -4,6 +4,7 @@ import { redirect } from "next/navigation";
 import SpotifyPlaylist from "@/components/spotify/spotify-playlist";
 import OutfitSuggestion from "@/components/outfit-suggestion/outfit-suggestion";
 import { WeatherInfoDTO } from "@/frontend-types/weather-types";
+import Image from "next/image";
 
 async function getWeatherInfo(latitude: number, longitude: number) {
     const response = await fetch(`${process.env.BASE_URL}/api/weather?latitude=${latitude}&longitude=${longitude}`, {
@@ -17,6 +18,7 @@ export default async function Home() {
     const cookieStore = cookies();
     const latitude = cookieStore.get("latitude");
     const longitude = cookieStore.get("longitude");
+    const musicGenre = cookieStore.get("genre");
     //TODO: Add cookie for choosing preferred music genre?
     //TODO: Set latitude and longitude from saved location on frontend instead of passing savedLocation id?
     // const savedLocation = cookieStore.get("saved_location");
@@ -30,9 +32,19 @@ export default async function Home() {
     const weather = await getWeatherInfo(latitudeValue, longitudeValue);
 
     // TODO fix h-[40vh] with a better solution
-    // TODO: Add logic that personalizes weather keyword (user's preferred genre)
     return (
-        <>
+        <div>
+            {/*TODO: Do this better*/}
+            <div className={"mx-5 flex justify-end"}>
+                <Image
+                    className={"animate-[pulse_1s_ease-out_1]"}
+                    src={weather.weather_picture}
+                    alt={`${weather.weather_picture} weather icon`}
+                    width={50}
+                    height={50}
+                />
+            </div>
+
             <div className="flex flex-wrap">
                 <div className={"w-full p-2 md:w-1/2"}>
                     <div
@@ -56,8 +68,12 @@ export default async function Home() {
             </div>
 
             <div className={"w-full p-4"}>
-                <SpotifyPlaylist weatherKeyword={weather.weather_keyword} />
+                <SpotifyPlaylist
+                    searchQuery={
+                        musicGenre ? weather.weather_keyword + " " + musicGenre.value : weather.weather_keyword
+                    }
+                />
             </div>
-        </>
+        </div>
     );
 }
