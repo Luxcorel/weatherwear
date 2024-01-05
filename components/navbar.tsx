@@ -11,32 +11,20 @@ export default async function Navbar() {
     return (
         <div
             className={
-                "flex h-14 min-w-fit flex-wrap items-center justify-evenly bg-blue-100 duration-700 ease-in hover:drop-shadow dark:bg-black"
+                "flex h-14 min-w-fit flex-wrap items-center justify-evenly bg-blue-100 duration-700 ease-in hover:drop-shadow-md dark:bg-black dark:shadow-md dark:shadow-blue-950"
             }
         >
             <ThemeToggle />
 
             <div>
                 <Link href={"/"}>
-                    <Button
-                        className={
-                            "rounded-3xl border-2 border-gray-500 bg-blue-100 text-lg text-black duration-500 ease-in-out hover:border-green-500 hover:bg-white dark:bg-black dark:text-white"
-                        }
-                    >
-                        Home
-                    </Button>
+                    <Button variant={"default"}>Home</Button>
                 </Link>
             </div>
 
             <div>
                 <Link href={"/wardrobe"}>
-                    <Button
-                        className={
-                            "rounded-3xl border-2 border-gray-500 bg-blue-100 text-lg text-black duration-500 ease-in-out hover:border-green-500 hover:bg-white dark:bg-black dark:text-white"
-                        }
-                    >
-                        Wardrobe
-                    </Button>
+                    <Button variant={"default"}>Wardrobe</Button>
                 </Link>
             </div>
             {/*
@@ -66,38 +54,20 @@ export default async function Navbar() {
 */}
             <div>
                 <Link href={"/profile"}>
-                    <Button
-                        className={
-                            "rounded-3xl border-2 border-gray-500 bg-blue-100 text-lg text-black duration-500 ease-in-out hover:border-green-500 hover:bg-white dark:bg-black dark:text-white"
-                        }
-                    >
-                        Profile
-                    </Button>
+                    <Button variant={"default"}>Profile</Button>
                 </Link>
             </div>
 
             {session ? (
                 <div>
                     <Link href={"/api/auth/signout"}>
-                        <Button
-                            className={
-                                "rounded-3xl border-2 border-gray-500 bg-blue-100 text-lg text-black duration-500 ease-in-out hover:border-green-500 hover:bg-white dark:bg-black dark:text-white"
-                            }
-                        >
-                            Logout ({session.user.name})
-                        </Button>
+                        <Button variant={"default"}>Logout ({session.user.name})</Button>
                     </Link>
                 </div>
             ) : (
                 <div>
                     <Link href={"/api/auth/signin"}>
-                        <Button
-                            className={
-                                "rounded-3xl border-2 border-gray-500 bg-blue-100 text-lg text-black duration-500 ease-in-out hover:border-red-500 hover:bg-white dark:bg-black dark:text-white"
-                            }
-                        >
-                            Login
-                        </Button>
+                        <Button variant={"default"}>Login</Button>
                     </Link>
                 </div>
             )}
