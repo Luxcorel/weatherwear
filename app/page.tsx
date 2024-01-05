@@ -5,6 +5,7 @@ import SpotifyPlaylist from "@/components/spotify/spotify-playlist";
 import OutfitSuggestion from "@/components/outfit-suggestion/outfit-suggestion";
 import { WeatherInfoDTO } from "@/frontend-types/weather-types";
 import Image from "next/image";
+import React from "react";
 
 async function getWeatherInfo(latitude: number, longitude: number) {
     const response = await fetch(`${process.env.BASE_URL}/api/weather?latitude=${latitude}&longitude=${longitude}`, {

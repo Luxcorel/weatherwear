@@ -5,6 +5,7 @@ import { fetcher } from "@/lib/swr-fetcher";
 import React from "react";
 import { useRouter } from "next/navigation";
 import { SuggestionDTO } from "@/frontend-types/clothing-types";
+import Image from "next/image";
 
 type Props = {
     readonly latitude: number;
@@ -30,11 +31,15 @@ export default function OutfitSuggestion(props: Props) {
 
             {data ? (
                 <div>
-                    <h1>Outfit suggestion</h1>
                     <ul>
                         {data.outfit.map((clothing) =>
                             clothing.id ? (
-                                <li key={clothing.id}>{JSON.stringify(clothing)}</li>
+                                <li key={clothing.id}>
+                                    <div className={"flex"}>
+                                        <Image src={clothing.icon_path} alt={""} width={50} height={50} />
+                                        <div>{clothing.name}</div>
+                                    </div>
+                                </li>
                             ) : (
                                 <li key={undefined}>No {clothing.clothing_type} received</li>
                             ),
