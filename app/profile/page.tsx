@@ -4,6 +4,7 @@ import { auth } from "@/auth-config";
 import { redirect } from "next/navigation";
 import NewLocationPicker from "@/components/locations/new-location-picker";
 import MusicGenreSelector from "@/components/music-genre-selector";
+import CurrentLocationButton from "@/components/locations/current-location-button";
 
 export async function generateMetadata() {
     const session = await auth();
@@ -42,6 +43,10 @@ export default async function Page() {
 
             <div className={"mb-8 mt-3 flex justify-center"}>
                 <SavedLocations />
+            </div>
+
+            <div className={"mb-7 flex justify-center"}>
+                <CurrentLocationButton />
             </div>
         </div>
     );
