@@ -26,11 +26,20 @@ export default function MusicGenreSelector() {
         router.refresh();
     };
 
+    const getClientSideCookie = (name: string): string | undefined => {
+        const cookieValue = document.cookie
+            .split("; ")
+            .find((row) => row.startsWith(`${name}=`))
+            ?.split("=")[1];
+
+        return cookieValue;
+    };
+
     return (
         <div className={"flex w-3/4 flex-col"}>
-            {document.cookie.split("genre=")[1] ? (
+            {getClientSideCookie("genre") ? (
                 <h2 className={"text-center text-xl dark:text-slate-400"}>
-                    Current genre set: {document.cookie.split("genre=")[1]}
+                    Current genre set: {getClientSideCookie("genre")}
                 </h2>
             ) : (
                 ""
