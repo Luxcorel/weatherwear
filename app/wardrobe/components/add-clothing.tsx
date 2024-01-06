@@ -102,7 +102,7 @@ export default function AddClothing() {
 
     return (
         <>
-            <div className={"m-auto my-2 flex w-2/3 justify-center rounded-xl bg-blue-100 dark:bg-black"}>
+            <div className={"m-auto my-8 flex w-2/3 p-2 justify-center rounded-xl bg-blue-100 dark:bg-slate-800"}>
                 <form onSubmit={handleSubmit}>
                     <div>
                         <div className={"m-2 flex content-center justify-center"}>

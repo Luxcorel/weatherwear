@@ -19,7 +19,7 @@ export default async function Page() {
     return (
         <div
             className={
-                "m-auto my-36 flex w-5/6 flex-col justify-center rounded-md bg-blue-100 drop-shadow-md dark:bg-slate-800 dark:shadow-blue-900"
+                "m-auto my-9 flex w-5/6 flex-col justify-center rounded-md bg-blue-100 drop-shadow-md dark:bg-slate-800 dark:shadow-blue-900"
             }
         >
             <div>
