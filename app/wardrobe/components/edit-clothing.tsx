@@ -93,9 +93,9 @@ export default function EditClothing(props: Props) {
                 <button
                     key={i}
                     type={"button"}
-                    className={`h-20 w-20 p-1 transition duration-300 ease-in-out hover:scale-110 ${
+                    className={`m-2 h-20 w-20 p-1 transition duration-300 ease-in-out hover:scale-110 ${
                         clothingObject.icon_path === `/images/clothing/${clothingObject.clothing_type}/${i}.svg`
-                            ? "scale-110 rounded-xl bg-white dark:bg-blue-950"
+                            ? "scale-110 rounded-xl bg-white dark:bg-blue-900"
                             : ""
                     }`}
                     onClick={() => {
@@ -123,7 +123,11 @@ export default function EditClothing(props: Props) {
             {isLoading ? (
                 <p className={"mt-10 animate-pulse text-center text-2xl"}>Loading clothing</p>
             ) : (
-                <div className={"m-auto my-2 flex w-2/3 justify-center rounded-xl bg-blue-100 dark:bg-black"}>
+                <div
+                    className={
+                        "mx-auto my-8 flex justify-center rounded-xl bg-blue-100 p-2 dark:bg-slate-800 md:w-4/5 lg:w-2/3"
+                    }
+                >
                     <form onSubmit={handleSubmit}>
                         <div>
                             <div className={"m-2 flex content-center justify-center"}>
@@ -234,14 +238,14 @@ export default function EditClothing(props: Props) {
                             <div className={"m-2 flex justify-center"}>
                                 <input
                                     required
-                                    className="m-2 rounded-md border px-4 py-2 focus:outline-none "
+                                    className="m-2 rounded-md border px-4 py-2 focus:outline-none dark:bg-slate-600"
                                     type="text"
                                     placeholder="Name for item"
                                     value={clothingObject.name}
                                     onChange={handleClothingNameChange}
                                 />
                             </div>
-                            <div>{renderImages()}</div>
+                            <div className={"flex flex-wrap justify-center"}>{renderImages()}</div>
                         </div>
 
                         <div className={"m-2 flex justify-center"}>

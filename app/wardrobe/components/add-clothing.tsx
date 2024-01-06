@@ -75,9 +75,9 @@ export default function AddClothing() {
                     key={i}
                     id={`${i}`}
                     type={"button"}
-                    className={`h-20 w-20 p-1 transition duration-300 ease-in-out hover:scale-110 ${
+                    className={`m-2 h-20 w-20 p-1 transition duration-300 ease-in-out hover:scale-110 ${
                         clothingObject.icon_path === `/images/clothing/${clothingObject.clothing_type}/${i}.svg`
-                            ? "scale-110 rounded-xl bg-white dark:bg-blue-950"
+                            ? "scale-110 rounded-xl bg-white dark:bg-blue-900"
                             : ""
                     }  `}
                     onClick={() => {
@@ -102,7 +102,11 @@ export default function AddClothing() {
 
     return (
         <>
-            <div className={"m-auto my-8 flex w-2/3 p-2 justify-center rounded-xl bg-blue-100 dark:bg-slate-800"}>
+            <div
+                className={
+                    "mx-auto my-8 flex justify-center rounded-xl bg-blue-100 p-2 dark:bg-slate-800 md:w-4/5 lg:w-2/3"
+                }
+            >
                 <form onSubmit={handleSubmit}>
                     <div>
                         <div className={"m-2 flex content-center justify-center"}>
