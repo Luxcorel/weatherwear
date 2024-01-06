@@ -9,11 +9,14 @@ async function getPlaylist(searchQuery: string) {
         redirect("/api/auth/signin");
     }
 
-    const url = `https://api.spotify.com/v1/search?q=${searchQuery}&type=playlist&market=SE&limit=1`;
-
+    const url = `https://api.spotify.com/v1/search?q=${searchQuery}&type=playlist&market=SE`;
     const data = await spotifyGet(url, session, null);
+    console.log("Spotify");
+    console.log(data.playlists.items.length);
+    const numberOfPlaylists = data.playlists.items.length;
+    const randomPlaylist = Math.floor(Math.random() * numberOfPlaylists);
 
-    return data.playlists.items[0].uri;
+    return data.playlists.items[randomPlaylist].uri;
 }
 
 export default async function SpotifyPlaylist(props: { readonly searchQuery: string }) {
