@@ -1,5 +1,5 @@
 import { Suspense } from "react";
-import ReadonlySavedLocations from "@/components/locations/readonly-saved-locations";
+import SavedLocations from "@/components/locations/saved-locations";
 import { auth } from "@/auth-config";
 import { redirect } from "next/navigation";
 import NewLocationPicker from "@/components/locations/new-location-picker";
@@ -34,8 +34,6 @@ export default async function Page() {
                 <MusicGenreSelector />
             </div>
 
-            <div>{/* TODO: Create new component that allows editing/deletion of location */}</div>
-
             <h2 className={"mt-5 text-center text-xl dark:text-slate-400"}>Saved locations</h2>
 
             <div className={"mb-8 mt-3 flex justify-center"}>
@@ -43,7 +41,7 @@ export default async function Page() {
             </div>
 
             <div className={"mb-8 mt-3 flex justify-center"}>
-                <ReadonlySavedLocations />
+                <SavedLocations />
             </div>
         </div>
     );

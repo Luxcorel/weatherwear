@@ -5,7 +5,7 @@ import { fetcher } from "@/lib/swr-fetcher";
 import { Button } from "@/components/ui/button";
 import { SavedLocationsResponse, SavedLocation } from "@/frontend-types/location-types";
 
-export default function ReadonlySavedLocations() {
+export default function SavedLocations() {
     //const router = useRouter();
 
     const { data, error, isLoading } = useSWR<SavedLocationsResponse>(`api/locations`, fetcher);
@@ -34,7 +34,7 @@ export default function ReadonlySavedLocations() {
             method: "DELETE",
         });
 
-        //invalidate saved location data in <SavedLocation />
+        //invalidate saved location data
         await mutate("api/locations");
     };
 

@@ -1,5 +1,5 @@
 import CurrentLocationButton from "@/components/locations/current-location-button";
-import ReadonlySavedLocations from "@/components/locations/readonly-saved-locations";
+import SavedLocations from "@/components/locations/saved-locations";
 
 import NewLocationPicker from "@/components/locations/new-location-picker";
 
@@ -17,7 +17,7 @@ export default function Page() {
                     <CurrentLocationButton />
                 </div>
                 <div className={"mt-7 flex justify-center"}>
-                    <ReadonlySavedLocations />
+                    <SavedLocations />
                 </div>
             </div>
         </>
