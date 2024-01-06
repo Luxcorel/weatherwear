@@ -35,28 +35,24 @@ export default async function Home() {
     // TODO fix h-[40vh] with a better solution
     return (
         <div>
-            {/*TODO: Do this better*/}
-            <div className={"mx-5 mt-5 flex justify-end"}>
-                <Image
-                    className={"animate-[pulse_1s_ease-out_1]"}
-                    src={weather.weather_picture}
-                    alt={`${weather.weather_picture} weather icon`}
-                    width={50}
-                    height={50}
-                />
-            </div>
-
-            <div className="flex justify-center">
+            <div className="mt-10 flex justify-center">
                 <div className={"w-full md:w-4/5 lg:w-1/2"}>
                     <div
                         className={
                             "mx-auto flex h-full w-full items-center justify-evenly rounded-[12px] bg-blue-100 p-10 drop-shadow dark:bg-slate-800 dark:text-slate-400"
                         }
                     >
-                        <div className="mt-2 p-2">
+                        <div className="mr-10 flex flex-col items-center">
                             <WeatherInfo latitude={latitudeValue} longitude={longitudeValue} />
+                            <Image
+                                className={"mt-2 animate-[pulse_1s_ease-out_1]"}
+                                src={weather.weather_picture}
+                                alt={`${weather.weather_picture} weather icon`}
+                                width={50}
+                                height={50}
+                            />
                         </div>
-                        <div className="mt-2">
+                        <div className="">
                             <OutfitSuggestion latitude={latitudeValue} longitude={longitudeValue} />
                         </div>
                     </div>

@@ -3,7 +3,6 @@
 import { Button } from "@/components/ui/button";
 import { ChangeEvent, FormEvent, useState } from "react";
 import { useRouter } from "next/navigation";
-import { cookies } from "next/headers";
 
 export default function MusicGenreSelector() {
     const router = useRouter();
@@ -26,14 +25,12 @@ export default function MusicGenreSelector() {
         router.refresh();
     };
 
-    const getClientSideCookie = (name: string): string | undefined => {
-        const cookieValue = document.cookie
+    function getClientSideCookie(name: string): string | undefined {
+        return document.cookie
             .split("; ")
             .find((row) => row.startsWith(`${name}=`))
             ?.split("=")[1];
-
-        return cookieValue;
-    };
+    }
 
     return (
         <div className={"flex w-3/4 flex-col"}>
