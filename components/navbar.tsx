@@ -11,61 +11,37 @@ export default async function Navbar() {
     return (
         <div
             className={
-                "flex h-14 min-w-fit flex-wrap items-center justify-evenly bg-blue-100 duration-700 ease-in hover:drop-shadow-md dark:bg-black dark:shadow-md dark:shadow-blue-950"
+                "flex h-full min-w-fit flex-wrap items-center justify-center bg-blue-100 duration-700 ease-in hover:drop-shadow-md dark:bg-black dark:shadow-md dark:shadow-blue-950"
             }
         >
             <ThemeToggle />
 
-            <div>
+            <div className={"m-1"}>
                 <Link href={"/"}>
                     <Button variant={"default"}>Home</Button>
                 </Link>
             </div>
 
-            <div>
+            <div className={"m-1"}>
                 <Link href={"/wardrobe"}>
                     <Button variant={"default"}>Wardrobe</Button>
                 </Link>
             </div>
-            {/*
-            <div>
-                <Link href={"/setup"}>
-                    <Button
-                        className={
-                            "rounded-3xl border-2 border-gray-500 bg-blue-100 text-lg text-black duration-500 ease-in-out hover:border-green-500 hover:bg-white"
-                        }
-                    >
-                        First use setup page testing
-                    </Button>
-                </Link>
-            </div>
 
-            <div>
-                <Link href={"/weather"}>
-                    <Button
-                        className={
-                            "rounded-3xl border-2 border-gray-500 bg-blue-100 dark:bg-black dark:text-white  text-lg text-black duration-500 ease-in-out hover:border-green-500 hover:bg-white"
-                        }
-                    >
-                        Weather
-                    </Button>
-                </Link>
-            </div>
-*/}
-            <div>
+            <div className={"m-1"}>
                 <Link href={"/profile"}>
                     <Button variant={"default"}>Profile</Button>
                 </Link>
             </div>
 
             {session ? (
-                <div>
+                <div className={"m-1"}>
                     <Link href={"/api/auth/signout"}>
                         <Button variant={"default"}>Logout ({session.user.name})</Button>
                     </Link>
                 </div>
             ) : (
-                <div>
+                <div className={"m-1"}>
                     <Link href={"/api/auth/signin"}>
                         <Button variant={"default"}>Login</Button>
                     </Link>
