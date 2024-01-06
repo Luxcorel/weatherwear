@@ -8,6 +8,8 @@ import { mutate } from "swr";
 import Image from "next/image";
 
 export default function AddClothing() {
+    const [addClothingIsVisible, setAddClothingIsVisible] = useState(false);
+
     const [clothingObject, setClothingObject] = useState({
         clothing_type: ClothingType.SHIRT,
         usable_temperature_range: 0,
@@ -27,7 +29,10 @@ export default function AddClothing() {
             body: JSON.stringify(clothingObject),
         });
 
-        await mutate("api/clothes");
+        if (response.ok) {
+            await mutate("api/clothes");
+            setAddClothingIsVisible((prevState) => !prevState);
+        }
     };
 
     const handleClothingNameChange = (event: any) => {
@@ -102,10 +107,20 @@ export default function AddClothing() {
 
     return (
         <>
+            <div className={"flex justify-center"}>
+                <Button
+                    variant={"default"}
+                    onClick={() => {
+                        setAddClothingIsVisible((prevState) => !prevState);
+                    }}
+                >
+                    Add new clothing
+                </Button>
+            </div>
             <div
-                className={
-                    "mx-auto my-8 flex justify-center rounded-xl bg-blue-100 p-2 dark:bg-slate-800 md:w-4/5 lg:w-2/3"
-                }
+                className={`${
+                    addClothingIsVisible ? "" : "hidden"
+                } mx-auto mb-8 flex justify-center rounded-xl bg-blue-100 p-2 dark:bg-slate-800 md:w-4/5 lg:w-2/3`}
             >
                 <form onSubmit={handleSubmit}>
                     <div>
