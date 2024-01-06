@@ -27,7 +27,48 @@ export default function OutfitSuggestion(props: Props) {
 
     return (
         <div className={"text-center"}>
-            {isLoading ? <p className={"mb-5 animate-pulse text-center text-xl"}>Loading outfit...</p> : null}
+            {isLoading ? (
+                <div>
+                    <ul>
+                        <li key={"shirt"}>
+                            <div className={"my-5 flex animate-pulse"}>
+                                <Image
+                                    className={"mr-4 animate-spin grayscale"}
+                                    src={"/images/clothing/shirt/0.svg"}
+                                    alt={""}
+                                    width={75}
+                                    height={75}
+                                />
+                                <div className={"my-auto h-2.5 w-32 rounded-full bg-gray-200 dark:bg-gray-700"} />
+                            </div>
+                        </li>
+                        <li key={"outwear"}>
+                            <div className={"my-5 flex animate-pulse"}>
+                                <Image
+                                    className={"mr-4 animate-spin grayscale"}
+                                    src={"/images/clothing/outwear/0.svg"}
+                                    alt={""}
+                                    width={75}
+                                    height={75}
+                                />
+                                <div className={"my-auto h-2.5 w-32 rounded-full bg-gray-200 dark:bg-gray-700"} />
+                            </div>
+                        </li>
+                        <li key={"bottom"}>
+                            <div className={"my-5 flex animate-pulse"}>
+                                <Image
+                                    className={"mr-4 animate-spin grayscale"}
+                                    src={"/images/clothing/bottom/0.svg"}
+                                    alt={""}
+                                    width={75}
+                                    height={75}
+                                />
+                                <div className={"my-auto h-2.5 w-32 rounded-full bg-gray-200 dark:bg-gray-700"} />
+                            </div>
+                        </li>
+                    </ul>
+                </div>
+            ) : null}
 
             {data ? (
                 <div>
@@ -40,10 +81,10 @@ export default function OutfitSuggestion(props: Props) {
                                             className={"mr-4"}
                                             src={clothing.icon_path}
                                             alt={""}
-                                            width={50}
-                                            height={50}
+                                            width={75}
+                                            height={75}
                                         />
-                                        <div>{clothing.name}</div>
+                                        <div className={"my-auto"}>{clothing.name}</div>
                                     </div>
                                 </li>
                             ) : (
