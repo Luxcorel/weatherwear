@@ -10,16 +10,22 @@ export default function SavedClothing() {
     const { data, error, isLoading } = useSWR<AllSavedClothingResponse>(`api/clothes`, fetcher);
 
     return (
-        <>
+        <div className={"mb-7 w-full md:w-4/5 lg:w-2/3"}>
             {data ? (
                 data.clothes ? (
-                    <div className={"flex flex-wrap justify-evenly"}>
+                    <div className={"flex flex-wrap justify-center"}>
                         {data.clothes.map((value, index, array) => (
-                            <div key={value.id} className={"m-5"}>
+                            <div key={value.id} className={"mx-2 my-4 h-fit w-20 hover:scale-110"}>
                                 <Link href={`/wardrobe/${value.id}`}>
-                                    <Image src={value.icon_path} alt={""} width={50} height={50} />
+                                    <Image
+                                        className={"mx-auto"}
+                                        src={value.icon_path}
+                                        alt={`Image of clothing named ${value.name}`}
+                                        width={50}
+                                        height={50}
+                                    />
+                                    <p className={"text-center"}>{value.name}</p>
                                 </Link>
-                                {value.name}
                             </div>
                         ))}
                     </div>
@@ -27,6 +33,6 @@ export default function SavedClothing() {
                     <p>NO CLOTHING FOUND</p>
                 )
             ) : null}
-        </>
+        </div>
     );
 }

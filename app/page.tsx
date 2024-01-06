@@ -36,7 +36,7 @@ export default async function Home() {
     return (
         <div>
             {/*TODO: Do this better*/}
-            <div className={"mx-5 flex justify-end"}>
+            <div className={"mx-5 mt-5 flex justify-end"}>
                 <Image
                     className={"animate-[pulse_1s_ease-out_1]"}
                     src={weather.weather_picture}
@@ -47,16 +47,16 @@ export default async function Home() {
             </div>
 
             <div className="flex justify-center">
-                <div className={"w-full md:w-3/4"}>
+                <div className={"w-full md:w-4/5 lg:w-1/2"}>
                     <div
                         className={
-                            "mx-auto flex h-full w-full items-center justify-evenly rounded-[12px] bg-blue-100 p-10 drop-shadow dark:bg-slate-800 dark:text-slate-400 md:w-1/2"
+                            "mx-auto flex h-full w-full items-center justify-evenly rounded-[12px] bg-blue-100 p-10 drop-shadow dark:bg-slate-800 dark:text-slate-400"
                         }
                     >
-                        <div className="m-3 p-2">
+                        <div className="mt-2 p-2">
                             <WeatherInfo latitude={latitudeValue} longitude={longitudeValue} />
                         </div>
-                        <div className="mt-4 ">
+                        <div className="mt-2">
                             <OutfitSuggestion latitude={latitudeValue} longitude={longitudeValue} />
                         </div>
                     </div>
