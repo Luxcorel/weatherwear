@@ -39,12 +39,12 @@ export default function SavedLocations() {
     };
 
     return (
-        <div className={"flex w-4/5 flex-wrap"}>
+        <div className={"flex w-4/5 flex-wrap justify-center"}>
             {data
                 ? data.favorite_locations.map((value, index, array) => (
                       <div
                           key={value.latitude + value.longitude}
-                          className={" m-2 flex w-fit flex-col items-center text-center"}
+                          className={"m-2 flex w-fit flex-col items-center text-center"}
                       >
                           <Button className={""} onClick={() => handleLocationClick(value)}>
                               {value.location_name}

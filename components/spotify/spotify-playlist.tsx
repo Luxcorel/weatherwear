@@ -11,8 +11,6 @@ async function getPlaylist(searchQuery: string) {
 
     const url = `https://api.spotify.com/v1/search?q=${searchQuery}&type=playlist&market=SE`;
     const data = await spotifyGet(url, session, null);
-    console.log("Spotify");
-    console.log(data.playlists.items.length);
     const numberOfPlaylists = data.playlists.items.length;
     const randomPlaylist = Math.floor(Math.random() * numberOfPlaylists);
 

@@ -15,14 +15,19 @@ export default function SavedClothing() {
                 data.clothes ? (
                     <div className={"flex flex-wrap justify-center"}>
                         {data.clothes.map((value, index, array) => (
-                            <div key={value.id} className={"mx-2 my-4 h-fit w-20 hover:scale-110"}>
+                            <div
+                                key={value.id}
+                                className={
+                                    "mx-2 my-4 h-fit w-20 p-1 hover:scale-110 hover:rounded-xl hover:bg-blue-200 dark:hover:bg-blue-900"
+                                }
+                            >
                                 <Link href={`/wardrobe/${value.id}`}>
                                     <Image
                                         className={"mx-auto"}
                                         src={value.icon_path}
                                         alt={`Image of clothing named ${value.name}`}
-                                        width={50}
-                                        height={50}
+                                        width={75}
+                                        height={75}
                                     />
                                     <p className={"text-center"}>{value.name}</p>
                                 </Link>
