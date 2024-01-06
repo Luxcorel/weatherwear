@@ -1,5 +1,5 @@
 import AddClothing from "@/app/wardrobe/components/add-clothing";
-import SavedClothing from "@/app/wardrobe/components/SavedClothing";
+import SavedClothing from "@/app/wardrobe/components/saved-clothing";
 
 //TODO: Add editing/deletion
 export default function Page() {

@@ -1,13 +1,27 @@
 "use client";
 
+import useSWR, { mutate } from "swr";
+import { ClothingDTO, ClothingType, UsableTemperatureRange } from "@/frontend-types/clothing-types";
+import { fetcher } from "@/lib/swr-fetcher";
 import { useState } from "react";
-import { Button } from "@/components/ui/button";
-import { ClothingType } from "@/frontend-types/clothing-types";
-import { UsableTemperatureRange } from "@/types/usableTemperatureRange";
-import { mutate } from "swr";
 import Image from "next/image";
+import { Button } from "@/components/ui/button";
+import { useRouter } from "next/navigation";
 
-export default function AddClothing() {
+type Props = { readonly id: string };
+
+export default function EditClothing(props: Props) {
+    const router = useRouter();
+
+    const { data, error, isLoading } = useSWR<ClothingDTO>(`/api/clothes/${props.id}`, fetcher, {
+        onSuccess(data1, key) {
+            setClothingObject((prevState) => ({
+                ...prevState,
+                ...data1,
+            }));
+        },
+    });
+
     const [clothingObject, setClothingObject] = useState({
         clothing_type: ClothingType.SHIRT,
         usable_temperature_range: 0,
@@ -19,8 +33,9 @@ export default function AddClothing() {
     const handleSubmit = async (event: any) => {
         event.preventDefault();
 
-        const response = await fetch("api/clothes", {
-            method: "POST",
+        console.log(clothingObject);
+        const response = await fetch(`/api/clothes/${props.id}`, {
+            method: "PUT",
             headers: {
                 "Content-Type": "application/json",
             },
@@ -28,6 +43,7 @@ export default function AddClothing() {
         });
 
         await mutate("api/clothes");
+        router.push("/wardrobe");
     };
 
     const handleClothingNameChange = (event: any) => {
@@ -58,7 +74,6 @@ export default function AddClothing() {
 
     const changeWaterProof = (event: any) => {
         const { value } = event.target;
-        console.log("value: " + value);
         setClothingObject((prevSelectedOptions) => ({
             ...prevSelectedOptions,
             is_precipitation_proof: !prevSelectedOptions.is_precipitation_proof,
@@ -217,7 +232,7 @@ export default function AddClothing() {
 
                     <div className={"m-2 flex justify-center"}>
                         <Button className={"m-2"} type="submit">
-                            Add Item
+                            Update item
                         </Button>
                     </div>
                 </form>
