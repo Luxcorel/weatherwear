@@ -35,8 +35,14 @@ export default function OutfitSuggestion(props: Props) {
                         {data.outfit.map((clothing) =>
                             clothing.id ? (
                                 <li key={clothing.id}>
-                                    <div className={"flex"}>
-                                        <Image src={clothing.icon_path} alt={""} width={50} height={50} />
+                                    <div className={"my-5 flex"}>
+                                        <Image
+                                            className={"mr-4"}
+                                            src={clothing.icon_path}
+                                            alt={""}
+                                            width={50}
+                                            height={50}
+                                        />
                                         <div>{clothing.name}</div>
                                     </div>
                                 </li>
