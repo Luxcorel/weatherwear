@@ -42,7 +42,7 @@ export default async function Page() {
                 <NewLocationPicker />
             </div>
 
-            <div>
+            <div className={"mb-8 mt-3 flex justify-center"}>
                 <ReadonlySavedLocations />
             </div>
         </div>

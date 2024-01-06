@@ -29,21 +29,38 @@ export default function ReadonlySavedLocations() {
         window.location.href = "/";
     };
 
+    const handleLocationRemove = async (value: SavedLocation) => {
+        console.log(value);
+
+        const response = await fetch(`api/locations/${value.id}`, {
+            method: "DELETE",
+        });
+
+        //invalidate saved location data in <SavedLocation />
+        await mutate("api/locations");
+    };
+
     return (
-        <>
-            <ul>
-                {data
-                    ? data.favorite_locations.map((value, index, array) => (
-                          <Button
-                              key={value.latitude + value.longitude}
-                              className={"m-auto"}
-                              onClick={() => handleLocationClick(value)}
-                          >
+        <div className={"flex w-4/5 flex-wrap"}>
+            {data
+                ? data.favorite_locations.map((value, index, array) => (
+                      <div
+                          key={value.latitude + value.longitude}
+                          className={" m-2 flex w-fit flex-col items-center text-center"}
+                      >
+                          <Button className={""} onClick={() => handleLocationClick(value)}>
                               {value.location_name}
                           </Button>
-                      ))
-                    : null}
-            </ul>
-        </>
+                          <Button
+                              className={"m-1 mx-6"}
+                              variant={"destructive"}
+                              onClick={() => handleLocationRemove(value)}
+                          >
+                              Delete
+                          </Button>
+                      </div>
+                  ))
+                : null}
+        </div>
     );
 }

@@ -29,7 +29,7 @@ export default function MusicGenreSelector() {
     return (
         <div className={"flex w-3/4 flex-col"}>
             {document.cookie.split("genre=")[1] ? (
-                <h2 className={"mt-5 text-center text-xl dark:text-slate-400"}>
+                <h2 className={"text-center text-xl dark:text-slate-400"}>
                     Current genre set: {document.cookie.split("genre=")[1]}
                 </h2>
             ) : (
