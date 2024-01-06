@@ -70,7 +70,6 @@ export default function AddClothing() {
         const NUMBER_OF_AVATARS = clothingObject.clothing_type ? 12 : 0;
 
         for (let i = 0; i <= NUMBER_OF_AVATARS; i++) {
-            console.log(clothingObject.icon_path);
             avatars.push(
                 <button
                     key={i}

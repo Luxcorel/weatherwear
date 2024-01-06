@@ -30,8 +30,6 @@ export default function ReadonlySavedLocations() {
     };
 
     const handleLocationRemove = async (value: SavedLocation) => {
-        console.log(value);
-
         const response = await fetch(`api/locations/${value.id}`, {
             method: "DELETE",
         });
