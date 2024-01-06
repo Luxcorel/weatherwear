@@ -70,11 +70,17 @@ export default function AddClothing() {
         const NUMBER_OF_AVATARS = clothingObject.clothing_type ? 12 : 0;
 
         for (let i = 0; i <= NUMBER_OF_AVATARS; i++) {
+            console.log(clothingObject.icon_path);
             avatars.push(
                 <button
                     key={i}
+                    id={`${i}`}
                     type={"button"}
-                    className={"h-20 w-20 p-1 transition duration-300 ease-in-out hover:scale-110"}
+                    className={`h-20 w-20 p-1 transition duration-300 ease-in-out hover:scale-110 ${
+                        clothingObject.icon_path === `/images/clothing/${clothingObject.clothing_type}/${i}.svg`
+                            ? "scale-110 rounded-xl bg-white dark:bg-blue-950"
+                            : ""
+                    }  `}
                     onClick={() => {
                         setClothingObject((prevState) => ({
                             ...prevState,
@@ -211,7 +217,7 @@ export default function AddClothing() {
                                 onChange={handleClothingNameChange}
                             />
                         </div>
-                        <div>{renderImages()}</div>
+                        <div className={"flex flex-wrap justify-center"}>{renderImages()}</div>
                     </div>
 
                     <div className={"m-2 flex justify-center"}>

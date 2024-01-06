@@ -27,7 +27,7 @@ export default function EditClothing(props: Props) {
         usable_temperature_range: 0,
         name: "",
         is_precipitation_proof: false,
-        icon_path: "/images/clothing/Shirt/0.svg",
+        icon_path: `/images/clothing/Shirt/0.svg`,
     });
 
     const handleSubmit = async (event: any) => {
@@ -97,7 +97,11 @@ export default function EditClothing(props: Props) {
                 <button
                     key={i}
                     type={"button"}
-                    className={"h-20 w-20 p-1 transition duration-300 ease-in-out hover:scale-110"}
+                    className={`h-20 w-20 p-1 transition duration-300 ease-in-out hover:scale-110 ${
+                        clothingObject.icon_path === `/images/clothing/${clothingObject.clothing_type}/${i}.svg`
+                            ? "scale-110 rounded-xl bg-white dark:bg-blue-950"
+                            : ""
+                    }`}
                     onClick={() => {
                         setClothingObject((prevState) => ({
                             ...prevState,
