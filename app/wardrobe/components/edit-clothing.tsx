@@ -23,11 +23,7 @@ export default function EditClothing(props: Props) {
     });
 
     const [clothingObject, setClothingObject] = useState({
-        clothing_type: ClothingType.SHIRT,
-        usable_temperature_range: 0,
-        name: "",
-        is_precipitation_proof: false,
-        icon_path: `/images/clothing/Shirt/0.svg`,
+        ...data,
     });
 
     const handleSubmit = async (event: any) => {
@@ -124,133 +120,141 @@ export default function EditClothing(props: Props) {
 
     return (
         <>
-            <div className={"m-auto my-2 flex w-2/3 justify-center rounded-xl bg-blue-100 dark:bg-black"}>
-                <form onSubmit={handleSubmit}>
-                    <div>
-                        <div className={"m-2 flex content-center justify-center"}>
-                            <label className={"m-1"}>
-                                <input
-                                    type="radio"
-                                    value={ClothingType.SHIRT}
-                                    checked={clothingObject.clothing_type === "Shirt"}
-                                    onChange={changeClothingType}
-                                />
-                                Shirt
-                            </label>
+            {isLoading ? (
+                <p className={"mt-10 animate-pulse text-center text-2xl"}>Loading clothing</p>
+            ) : (
+                <div className={"m-auto my-2 flex w-2/3 justify-center rounded-xl bg-blue-100 dark:bg-black"}>
+                    <form onSubmit={handleSubmit}>
+                        <div>
+                            <div className={"m-2 flex content-center justify-center"}>
+                                <label className={"m-1"}>
+                                    <input
+                                        type="radio"
+                                        value={ClothingType.SHIRT}
+                                        checked={clothingObject.clothing_type === "Shirt"}
+                                        onChange={changeClothingType}
+                                    />
+                                    Shirt
+                                </label>
 
-                            <label className={"m-1"}>
-                                <input
-                                    type="radio"
-                                    value={ClothingType.OUTWEAR}
-                                    checked={clothingObject.clothing_type === "Outwear"}
-                                    onChange={changeClothingType}
-                                />
-                                Outwear
-                            </label>
+                                <label className={"m-1"}>
+                                    <input
+                                        type="radio"
+                                        value={ClothingType.OUTWEAR}
+                                        checked={clothingObject.clothing_type === "Outwear"}
+                                        onChange={changeClothingType}
+                                    />
+                                    Outwear
+                                </label>
 
-                            <label className={"m-1"}>
+                                <label className={"m-1"}>
+                                    <input
+                                        type="radio"
+                                        value={ClothingType.BOTTOM}
+                                        checked={clothingObject.clothing_type === "Bottom"}
+                                        onChange={changeClothingType}
+                                    />
+                                    Bottom
+                                </label>
+                            </div>
+
+                            {/* Usable Temperature Range */}
+                            <div className={"m-2 flex justify-center"}>
+                                <label className={"m-1"}>
+                                    <input
+                                        type="radio"
+                                        value={UsableTemperatureRange.FREEZING}
+                                        checked={
+                                            clothingObject.usable_temperature_range === UsableTemperatureRange.FREEZING
+                                        }
+                                        onChange={changeWeatherRange}
+                                    />
+                                    FREEZING
+                                </label>
+
+                                <label className={"m-1"}>
+                                    <input
+                                        type="radio"
+                                        value={UsableTemperatureRange.COLD}
+                                        checked={
+                                            clothingObject.usable_temperature_range === UsableTemperatureRange.COLD
+                                        }
+                                        onChange={changeWeatherRange}
+                                    />
+                                    COLD
+                                </label>
+
+                                <label className={"m-1"}>
+                                    <input
+                                        type="radio"
+                                        value={UsableTemperatureRange.WARM}
+                                        checked={
+                                            clothingObject.usable_temperature_range === UsableTemperatureRange.WARM
+                                        }
+                                        onChange={changeWeatherRange}
+                                    />
+                                    WARM
+                                </label>
+
+                                <label className={"m-1"}>
+                                    <input
+                                        type="radio"
+                                        value={UsableTemperatureRange.HOT}
+                                        checked={clothingObject.usable_temperature_range === UsableTemperatureRange.HOT}
+                                        onChange={changeWeatherRange}
+                                    />
+                                    HOT
+                                </label>
+                            </div>
+
+                            {/*Water Proof*/}
+                            <div className={"m-2 flex justify-center"}>
+                                <label className={"m-1"}>
+                                    <input
+                                        type="radio"
+                                        value="true"
+                                        checked={clothingObject.is_precipitation_proof}
+                                        onChange={changeWaterProof}
+                                    />
+                                    Waterproof
+                                </label>
+
+                                <label className={"m-1"}>
+                                    <input
+                                        type="radio"
+                                        value="false"
+                                        checked={!clothingObject.is_precipitation_proof}
+                                        onChange={changeWaterProof}
+                                    />
+                                    Not Waterproof
+                                </label>
+                            </div>
+
+                            {/*Clothing name*/}
+                            <div className={"m-2 flex justify-center"}>
                                 <input
-                                    type="radio"
-                                    value={ClothingType.BOTTOM}
-                                    checked={clothingObject.clothing_type === "Bottom"}
-                                    onChange={changeClothingType}
+                                    required
+                                    className="m-2 rounded-md border px-4 py-2 focus:outline-none "
+                                    type="text"
+                                    placeholder="Name for item"
+                                    value={clothingObject.name}
+                                    onChange={handleClothingNameChange}
                                 />
-                                Bottom
-                            </label>
+                            </div>
+                            <div>{renderImages()}</div>
                         </div>
 
-                        {/* Usable Temperature Range */}
                         <div className={"m-2 flex justify-center"}>
-                            <label className={"m-1"}>
-                                <input
-                                    type="radio"
-                                    value={UsableTemperatureRange.FREEZING}
-                                    checked={
-                                        clothingObject.usable_temperature_range === UsableTemperatureRange.FREEZING
-                                    }
-                                    onChange={changeWeatherRange}
-                                />
-                                FREEZING
-                            </label>
-
-                            <label className={"m-1"}>
-                                <input
-                                    type="radio"
-                                    value={UsableTemperatureRange.COLD}
-                                    checked={clothingObject.usable_temperature_range === UsableTemperatureRange.COLD}
-                                    onChange={changeWeatherRange}
-                                />
-                                COLD
-                            </label>
-
-                            <label className={"m-1"}>
-                                <input
-                                    type="radio"
-                                    value={UsableTemperatureRange.WARM}
-                                    checked={clothingObject.usable_temperature_range === UsableTemperatureRange.WARM}
-                                    onChange={changeWeatherRange}
-                                />
-                                WARM
-                            </label>
-
-                            <label className={"m-1"}>
-                                <input
-                                    type="radio"
-                                    value={UsableTemperatureRange.HOT}
-                                    checked={clothingObject.usable_temperature_range === UsableTemperatureRange.HOT}
-                                    onChange={changeWeatherRange}
-                                />
-                                HOT
-                            </label>
+                            <Button className={"m-2"} type="submit">
+                                Update item
+                            </Button>
+                            <Button variant={"destructive"} className={"m-2"} type={"button"} onClick={handleDelete}>
+                                Delete
+                            </Button>
                         </div>
-
-                        {/*Water Proof*/}
-                        <div className={"m-2 flex justify-center"}>
-                            <label className={"m-1"}>
-                                <input
-                                    type="radio"
-                                    value="true"
-                                    checked={clothingObject.is_precipitation_proof}
-                                    onChange={changeWaterProof}
-                                />
-                                Waterproof
-                            </label>
-
-                            <label className={"m-1"}>
-                                <input
-                                    type="radio"
-                                    value="false"
-                                    checked={!clothingObject.is_precipitation_proof}
-                                    onChange={changeWaterProof}
-                                />
-                                Not Waterproof
-                            </label>
-                        </div>
-
-                        {/*Clothing name*/}
-                        <div className={"m-2 flex justify-center"}>
-                            <input
-                                required
-                                className="m-2 rounded-md border px-4 py-2 focus:outline-none "
-                                type="text"
-                                placeholder="Name for item"
-                                value={clothingObject.name}
-                                onChange={handleClothingNameChange}
-                            />
-                        </div>
-                        <div>{renderImages()}</div>
-                    </div>
-
-                    <div className={"m-2 flex justify-center"}>
-                        <Button className={"m-2"} type="submit">
-                            Update item
-                        </Button>
-                        <Button variant={"destructive"} className={"m-2"} type={"button"} onClick={handleDelete}>
-                            Delete
-                        </Button>
-                    </div>
-                </form>
-            </div>
+                    </form>
+                </div>
+            )}
         </>
     );
 }
