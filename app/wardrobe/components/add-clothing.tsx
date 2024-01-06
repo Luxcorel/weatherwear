@@ -102,7 +102,7 @@ export default function AddClothing() {
 
     return (
         <>
-            <div className={"m-auto my-2 flex w-2/3 justify-center rounded-xl bg-blue-100 dark:bg-black"}>
+            <div className={"m-auto my-8 flex w-2/3 p-2 justify-center rounded-xl bg-blue-100 dark:bg-slate-800"}>
                 <form onSubmit={handleSubmit}>
                     <div>
                         <div className={"m-2 flex content-center justify-center"}>
@@ -209,7 +209,7 @@ export default function AddClothing() {
                         <div className={"m-2 flex justify-center"}>
                             <input
                                 required
-                                className="m-2 rounded-md border px-4 py-2 focus:outline-none "
+                                className="m-2 rounded-md border px-4 py-2 focus:outline-none dark:bg-slate-600"
                                 type="text"
                                 placeholder="Name for item"
                                 value={clothingObject.name}

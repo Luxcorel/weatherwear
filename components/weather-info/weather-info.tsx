@@ -22,10 +22,9 @@ export default function WeatherInfo(props: Props) {
             {isLoading ? <p className={"mb-5 animate-pulse text-center text-xl"}>Loading weather...</p> : null}
             {weather ? (
                 <ul className={"text-center"}>
-                    <li>Location: {weather.location}</li>
-                    <li>Local time: {weather.local_time}</li>
-                    <li>Temperature: {weather.degrees}C</li>
-                    <li>Condition: {weather.condition}</li>
+                    <li>{weather.location}</li>
+                    <li>{weather.degrees}C</li>
+                    <li>{weather.condition}</li>
                 </ul>
             ) : null}
         </>

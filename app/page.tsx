@@ -46,29 +46,24 @@ export default async function Home() {
                 />
             </div>
 
-            <div className="flex flex-wrap">
-                <div className={"w-full p-2 md:w-1/2"}>
+            <div className="flex justify-center">
+                <div className={"w-full md:w-3/4"}>
                     <div
                         className={
-                            "m-9 flex h-[45vh]  w-full items-center justify-center rounded-[12px] bg-blue-100 dark:bg-slate-700 md:w-1/2 lg:h-[35vh]"
+                            "mx-auto flex h-full w-full items-center justify-evenly rounded-[12px] bg-blue-100 p-10 drop-shadow dark:bg-slate-800 dark:text-slate-400 md:w-1/2"
                         }
                     >
-                        <WeatherInfo latitude={latitudeValue} longitude={longitudeValue} />
-                    </div>
-                </div>
-
-                <div className={"w-full p-2 md:w-1/2"}>
-                    <div
-                        className={
-                            "m-9 flex h-[45vh] w-full items-center justify-center rounded-[12px] bg-blue-100 dark:bg-slate-700 md:w-1/2 lg:h-[35vh]"
-                        }
-                    >
-                        <OutfitSuggestion latitude={latitudeValue} longitude={longitudeValue} />
+                        <div className="m-3 p-2">
+                            <WeatherInfo latitude={latitudeValue} longitude={longitudeValue} />
+                        </div>
+                        <div className="mt-4 ">
+                            <OutfitSuggestion latitude={latitudeValue} longitude={longitudeValue} />
+                        </div>
                     </div>
                 </div>
             </div>
 
-            <div className={"w-full p-4"}>
+            <div className={"w-full p-6"}>
                 <SpotifyPlaylist
                     searchQuery={
                         musicGenre?.value ? weather.weather_keyword + " " + musicGenre.value : weather.weather_keyword
