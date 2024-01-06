@@ -3,6 +3,7 @@
 import { Button } from "@/components/ui/button";
 import { ChangeEvent, FormEvent, useState } from "react";
 import { useRouter } from "next/navigation";
+import { cookies } from "next/headers";
 
 export default function MusicGenreSelector() {
     const router = useRouter();
@@ -26,7 +27,14 @@ export default function MusicGenreSelector() {
     };
 
     return (
-        <div className={"w-3/4 flex-wrap"}>
+        <div className={"flex w-3/4 flex-col"}>
+            {document.cookie.split("genre=")[1] ? (
+                <h2 className={"mt-5 text-center text-xl dark:text-slate-400"}>
+                    Current genre set: {document.cookie.split("genre=")[1]}
+                </h2>
+            ) : (
+                ""
+            )}
             <form className={"flex w-full flex-col"} onSubmit={handleSubmit}>
                 <input
                     id={"submit"}
