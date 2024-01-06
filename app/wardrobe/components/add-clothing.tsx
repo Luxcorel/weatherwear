@@ -209,7 +209,7 @@ export default function AddClothing() {
                         <div className={"m-2 flex justify-center"}>
                             <input
                                 required
-                                className="m-2 rounded-md border px-4 py-2 focus:outline-none "
+                                className="m-2 rounded-md border px-4 py-2 focus:outline-none dark:bg-slate-600"
                                 type="text"
                                 placeholder="Name for item"
                                 value={clothingObject.name}
