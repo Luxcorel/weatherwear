@@ -6,7 +6,7 @@ import { ClothingType } from "@/types/clothing-types";
 
 const updateClothingSchema = z.object({
   clothing_type: z.nativeEnum(ClothingType),
-  usableTemperatureRange: z.nativeEnum(UsableTemperatureRange),
+  usable_temperature_range: z.nativeEnum(UsableTemperatureRange),
   name: z.string(),
   is_precipitation_proof: z.boolean(),
   icon_path: z.string(),
@@ -54,7 +54,7 @@ export async function PUT(request: Request, { params }: { params: { id: string }
     .updateTable("Clothing")
     .set({
       clothing_type: requestBody.data.clothing_type,
-      usable_temperature_range: requestBody.data.usableTemperatureRange,
+      usable_temperature_range: requestBody.data.usable_temperature_range,
       name: requestBody.data.name,
       is_precipitation_proof: requestBody.data.is_precipitation_proof,
       icon_path: requestBody.data.icon_path,
