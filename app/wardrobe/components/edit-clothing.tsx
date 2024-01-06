@@ -33,13 +33,21 @@ export default function EditClothing(props: Props) {
     const handleSubmit = async (event: any) => {
         event.preventDefault();
 
-        console.log(clothingObject);
         const response = await fetch(`/api/clothes/${props.id}`, {
             method: "PUT",
             headers: {
                 "Content-Type": "application/json",
             },
             body: JSON.stringify(clothingObject),
+        });
+
+        await mutate("api/clothes");
+        router.push("/wardrobe");
+    };
+
+    const handleDelete = async () => {
+        const response = await fetch(`/api/clothes/${props.id}`, {
+            method: "DELETE",
         });
 
         await mutate("api/clothes");
@@ -95,7 +103,6 @@ export default function EditClothing(props: Props) {
                             ...prevState,
                             icon_path: `/images/clothing/${clothingObject.clothing_type}/${i}.svg`,
                         }));
-                        console.log(clothingObject.icon_path);
                     }}
                 >
                     <Image
@@ -233,6 +240,9 @@ export default function EditClothing(props: Props) {
                     <div className={"m-2 flex justify-center"}>
                         <Button className={"m-2"} type="submit">
                             Update item
+                        </Button>
+                        <Button variant={"destructive"} className={"m-2"} type={"button"} onClick={handleDelete}>
+                            Delete
                         </Button>
                     </div>
                 </form>

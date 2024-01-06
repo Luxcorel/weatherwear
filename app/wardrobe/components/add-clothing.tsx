@@ -58,7 +58,7 @@ export default function AddClothing() {
 
     const changeWaterProof = (event: any) => {
         const { value } = event.target;
-        console.log("value: " + value);
+
         setClothingObject((prevSelectedOptions) => ({
             ...prevSelectedOptions,
             is_precipitation_proof: !prevSelectedOptions.is_precipitation_proof,
@@ -80,7 +80,6 @@ export default function AddClothing() {
                             ...prevState,
                             icon_path: `/images/clothing/${clothingObject.clothing_type}/${i}.svg`,
                         }));
-                        console.log(clothingObject.icon_path);
                     }}
                 >
                     <Image
