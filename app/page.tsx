@@ -45,18 +45,17 @@ export default async function Home() {
                     height={50}
                 />
             </div>
-        
+
             <div className="flex justify-center">
                 <div className={"w-full md:w-3/4"}>
                     <div
                         className={
-                            "mx-auto flex h-[45vh] w-full items-center justify-center rounded-[12px] bg-blue-100 dark:bg-slate-800 drop-shadow dark:text-slate-400 md:w-1/2 lg:h-[35vh]"
+                            "mx-auto flex h-full w-full items-center justify-evenly rounded-[12px] bg-blue-100 p-10 drop-shadow dark:bg-slate-800 dark:text-slate-400 md:w-1/2"
                         }
                     >
-                        
                         <div className="m-3 p-2">
                             <WeatherInfo latitude={latitudeValue} longitude={longitudeValue} />
-                                </div>
+                        </div>
                         <div className="mt-4 ">
                             <OutfitSuggestion latitude={latitudeValue} longitude={longitudeValue} />
                         </div>
