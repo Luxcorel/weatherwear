@@ -14,12 +14,7 @@ export async function GET(request: NextRequest) {
   const latitude = searchParams.get("latitude");
   const longitude = searchParams.get("longitude");
   if (!latitude || !longitude) {
-    return Response.json(
-      {
-        error: "Did not specify latitude and longitude",
-      },
-      { status: 400 },
-    );
+    return Response.json({}, { status: 400 });
   }
 
   const requestBody = locationSchema.safeParse({
@@ -27,32 +22,17 @@ export async function GET(request: NextRequest) {
     longitude: Number.parseFloat(longitude),
   });
   if (!requestBody.success) {
-    return Response.json(
-      {
-        error: requestBody.error.issues,
-      },
-      { status: 400 },
-    );
+    return Response.json({}, { status: 400 });
   }
 
   const weatherResponse = await fetchWeatherByLocation(requestBody.data.latitude, requestBody.data.longitude);
   if (!weatherResponse.location) {
-    return Response.json(
-      {
-        error: "Could not find specified location",
-      },
-      { status: 404 },
-    );
+    return Response.json({}, { status: 404 });
   }
 
   const weather = WEATHER_DATA_SCHEMA.safeParse(weatherResponse);
   if (!weather.success) {
-    return Response.json(
-      {
-        error: "Weather data error",
-      },
-      { status: 500 },
-    );
+    return Response.json({}, { status: 500 });
   }
 
   const weatherKeyword = WEATHER_CONDITIONS[weather.data.current.condition.code].weather_keyword || undefined;

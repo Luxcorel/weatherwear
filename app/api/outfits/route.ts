@@ -35,33 +35,18 @@ export async function GET(request: NextRequest) {
     longitude: Number.parseFloat(longitude),
   });
   if (!requestBody.success) {
-    return Response.json(
-      {
-        error: requestBody.error.issues,
-      },
-      { status: 400 },
-    );
+    return Response.json({}, { status: 400 });
   }
 
   // fetch weather for the target location
   const weatherResponse = await fetchWeatherByLocation(requestBody.data.latitude, requestBody.data.longitude);
   if (!weatherResponse.location) {
-    return Response.json(
-      {
-        error: "Could not find weather for that location",
-      },
-      { status: 400 },
-    );
+    return Response.json({}, { status: 400 });
   }
 
   const weather = WEATHER_DATA_SCHEMA.safeParse(weatherResponse);
   if (!weather.success) {
-    return Response.json(
-      {
-        error: "Weather data error",
-      },
-      { status: 500 },
-    );
+    return Response.json({}, { status: 500 });
   }
 
   const wardrobe = await db
@@ -88,13 +73,10 @@ export async function GET(request: NextRequest) {
 
   const outfit: ClothingDTO[] = clothesPicker(wardrobe as ClothingDTO[], weather.data);
 
-  // TODO: add outfit-building logic here (pick appropriate clothing based on weather data)
-
-  // the return is set up here per the API documentation (with the addition of "_debug" for testing purposes)
+  // the return is set up here per the API documentation
   return Response.json(
     {
       outfit,
-      _debug: { wardrobe, weather, weatherKeyword },
     },
     { status: 200 },
   );
