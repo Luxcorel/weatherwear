@@ -4,6 +4,8 @@ import { NextRequest } from "next/server";
 import { fetchWeatherByLocation } from "@/lib/weather-api-requests";
 import { WEATHER_CONDITIONS } from "@/types/weather-conditions";
 
+export const runtime = "edge";
+
 const locationSchema = z.object({
   latitude: z.number().min(-90).max(90),
   longitude: z.number().min(-180).max(180),

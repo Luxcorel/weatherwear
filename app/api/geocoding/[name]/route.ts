@@ -2,6 +2,8 @@ import { auth } from "@/auth-config";
 import { fetchLocationByName } from "@/lib/weather-api-requests";
 import { z } from "zod";
 
+export const runtime = "edge";
+
 const locationSchema = z.object({
   id: z.number(),
   name: z.string(),
