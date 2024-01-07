@@ -71,38 +71,309 @@ export default function AddClothing() {
     };
 
     function renderImages() {
-        const avatars: any[] = [];
-        const NUMBER_OF_AVATARS = clothingObject.clothing_type ? 12 : 0;
-
-        for (let i = 0; i <= NUMBER_OF_AVATARS; i++) {
-            avatars.push(
+        return (
+            <>
                 <button
-                    key={i}
-                    id={`${i}`}
+                    key={0}
+                    id={`${0}`}
                     type={"button"}
                     className={`m-2 h-20 w-20 p-1 transition duration-300 ease-in-out hover:scale-110 ${
-                        clothingObject.icon_path === `/images/clothing/${clothingObject.clothing_type}/${i}.svg`
+                        clothingObject.icon_path === `/images/clothing/${clothingObject.clothing_type}/${0}.svg`
                             ? "scale-110 rounded-xl bg-white dark:bg-blue-900"
                             : ""
                     }  `}
                     onClick={() => {
                         setClothingObject((prevState) => ({
                             ...prevState,
-                            icon_path: `/images/clothing/${clothingObject.clothing_type}/${i}.svg`,
+                            icon_path: `/images/clothing/${clothingObject.clothing_type}/${0}.svg`,
                         }));
                     }}
                 >
                     <Image
                         width={100}
                         height={100}
-                        src={`/images/clothing/${clothingObject.clothing_type}/${i}.svg`}
-                        alt={`Some picture ${i}`}
+                        src={`/images/clothing/${clothingObject.clothing_type}/${0}.svg`}
+                        alt={`Some picture ${0}`}
                     />
-                </button>,
-            );
-        }
-
-        return avatars;
+                </button>
+                <button
+                    key={1}
+                    id={`${1}`}
+                    type={"button"}
+                    className={`m-2 h-20 w-20 p-1 transition duration-300 ease-in-out hover:scale-110 ${
+                        clothingObject.icon_path === `/images/clothing/${clothingObject.clothing_type}/${1}.svg`
+                            ? "scale-110 rounded-xl bg-white dark:bg-blue-900"
+                            : ""
+                    }  `}
+                    onClick={() => {
+                        setClothingObject((prevState) => ({
+                            ...prevState,
+                            icon_path: `/images/clothing/${clothingObject.clothing_type}/${1}.svg`,
+                        }));
+                    }}
+                >
+                    <Image
+                        width={100}
+                        height={100}
+                        src={`/images/clothing/${clothingObject.clothing_type}/${1}.svg`}
+                        alt={`Some picture ${1}`}
+                    />
+                </button>
+                <button
+                    key={2}
+                    id={`${2}`}
+                    type={"button"}
+                    className={`m-2 h-20 w-20 p-1 transition duration-300 ease-in-out hover:scale-110 ${
+                        clothingObject.icon_path === `/images/clothing/${clothingObject.clothing_type}/${2}.svg`
+                            ? "scale-110 rounded-xl bg-white dark:bg-blue-900"
+                            : ""
+                    }  `}
+                    onClick={() => {
+                        setClothingObject((prevState) => ({
+                            ...prevState,
+                            icon_path: `/images/clothing/${clothingObject.clothing_type}/${2}.svg`,
+                        }));
+                    }}
+                >
+                    <Image
+                        width={100}
+                        height={100}
+                        src={`/images/clothing/${clothingObject.clothing_type}/${2}.svg`}
+                        alt={`Some picture ${2}`}
+                    />
+                </button>
+                <button
+                    key={3}
+                    id={`${3}`}
+                    type={"button"}
+                    className={`m-2 h-20 w-20 p-1 transition duration-300 ease-in-out hover:scale-110 ${
+                        clothingObject.icon_path === `/images/clothing/${clothingObject.clothing_type}/${3}.svg`
+                            ? "scale-110 rounded-xl bg-white dark:bg-blue-900"
+                            : ""
+                    }  `}
+                    onClick={() => {
+                        setClothingObject((prevState) => ({
+                            ...prevState,
+                            icon_path: `/images/clothing/${clothingObject.clothing_type}/${3}.svg`,
+                        }));
+                    }}
+                >
+                    <Image
+                        width={100}
+                        height={100}
+                        src={`/images/clothing/${clothingObject.clothing_type}/${3}.svg`}
+                        alt={`Some picture ${3}`}
+                    />
+                </button>
+                <button
+                    key={4}
+                    id={`${4}`}
+                    type={"button"}
+                    className={`m-2 h-20 w-20 p-1 transition duration-300 ease-in-out hover:scale-110 ${
+                        clothingObject.icon_path === `/images/clothing/${clothingObject.clothing_type}/${4}.svg`
+                            ? "scale-110 rounded-xl bg-white dark:bg-blue-900"
+                            : ""
+                    }  `}
+                    onClick={() => {
+                        setClothingObject((prevState) => ({
+                            ...prevState,
+                            icon_path: `/images/clothing/${clothingObject.clothing_type}/${4}.svg`,
+                        }));
+                    }}
+                >
+                    <Image
+                        width={100}
+                        height={100}
+                        src={`/images/clothing/${clothingObject.clothing_type}/${4}.svg`}
+                        alt={`Some picture ${4}`}
+                    />
+                </button>
+                <button
+                    key={5}
+                    id={`${5}`}
+                    type={"button"}
+                    className={`m-2 h-20 w-20 p-1 transition duration-300 ease-in-out hover:scale-110 ${
+                        clothingObject.icon_path === `/images/clothing/${clothingObject.clothing_type}/${5}.svg`
+                            ? "scale-110 rounded-xl bg-white dark:bg-blue-900"
+                            : ""
+                    }  `}
+                    onClick={() => {
+                        setClothingObject((prevState) => ({
+                            ...prevState,
+                            icon_path: `/images/clothing/${clothingObject.clothing_type}/${5}.svg`,
+                        }));
+                    }}
+                >
+                    <Image
+                        width={100}
+                        height={100}
+                        src={`/images/clothing/${clothingObject.clothing_type}/${5}.svg`}
+                        alt={`Some picture ${5}`}
+                    />
+                </button>
+                <button
+                    key={6}
+                    id={`${6}`}
+                    type={"button"}
+                    className={`m-2 h-20 w-20 p-1 transition duration-300 ease-in-out hover:scale-110 ${
+                        clothingObject.icon_path === `/images/clothing/${clothingObject.clothing_type}/${6}.svg`
+                            ? "scale-110 rounded-xl bg-white dark:bg-blue-900"
+                            : ""
+                    }  `}
+                    onClick={() => {
+                        setClothingObject((prevState) => ({
+                            ...prevState,
+                            icon_path: `/images/clothing/${clothingObject.clothing_type}/${6}.svg`,
+                        }));
+                    }}
+                >
+                    <Image
+                        width={100}
+                        height={100}
+                        src={`/images/clothing/${clothingObject.clothing_type}/${6}.svg`}
+                        alt={`Some picture ${6}`}
+                    />
+                </button>
+                <button
+                    key={7}
+                    id={`${7}`}
+                    type={"button"}
+                    className={`m-2 h-20 w-20 p-1 transition duration-300 ease-in-out hover:scale-110 ${
+                        clothingObject.icon_path === `/images/clothing/${clothingObject.clothing_type}/${7}.svg`
+                            ? "scale-110 rounded-xl bg-white dark:bg-blue-900"
+                            : ""
+                    }  `}
+                    onClick={() => {
+                        setClothingObject((prevState) => ({
+                            ...prevState,
+                            icon_path: `/images/clothing/${clothingObject.clothing_type}/${7}.svg`,
+                        }));
+                    }}
+                >
+                    <Image
+                        width={100}
+                        height={100}
+                        src={`/images/clothing/${clothingObject.clothing_type}/${7}.svg`}
+                        alt={`Some picture ${7}`}
+                    />
+                </button>
+                <button
+                    key={8}
+                    id={`${8}`}
+                    type={"button"}
+                    className={`m-2 h-20 w-20 p-1 transition duration-300 ease-in-out hover:scale-110 ${
+                        clothingObject.icon_path === `/images/clothing/${clothingObject.clothing_type}/${8}.svg`
+                            ? "scale-110 rounded-xl bg-white dark:bg-blue-900"
+                            : ""
+                    }  `}
+                    onClick={() => {
+                        setClothingObject((prevState) => ({
+                            ...prevState,
+                            icon_path: `/images/clothing/${clothingObject.clothing_type}/${8}.svg`,
+                        }));
+                    }}
+                >
+                    <Image
+                        width={100}
+                        height={100}
+                        src={`/images/clothing/${clothingObject.clothing_type}/${8}.svg`}
+                        alt={`Some picture ${8}`}
+                    />
+                </button>
+                <button
+                    key={9}
+                    id={`${9}`}
+                    type={"button"}
+                    className={`m-2 h-20 w-20 p-1 transition duration-300 ease-in-out hover:scale-110 ${
+                        clothingObject.icon_path === `/images/clothing/${clothingObject.clothing_type}/${9}.svg`
+                            ? "scale-110 rounded-xl bg-white dark:bg-blue-900"
+                            : ""
+                    }  `}
+                    onClick={() => {
+                        setClothingObject((prevState) => ({
+                            ...prevState,
+                            icon_path: `/images/clothing/${clothingObject.clothing_type}/${9}.svg`,
+                        }));
+                    }}
+                >
+                    <Image
+                        width={100}
+                        height={100}
+                        src={`/images/clothing/${clothingObject.clothing_type}/${9}.svg`}
+                        alt={`Some picture ${9}`}
+                    />
+                </button>
+                <button
+                    key={10}
+                    id={`${10}`}
+                    type={"button"}
+                    className={`m-2 h-20 w-20 p-1 transition duration-300 ease-in-out hover:scale-110 ${
+                        clothingObject.icon_path === `/images/clothing/${clothingObject.clothing_type}/${10}.svg`
+                            ? "scale-110 rounded-xl bg-white dark:bg-blue-900"
+                            : ""
+                    }  `}
+                    onClick={() => {
+                        setClothingObject((prevState) => ({
+                            ...prevState,
+                            icon_path: `/images/clothing/${clothingObject.clothing_type}/${10}.svg`,
+                        }));
+                    }}
+                >
+                    <Image
+                        width={100}
+                        height={100}
+                        src={`/images/clothing/${clothingObject.clothing_type}/${10}.svg`}
+                        alt={`Some picture ${10}`}
+                    />
+                </button>
+                <button
+                    key={11}
+                    id={`${11}`}
+                    type={"button"}
+                    className={`m-2 h-20 w-20 p-1 transition duration-300 ease-in-out hover:scale-110 ${
+                        clothingObject.icon_path === `/images/clothing/${clothingObject.clothing_type}/${11}.svg`
+                            ? "scale-110 rounded-xl bg-white dark:bg-blue-900"
+                            : ""
+                    }  `}
+                    onClick={() => {
+                        setClothingObject((prevState) => ({
+                            ...prevState,
+                            icon_path: `/images/clothing/${clothingObject.clothing_type}/${11}.svg`,
+                        }));
+                    }}
+                >
+                    <Image
+                        width={100}
+                        height={100}
+                        src={`/images/clothing/${clothingObject.clothing_type}/${11}.svg`}
+                        alt={`Some picture ${11}`}
+                    />
+                </button>
+                <button
+                    key={12}
+                    id={`${12}`}
+                    type={"button"}
+                    className={`m-2 h-20 w-20 p-1 transition duration-300 ease-in-out hover:scale-110 ${
+                        clothingObject.icon_path === `/images/clothing/${clothingObject.clothing_type}/${12}.svg`
+                            ? "scale-110 rounded-xl bg-white dark:bg-blue-900"
+                            : ""
+                    }  `}
+                    onClick={() => {
+                        setClothingObject((prevState) => ({
+                            ...prevState,
+                            icon_path: `/images/clothing/${clothingObject.clothing_type}/${12}.svg`,
+                        }));
+                    }}
+                >
+                    <Image
+                        width={100}
+                        height={100}
+                        src={`/images/clothing/${clothingObject.clothing_type}/${12}.svg`}
+                        alt={`Some picture ${12}`}
+                    />
+                </button>
+            </>
+        );
     }
 
     return (
