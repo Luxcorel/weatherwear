@@ -1,0 +1,5 @@
+{
+  "name": "WeatherWear",
+  "description": "WeatherWear is an app that suggests outfits based on current weather",
+  "start_url": "/"
+}
