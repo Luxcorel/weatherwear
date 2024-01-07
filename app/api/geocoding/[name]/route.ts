@@ -1,4 +1,3 @@
-import { auth } from "@/auth-config";
 import { fetchLocationByName } from "@/lib/weather-api-requests";
 import { z } from "zod";
 
@@ -13,11 +12,6 @@ const locationSchema = z.object({
 });
 
 export async function GET(request: Request, { params }: { params: { name: string } }) {
-  const session = await auth();
-  if (!session?.user) {
-    return Response.json({}, { status: 401 });
-  }
-
   if (!params.name) {
     return Response.json({}, { status: 400 });
   }
