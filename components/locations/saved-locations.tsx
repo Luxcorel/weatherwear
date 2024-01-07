@@ -8,7 +8,7 @@ import { SavedLocationsResponse, SavedLocation } from "@/frontend-types/location
 export default function SavedLocations() {
     //const router = useRouter();
 
-    const { data, error, isLoading } = useSWR<SavedLocationsResponse>(`api/locations`, fetcher);
+    const { data, error, isLoading } = useSWR<SavedLocationsResponse>(`/api/locations`, fetcher);
 
     const handleLocationClick = async (location: SavedLocation) => {
         const date = new Date();
@@ -24,18 +24,18 @@ export default function SavedLocations() {
 
         // using vanilla redirect to avoid stale location data (props aren't updated unless new request to server is made)
         // should probably use locally stored location info but this works...
-        await mutate(`api/weather?latitude=${location.latitude}&longitude=${location.longitude}`);
-        await mutate(`api/outfits?latitude=${location.latitude}&longitude=${location.longitude}`);
+        await mutate(`/api/weather?latitude=${location.latitude}&longitude=${location.longitude}`);
+        await mutate(`/api/outfits?latitude=${location.latitude}&longitude=${location.longitude}`);
         window.location.href = "/";
     };
 
     const handleLocationRemove = async (value: SavedLocation) => {
-        const response = await fetch(`api/locations/${value.id}`, {
+        const response = await fetch(`/api/locations/${value.id}`, {
             method: "DELETE",
         });
 
         //invalidate saved location data
-        await mutate("api/locations");
+        await mutate("/api/locations");
     };
 
     return (

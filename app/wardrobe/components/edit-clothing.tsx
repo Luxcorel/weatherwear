@@ -37,7 +37,7 @@ export default function EditClothing(props: Props) {
             body: JSON.stringify(clothingObject),
         });
 
-        await mutate("api/clothes");
+        await mutate("/api/clothes");
         router.push("/wardrobe");
     };
 
@@ -46,7 +46,7 @@ export default function EditClothing(props: Props) {
             method: "DELETE",
         });
 
-        await mutate("api/clothes");
+        await mutate("/api/clothes");
         router.push("/wardrobe");
     };
 
@@ -135,7 +135,7 @@ export default function EditClothing(props: Props) {
                                     <input
                                         type="radio"
                                         value={ClothingType.SHIRT}
-                                        checked={clothingObject.clothing_type === "Shirt"}
+                                        checked={clothingObject.clothing_type === "shirt"}
                                         onChange={changeClothingType}
                                     />
                                     Shirt
@@ -145,7 +145,7 @@ export default function EditClothing(props: Props) {
                                     <input
                                         type="radio"
                                         value={ClothingType.OUTWEAR}
-                                        checked={clothingObject.clothing_type === "Outwear"}
+                                        checked={clothingObject.clothing_type === "outwear"}
                                         onChange={changeClothingType}
                                     />
                                     Outwear
@@ -155,7 +155,7 @@ export default function EditClothing(props: Props) {
                                     <input
                                         type="radio"
                                         value={ClothingType.BOTTOM}
-                                        checked={clothingObject.clothing_type === "Bottom"}
+                                        checked={clothingObject.clothing_type === "bottom"}
                                         onChange={changeClothingType}
                                     />
                                     Bottom

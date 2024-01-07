@@ -15,13 +15,13 @@ export default function AddClothing() {
         usable_temperature_range: 0,
         name: "",
         is_precipitation_proof: false,
-        icon_path: "/images/clothing/Shirt/0.svg",
+        icon_path: "/images/clothing/shirt/0.svg",
     });
 
     const handleSubmit = async (event: any) => {
         event.preventDefault();
 
-        const response = await fetch("api/clothes", {
+        const response = await fetch("/api/clothes", {
             method: "POST",
             headers: {
                 "Content-Type": "application/json",
@@ -30,7 +30,7 @@ export default function AddClothing() {
         });
 
         if (response.ok) {
-            await mutate("api/clothes");
+            await mutate("/api/clothes");
             setAddClothingIsVisible((prevState) => !prevState);
         }
     };
@@ -129,7 +129,7 @@ export default function AddClothing() {
                                 <input
                                     type="radio"
                                     value={ClothingType.SHIRT}
-                                    checked={clothingObject.clothing_type === "Shirt"}
+                                    checked={clothingObject.clothing_type === "shirt"}
                                     onChange={changeClothingType}
                                 />
                                 Shirt
@@ -139,7 +139,7 @@ export default function AddClothing() {
                                 <input
                                     type="radio"
                                     value={ClothingType.OUTWEAR}
-                                    checked={clothingObject.clothing_type === "Outwear"}
+                                    checked={clothingObject.clothing_type === "outwear"}
                                     onChange={changeClothingType}
                                 />
                                 Outwear
@@ -149,7 +149,7 @@ export default function AddClothing() {
                                 <input
                                     type="radio"
                                     value={ClothingType.BOTTOM}
-                                    checked={clothingObject.clothing_type === "Bottom"}
+                                    checked={clothingObject.clothing_type === "bottom"}
                                     onChange={changeClothingType}
                                 />
                                 Bottom

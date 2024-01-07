@@ -15,7 +15,7 @@ export default function WeatherInfo(props: Props) {
         data: weather,
         error,
         isLoading,
-    } = useSWR<WeatherInfoDTO>(`api/weather?latitude=${props.latitude}&longitude=${props.longitude}`, fetcher);
+    } = useSWR<WeatherInfoDTO>(`/api/weather?latitude=${props.latitude}&longitude=${props.longitude}`, fetcher);
 
     return (
         <>

@@ -17,7 +17,7 @@ export default function OutfitSuggestion(props: Props) {
     const router = useRouter();
 
     const { data, error, isLoading } = useSWR<SuggestionDTO>(
-        `${props ? `api/outfits?latitude=${props.latitude}&longitude=${props.longitude}` : ""}`,
+        `${props ? `/api/outfits?latitude=${props.latitude}&longitude=${props.longitude}` : ""}`,
         fetcher,
     );
 

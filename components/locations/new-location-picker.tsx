@@ -16,7 +16,7 @@ export default function NewLocationPicker() {
     const handleSearchSubmit = async (event: FormEvent<HTMLFormElement>) => {
         event.preventDefault();
 
-        const location = (await fetch(`api/geocoding/${locationQuery}`).then(async (r) => r.json())) as
+        const location = (await fetch(`/api/geocoding/${locationQuery}`).then(async (r) => r.json())) as
             | GeocodingResponse
             | undefined;
 
@@ -27,7 +27,7 @@ export default function NewLocationPicker() {
 
     const handleLocationAdd = async () => {
         if (fetchedLocation) {
-            const response = await fetch("api/locations", {
+            const response = await fetch("/api/locations", {
                 method: "POST",
                 headers: {
                     "Content-Type": "application/json",
@@ -43,7 +43,7 @@ export default function NewLocationPicker() {
             setFetchedLocation(undefined);
 
             //invalidate saved location data in <SavedLocation />
-            await mutate("api/locations");
+            await mutate("/api/locations");
         }
     };
 

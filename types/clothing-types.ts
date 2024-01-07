@@ -1,9 +1,9 @@
 import { UsableTemperatureRange } from "@/types/usableTemperatureRange";
 
 export enum ClothingType {
-  SHIRT = "Shirt",
-  OUTWEAR = "Outwear",
-  BOTTOM = "Bottom",
+  SHIRT = "shirt",
+  OUTWEAR = "outwear",
+  BOTTOM = "bottom",
 }
 
 export type ClothingDTO = {

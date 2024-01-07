@@ -112,15 +112,15 @@ function clothesPicker(wardrobe: ClothingDTO[], weather: WeatherData) {
 
   for (const clothing of wardrobe) {
     switch (clothing.clothing_type) {
-      case "Shirt":
+      case "shirt":
         shirts.push(clothing);
         break;
 
-      case "Outwear":
+      case "outwear":
         outwear.push(clothing);
         break;
 
-      case "Bottom":
+      case "bottom":
         bottoms.push(clothing);
         break;
 

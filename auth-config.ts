@@ -93,7 +93,7 @@ export const authConfig = {
       const isLoggedIn = Boolean(auth?.user);
 
       if (!isLoggedIn) {
-        const redirectUrl = new URL("api/auth/signin", nextUrl.origin);
+        const redirectUrl = new URL("/api/auth/signin", nextUrl.origin);
         redirectUrl.searchParams.append("callbackUrl", nextUrl.href);
         return Response.redirect(redirectUrl);
       }

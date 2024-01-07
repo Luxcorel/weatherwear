@@ -20,8 +20,8 @@ export default function CurrentLocationButton() {
 
                 // using vanilla redirect to avoid stale location data (props aren't updated unless new request to server is made)
                 // should probably use locally stored location info but this works...
-                await mutate(`api/weather?latitude=${latitude}&longitude=${longitude}`);
-                await mutate(`api/outfits?latitude=${latitude}&longitude=${longitude}`);
+                await mutate(`/api/weather?latitude=${latitude}&longitude=${longitude}`);
+                await mutate(`/api/outfits?latitude=${latitude}&longitude=${longitude}`);
                 window.location.href = "/";
             },
             (error) => {},

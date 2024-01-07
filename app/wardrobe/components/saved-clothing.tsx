@@ -7,7 +7,7 @@ import Image from "next/image";
 import Link from "next/link";
 
 export default function SavedClothing() {
-    const { data, error, isLoading } = useSWR<AllSavedClothingResponse>(`api/clothes`, fetcher);
+    const { data, error, isLoading } = useSWR<AllSavedClothingResponse>(`/api/clothes`, fetcher);
 
     return (
         <div className={"mb-7 mt-4 w-full md:w-4/5 lg:w-2/3"}>
