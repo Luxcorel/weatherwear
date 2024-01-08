@@ -2,14 +2,14 @@ import type { NextAuthConfig } from "next-auth";
 import NextAuth from "next-auth";
 import { KyselyAdapter } from "@auth/kysely-adapter";
 import { db } from "@/db-config";
-import Spotify from "@auth/core/providers/spotify";
+import SpotifyProvider from "next-auth/providers/spotify";
 import { TokenSet } from "@auth/core/types";
 
 export const authConfig = {
   // @ts-ignore
   adapter: KyselyAdapter(db),
   providers: [
-    Spotify({
+    SpotifyProvider({
       clientId: process.env.AUTH_SPOTIFY_CLIENT_ID,
       clientSecret: process.env.AUTH_SPOTIFY_CLIENT_SECRET,
       authorization: {
