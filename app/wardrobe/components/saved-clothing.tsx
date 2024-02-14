@@ -1,6 +1,6 @@
 "use client";
 
-import useSWR from "swr";
+import useSWR, { preload } from "swr";
 import { fetcher } from "@/lib/swr-fetcher";
 import { AllSavedClothingResponse } from "@/frontend-types/clothing-types";
 import Image from "next/image";
@@ -21,7 +21,10 @@ export default function SavedClothing() {
                                     "mx-2 my-4 h-fit w-20 p-1 hover:scale-110 hover:rounded-xl hover:bg-blue-200 dark:hover:bg-blue-900"
                                 }
                             >
-                                <Link href={`/wardrobe/${value.id}`}>
+                                <Link
+                                    href={`/wardrobe/${value.id}`}
+                                    onMouseOver={() => preload(`/api/clothes/${value.id}`, fetcher)}
+                                >
                                     <Image
                                         className={"mx-auto"}
                                         src={value.icon_path}

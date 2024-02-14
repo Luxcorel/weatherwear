@@ -3,6 +3,7 @@ import { Button } from "@/components/ui/button";
 import { ThemeToggle } from "@/components/theme-toggle";
 import { auth } from "@/auth-config";
 import React from "react";
+import { PreloadData } from "@/components/preloadData";
 
 export default async function Navbar() {
     const session = await auth();
@@ -47,6 +48,8 @@ export default async function Navbar() {
                     </Link>
                 </div>
             )}
+
+            <PreloadData />
         </div>
     );
 }
