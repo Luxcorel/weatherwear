@@ -32,6 +32,10 @@ export default async function Home() {
     const longitudeValue = Number(longitude.value);
     const weather = await getWeatherInfo(latitudeValue, longitudeValue);
 
+    const musicSearchQuery = musicGenre?.value
+        ? weather.weather_keyword + " " + musicGenre.value
+        : weather.weather_keyword;
+
     // TODO fix h-[40vh] with a better solution
     return (
         <div>
@@ -60,11 +64,7 @@ export default async function Home() {
             </div>
 
             <div className={"w-full p-6"}>
-                <SpotifyPlaylist
-                    searchQuery={
-                        musicGenre?.value ? weather.weather_keyword + " " + musicGenre.value : weather.weather_keyword
-                    }
-                />
+                <SpotifyPlaylist searchQuery={musicSearchQuery} />
             </div>
         </div>
     );

@@ -4,6 +4,20 @@ import { Button } from "@/components/ui/button";
 import { ChangeEvent, FormEvent, useState } from "react";
 import { useRouter } from "next/navigation";
 
+function SelectedGenre() {
+    function getClientSideCookie(name: string): string | undefined {
+        return document.cookie
+            .split("; ")
+            .find((row) => row.startsWith(`${name}=`))
+            ?.split("=")[1];
+    }
+
+    const genreCookie = getClientSideCookie("genre");
+    if (genreCookie) {
+        return <h2 className={"text-center text-xl dark:text-slate-400"}>Current genre set: {genreCookie}</h2>;
+    }
+}
+
 export default function MusicGenreSelector() {
     const router = useRouter();
 
@@ -25,22 +39,10 @@ export default function MusicGenreSelector() {
         router.refresh();
     };
 
-    function getClientSideCookie(name: string): string | undefined {
-        return document.cookie
-            .split("; ")
-            .find((row) => row.startsWith(`${name}=`))
-            ?.split("=")[1];
-    }
-
     return (
         <div className={"flex w-3/4 flex-col"}>
-            {getClientSideCookie("genre") ? (
-                <h2 className={"text-center text-xl dark:text-slate-400"}>
-                    Current genre set: {getClientSideCookie("genre")}
-                </h2>
-            ) : (
-                ""
-            )}
+            <SelectedGenre />
+
             <form className={"flex w-full flex-col"} onSubmit={handleSubmit}>
                 <input
                     id={"submit"}

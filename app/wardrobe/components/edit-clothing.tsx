@@ -10,6 +10,10 @@ import { useRouter } from "next/navigation";
 
 type Props = { readonly id: string };
 
+function ClothingSkeleton() {
+    return <p className={"mt-10 animate-pulse text-center text-2xl"}>Loading clothing</p>;
+}
+
 export default function EditClothing(props: Props) {
     const router = useRouter();
 
@@ -121,7 +125,7 @@ export default function EditClothing(props: Props) {
     return (
         <>
             {isLoading ? (
-                <p className={"mt-10 animate-pulse text-center text-2xl"}>Loading clothing</p>
+                <ClothingSkeleton />
             ) : (
                 <div
                     className={

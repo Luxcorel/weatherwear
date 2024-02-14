@@ -8,7 +8,11 @@ import CurrentLocationButton from "@/components/locations/current-location-butto
 
 export async function generateMetadata() {
     const session = await auth();
-    return session ? { title: `${session.user.name}'s profile | WeatherWear` } : {};
+    if (!session) {
+        return {};
+    }
+
+    return { title: `${session.user.name}'s profile | WeatherWear` };
 }
 
 export default async function Page() {

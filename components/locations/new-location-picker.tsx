@@ -5,6 +5,25 @@ import { GeocodingResponse } from "@/frontend-types/location-types";
 import { mutate } from "swr";
 import { Button } from "@/components/ui/button";
 
+function LocationSearchResult(props: {
+    readonly fetchedLocation: GeocodingResponse | undefined;
+    readonly onClick: () => Promise<void>;
+}) {
+    if (!props.fetchedLocation) {
+        return null;
+    }
+
+    if (!props.fetchedLocation.name) {
+        return <p>No result found</p>;
+    }
+
+    return (
+        <Button className={"mt-2"} onClick={props.onClick}>
+            {`Add ${props.fetchedLocation.name}`}
+        </Button>
+    );
+}
+
 export default function NewLocationPicker() {
     const [locationQuery, setLocationQuery] = useState("");
     const [fetchedLocation, setFetchedLocation] = useState<GeocodingResponse>();
@@ -26,25 +45,24 @@ export default function NewLocationPicker() {
     };
 
     const handleLocationAdd = async () => {
-        if (fetchedLocation) {
-            const response = await fetch("/api/locations", {
-                method: "POST",
-                headers: {
-                    "Content-Type": "application/json",
-                },
-                body: JSON.stringify({
-                    location_name: fetchedLocation.name,
-                    latitude: fetchedLocation.latitude,
-                    longitude: fetchedLocation.longitude,
-                }),
-            });
-
-            setLocationQuery("");
-            setFetchedLocation(undefined);
-
-            //invalidate saved location data in <SavedLocation />
-            await mutate("/api/locations");
+        if (!fetchedLocation) {
+            return;
         }
+
+        await fetch("/api/locations", {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json",
+            },
+            body: JSON.stringify({
+                location_name: fetchedLocation.name,
+                latitude: fetchedLocation.latitude,
+                longitude: fetchedLocation.longitude,
+            }),
+        });
+        setLocationQuery("");
+        setFetchedLocation(undefined);
+        await mutate("/api/locations");
     };
 
     return (
@@ -60,15 +78,8 @@ export default function NewLocationPicker() {
                 />
                 <Button type="submit">Search</Button>
             </form>
-            {fetchedLocation ? (
-                fetchedLocation?.name ? (
-                    <Button className={"mt-2"} onClick={handleLocationAdd}>
-                        {`Add ${fetchedLocation.name}`}
-                    </Button>
-                ) : (
-                    <p>No result found</p>
-                )
-            ) : null}
+
+            <LocationSearchResult fetchedLocation={fetchedLocation} onClick={handleLocationAdd} />
         </div>
     );
 }
