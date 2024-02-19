@@ -71,7 +71,6 @@ export const authConfig = {
             throw tokens;
           }
 
-          //TODO: Fix the YOLO typescript:
           await db
             .updateTable("Account")
             .set({

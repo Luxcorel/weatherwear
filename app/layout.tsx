@@ -9,7 +9,7 @@ const inter = Inter({ subsets: ["latin"] });
 
 export const metadata: Metadata = {
     title: "WeatherWear",
-    description: "WeatherWear - outfit suggestions based on weather",
+    description: "Outfit suggestions based on weather",
 };
 
 export default function RootLayout({ children }: { readonly children: React.ReactNode }) {

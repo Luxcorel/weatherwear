@@ -12,6 +12,7 @@ const updateClothingSchema = z.object({
   icon_path: z.string(),
 });
 
+// Get specific clothing item for the logged in user
 export async function GET(request: Request, { params }: { params: { id: string } }) {
   const session = await auth();
   if (!session?.user) {
@@ -39,6 +40,7 @@ export async function GET(request: Request, { params }: { params: { id: string }
   return Response.json(clothing, { status: 200 });
 }
 
+// Update specific clothing item for the logged in user
 export async function PUT(request: Request, { params }: { params: { id: string } }) {
   const session = await auth();
   if (!session?.user) {
@@ -78,7 +80,7 @@ export async function PUT(request: Request, { params }: { params: { id: string }
   return Response.json(dbUpdate, { status: 200 });
 }
 
-// API CONTRACT IMPL
+// Delete specific clothing item for the logged in user
 export async function DELETE(request: Request, { params }: { params: { id: string } }) {
   const session = await auth();
   if (!session?.user) {

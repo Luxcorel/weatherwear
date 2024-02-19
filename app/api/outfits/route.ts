@@ -13,7 +13,7 @@ const locationSchema = z.object({
   longitude: z.number().min(-180).max(180),
 });
 
-// TODO refactor this endpoint at some point
+// Get an outfit suggestion for the given location
 export async function GET(request: NextRequest) {
   const session = await auth();
   if (!session?.user) {
@@ -25,7 +25,7 @@ export async function GET(request: NextRequest) {
   const latitude = searchParams.get("latitude");
   const longitude = searchParams.get("longitude");
   // no location given - return bad request error
-  if (!(latitude && longitude)) {
+  if (!latitude || !longitude) {
     return Response.json({}, { status: 400 });
   }
 

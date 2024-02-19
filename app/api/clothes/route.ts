@@ -40,6 +40,7 @@ export async function GET(request: Request) {
   );
 }
 
+// Add a new clothing item for the current user
 export async function POST(request: Request) {
   const session = await auth();
   if (!session?.user) {

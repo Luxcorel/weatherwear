@@ -8,7 +8,7 @@ const submitLocationSchema = z.object({
   longitude: z.number().min(-180).max(180),
 });
 
-// API CONTRACT IMPL
+// Get favorite locations for the logged in user
 export async function GET(request: Request) {
   const session = await auth();
   if (!session?.user) {
@@ -29,7 +29,7 @@ export async function GET(request: Request) {
   );
 }
 
-// API CONTRACT IMPL
+// Add a new favorite location for the logged in user
 export async function POST(request: Request) {
   const session = await auth();
   if (!session?.user) {

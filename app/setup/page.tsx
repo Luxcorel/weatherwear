@@ -3,8 +3,8 @@ import SavedLocations from "@/components/locations/saved-locations";
 
 import NewLocationPicker from "@/components/locations/new-location-picker";
 
-// this is meant as a "welcome page" where users get started or something.
-// Redirects get issued to this page when a user's doesn't have a location selected.
+// This is a "welcome page" where users select a location to use.
+// If no location cookies are set, users will be redirected here.
 export default function Page() {
     return (
         <>

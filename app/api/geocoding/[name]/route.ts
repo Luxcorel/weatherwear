@@ -11,13 +11,13 @@ const locationSchema = z.object({
   url: z.string(),
 });
 
+// Get geocoding(latitude,longitude) of specified city name
 export async function GET(request: Request, { params }: { params: { name: string } }) {
   if (!params.name) {
     return Response.json({}, { status: 400 });
   }
 
-  const locationResponse = await fetchLocationByName(params.name);
-  const locationData = await locationResponse.json();
+  const locationData = await fetchLocationByName(params.name);
   if (!locationData) {
     return Response.json({}, { status: 404 });
   }

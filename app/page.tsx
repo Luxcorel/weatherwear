@@ -7,36 +7,34 @@ import { WeatherInfoDTO } from "@/frontend-types/weather-types";
 import Image from "next/image";
 import React from "react";
 
+/** Fetches weather information from the backend weather endpoint
+ * @param latitude The latitude of the location
+ * @param longitude The longitude of the location
+ */
 async function getWeatherInfo(latitude: number, longitude: number) {
     const response = await fetch(`${process.env.BASE_URL}/api/weather?latitude=${latitude}&longitude=${longitude}`, {
-        next: { revalidate: 60 },
+        next: { revalidate: 300 },
     });
-    //TODO: should validate this
     return (await response.json()) as WeatherInfoDTO;
 }
 
 export default async function Home() {
     const cookieStore = cookies();
-    const latitude = cookieStore.get("latitude");
-    const longitude = cookieStore.get("longitude");
-    const musicGenre = cookieStore.get("genre");
-    //TODO: Add cookie for choosing preferred music genre?
-    //TODO: Set latitude and longitude from saved location on frontend instead of passing savedLocation id?
-    // const savedLocation = cookieStore.get("saved_location");
+    const latitudeCookie = cookieStore.get("latitude");
+    const longitudeCookie = cookieStore.get("longitude");
+    const musicGenreCookie = cookieStore.get("genre");
 
-    if (!(latitude && longitude)) {
+    if (!latitudeCookie || !longitudeCookie) {
         redirect("/setup");
     }
 
-    const latitudeValue = Number(latitude.value);
-    const longitudeValue = Number(longitude.value);
-    const weather = await getWeatherInfo(latitudeValue, longitudeValue);
+    const latitude = Number.parseFloat(latitudeCookie.value);
+    const longitude = Number.parseFloat(longitudeCookie.value);
+    const musicGenre = musicGenreCookie?.value;
+    const weather = await getWeatherInfo(latitude, longitude);
 
-    const musicSearchQuery = musicGenre?.value
-        ? weather.weather_keyword + " " + musicGenre.value
-        : weather.weather_keyword;
+    const spotifyQuery = musicGenre ? weather.weather_keyword + " " + musicGenre : weather.weather_keyword;
 
-    // TODO fix h-[40vh] with a better solution
     return (
         <div>
             <div className="mt-10 flex justify-center">
@@ -47,7 +45,7 @@ export default async function Home() {
                         }
                     >
                         <div className="mr-10 flex flex-col items-center">
-                            <WeatherInfo latitude={latitudeValue} longitude={longitudeValue} />
+                            <WeatherInfo latitude={latitude} longitude={longitude} />
                             <Image
                                 className={"mt-2 animate-[pulse_1s_ease-out_1]"}
                                 src={weather.weather_picture}
@@ -56,15 +54,15 @@ export default async function Home() {
                                 height={50}
                             />
                         </div>
-                        <div className="">
-                            <OutfitSuggestion latitude={latitudeValue} longitude={longitudeValue} />
+                        <div>
+                            <OutfitSuggestion latitude={latitude} longitude={longitude} />
                         </div>
                     </div>
                 </div>
             </div>
 
             <div className={"w-full p-6"}>
-                <SpotifyPlaylist searchQuery={musicSearchQuery} />
+                <SpotifyPlaylist searchQuery={spotifyQuery} />
             </div>
         </div>
     );

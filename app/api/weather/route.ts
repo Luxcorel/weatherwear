@@ -9,6 +9,7 @@ const locationSchema = z.object({
   longitude: z.number().min(-180).max(180),
 });
 
+// Get weather data for a specific location
 export async function GET(request: NextRequest) {
   const { searchParams } = request.nextUrl;
   const latitude = searchParams.get("latitude");

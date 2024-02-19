@@ -8,7 +8,7 @@ const updateLocationSchema = z.object({
   longitude: z.number().min(-180).max(180),
 });
 
-// API CONTRACT IMPL
+// Get specific location for the logged in user
 export async function GET(request: Request, { params }: { params: { id: string } }) {
   const session = await auth();
   if (!session?.user) {
@@ -29,7 +29,7 @@ export async function GET(request: Request, { params }: { params: { id: string }
   return Response.json(userLocation, { status: 200 });
 }
 
-// API CONTRACT IMPL
+// Update specific location for the logged in user
 export async function PUT(request: Request, { params }: { params: { id: string } }) {
   const session = await auth();
   if (!session?.user) {
@@ -60,7 +60,7 @@ export async function PUT(request: Request, { params }: { params: { id: string }
   return Response.json(dbUpdate, { status: 200 });
 }
 
-// API CONTRACT IMPL
+// Delete specific location for the logged in user
 export async function DELETE(request: Request, { params }: { params: { id: string } }) {
   const session = await auth();
   if (!session?.user) {
