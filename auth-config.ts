@@ -12,9 +12,6 @@ export const authConfig = {
     SpotifyProvider({
       clientId: process.env.AUTH_SPOTIFY_CLIENT_ID,
       clientSecret: process.env.AUTH_SPOTIFY_CLIENT_SECRET,
-      authorization: {
-        params: { redirect_uri: process.env.BASE_URL + "/api/auth/callback/spotify" },
-      },
     }),
   ],
   callbacks: {
