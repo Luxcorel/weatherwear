@@ -34,10 +34,10 @@ WeatherWear is a web app that suggests what to wear based on the current weather
 > As we use Spotify for auth, there is no hosted demo site for this project. This is because Spotify restricts non-verified projects from having non-whitelisted users authenticate against their API. To remove this restriction a review process application must be made, which hasn't been done for this project.
 
 ### How to use
-1. Sign in with a Spotify account
+1. Sign in with a Spotify account.
 2. Select your current location or search for a specific location.
-3. Add your clothes to the wardrobe
-4. Get outfit suggestion based on current weather
+3. Add your clothes to the wardrobe.
+4. Get outfit suggestion based on current weather.
 
 ### Key features
 * What clothes to wear based on current weather
