@@ -3,7 +3,6 @@ import NextAuth from "next-auth";
 import { KyselyAdapter } from "@auth/kysely-adapter";
 import { db } from "@/db-config";
 import SpotifyProvider from "next-auth/providers/spotify";
-import { TokenSet } from "@auth/core/types";
 
 const adapter = process.env.POSTGRES_URL ? KyselyAdapter(db as any) : undefined;
 
@@ -67,7 +66,7 @@ export const authConfig = {
             method: "POST",
           });
 
-          const tokens: TokenSet = await response.json();
+          const tokens = await response.json();
 
           if (!response.ok) {
             throw tokens;
