@@ -4,13 +4,18 @@ settings:
   autoInstallPeers: true
   excludeLinksFromLockfile: false
 
+overrides:
+  kysely@>=0.26.0 <=0.28.11: '>=0.28.12'
+  minimatch@>=9.0.0 <9.0.6: '>=9.0.6'
+  minimatch@>=9.0.0 <9.0.7: '>=9.0.7'
+
 importers:
 
   .:
     dependencies:
       '@auth/kysely-adapter':
         specifier: ^1.7.1
-        version: 1.11.1(kysely@0.26.3)
+        version: 1.11.1(kysely@0.28.13)
       '@radix-ui/react-dropdown-menu':
         specifier: ^2.0.6
         version: 2.1.16(@types/react-dom@19.2.3(@types/react@19.2.14))(@types/react@19.2.14)(react-dom@19.2.4(react@19.2.4))(react@19.2.4)
@@ -19,7 +24,7 @@ importers:
         version: 1.2.4(@types/react@19.2.14)(react@19.2.4)
       '@vercel/postgres-kysely':
         specifier: ^0.10.0
-        version: 0.10.0(kysely@0.26.3)
+        version: 0.10.0(kysely@0.28.13)
       class-variance-authority:
         specifier: ^0.7.0
         version: 0.7.1
@@ -27,8 +32,8 @@ importers:
         specifier: ^2.0.0
         version: 2.1.1
       kysely:
-        specifier: ^0.26.3
-        version: 0.26.3
+        specifier: '>=0.28.12'
+        version: 0.28.13
       lucide-react:
         specifier: ^0.293.0
         version: 0.293.0(react@19.2.4)
@@ -98,7 +103,7 @@ importers:
         version: 8.0.3
       kysely-codegen:
         specifier: ^0.11.0
-        version: 0.11.0(kysely@0.26.3)(pg@8.20.0)
+        version: 0.11.0(kysely@0.28.13)(pg@8.20.0)
       lint-staged:
         specifier: ^15.2.10
         version: 15.5.2
@@ -161,7 +166,7 @@ packages:
   '@auth/kysely-adapter@1.11.1':
     resolution: {integrity: sha512-g7TdZBZrWiXzH5oG3iyho+WIFuF5zlXJonYRQ46h0Dj4TBPSBB1dUMbcFoADsSlSpaGB2O54ZqLa2qKT+2XpXw==}
     peerDependencies:
-      kysely: ^0.27.5
+      kysely: '>=0.28.12'
 
   '@babel/code-frame@7.29.0':
     resolution: {integrity: sha512-9NhCeYjq9+3uxgdtp20LSiJXJvN0FeCtNGpJxuMFZ1Kv3cWUNb6DOhJwUvcVCzKGR66cw4njwM6hrJLqgOwbcw==}
@@ -1134,7 +1139,7 @@ packages:
     engines: {node: '>=18.14'}
     deprecated: 'Vercel Postgres is deprecated. You can either choose an alternate storage solution from the Vercel Marketplace if you want to set up a new database. Or you can follow this guide to migrate your existing Vercel Postgres db: https://neon.com/docs/guides/vercel-postgres-transition-guide'
     peerDependencies:
-      kysely: ^0.24.2 || ^0.25.0 || ^0.26.0 || ^0.27.0
+      kysely: '>=0.28.12'
 
   '@vercel/postgres@0.10.0':
     resolution: {integrity: sha512-fSD23DxGND40IzSkXjcFcxr53t3Tiym59Is0jSYIFpG4/0f0KO9SGtcp1sXiebvPaGe7N/tU05cH4yt2S6/IPg==}
@@ -1360,9 +1365,6 @@ packages:
 
   brace-expansion@1.1.12:
     resolution: {integrity: sha512-9T9UjW3r0UW5c1Q7GTwllptXwhvYmEzFhzMfZ9H7FQWt+uZePjZPjBP/W1ZEyZ1twGWom5/56TF4lPcqjnDHcg==}
-
-  brace-expansion@2.0.2:
-    resolution: {integrity: sha512-Jt0vHyM+jmUBqojB7E1NIYadt0vI0Qxjxd2TErW94wDz+E2LAm5vKMXXwg6ZZBTHPuUlDgQHKXvjGBdfcF1ZDQ==}
 
   brace-expansion@5.0.4:
     resolution: {integrity: sha512-h+DEnpVvxmfVefa4jFbCf5HdH5YMDXRsmKflpf1pILZWRFlTbJpxeU55nJl4Smt5HQaGzg1o6RHFPJaOqnmBDg==}
@@ -2552,7 +2554,7 @@ packages:
     peerDependencies:
       '@libsql/kysely-libsql': ^0.3.0
       better-sqlite3: '>=7.6.2'
-      kysely: '>=0.19.12'
+      kysely: '>=0.28.12'
       mysql2: ^2.3.3 || ^3.0.0
       pg: ^8.8.0
     peerDependenciesMeta:
@@ -2565,9 +2567,9 @@ packages:
       pg:
         optional: true
 
-  kysely@0.26.3:
-    resolution: {integrity: sha512-yWSgGi9bY13b/W06DD2OCDDHQmq1kwTGYlQ4wpZkMOJqMGCstVCFIvxCCVG4KfY1/3G0MhDAcZsip/Lw8/vJWw==}
-    engines: {node: '>=14.0.0'}
+  kysely@0.28.13:
+    resolution: {integrity: sha512-jCkYDvlfzOyHaVsrvR4vnNZxG30oNv2jbbFBjTQAUG8n0h07HW0sZJHk4KAQIRyu9ay+Rg+L8qGa3lwt8Gve9w==}
+    engines: {node: '>=20.0.0'}
 
   language-subtag-registry@0.3.23:
     resolution: {integrity: sha512-0K65Lea881pHotoGEa5gDlMxt3pctLi2RplBb7Ezh4rRdLEOtgi7n4EwK9lamnUCkKBqaeKRVebTq6BAxSkpXQ==}
@@ -2708,10 +2710,6 @@ packages:
 
   minimatch@3.1.5:
     resolution: {integrity: sha512-VgjWUsnnT6n+NUk6eZq77zeFdpW2LWDzP6zFGrCbHXiYNul5Dzqk2HHQ5uFH2DNW5Xbp8+jVzaeNt94ssEEl4w==}
-
-  minimatch@9.0.3:
-    resolution: {integrity: sha512-RHiac9mvaRw0x3AYRgDC1CxAP7HTcNrrECeA8YYJeWnpo+2Q5CegtZjaotWTWxDG3UeGA1coE05iH1mPjT/2mg==}
-    engines: {node: '>=16 || 14 >=14.17'}
 
   minimist@1.2.8:
     resolution: {integrity: sha512-2yyAR8qBkN3YuheJanUpWC5U3bb5osDywNB8RzDVlDwDHbocAJveqqj1u8+SVD7jkWT4yvsHCpWqqWqAxb0zCA==}
@@ -3895,10 +3893,10 @@ snapshots:
       preact: 10.24.3
       preact-render-to-string: 6.5.11(preact@10.24.3)
 
-  '@auth/kysely-adapter@1.11.1(kysely@0.26.3)':
+  '@auth/kysely-adapter@1.11.1(kysely@0.28.13)':
     dependencies:
       '@auth/core': 0.41.1
-      kysely: 0.26.3
+      kysely: 0.28.13
     transitivePeerDependencies:
       - '@simplewebauthn/browser'
       - '@simplewebauthn/server'
@@ -4725,7 +4723,7 @@ snapshots:
       debug: 4.4.3
       globby: 11.1.0
       is-glob: 4.0.3
-      minimatch: 9.0.3
+      minimatch: 10.2.4
       semver: 7.7.4
       ts-api-utils: 1.4.3(typescript@5.9.3)
     optionalDependencies:
@@ -4844,10 +4842,10 @@ snapshots:
   '@unrs/resolver-binding-win32-x64-msvc@1.11.1':
     optional: true
 
-  '@vercel/postgres-kysely@0.10.0(kysely@0.26.3)':
+  '@vercel/postgres-kysely@0.10.0(kysely@0.28.13)':
     dependencies:
       '@vercel/postgres': 0.10.0
-      kysely: 0.26.3
+      kysely: 0.28.13
     transitivePeerDependencies:
       - utf-8-validate
 
@@ -5115,10 +5113,6 @@ snapshots:
     dependencies:
       balanced-match: 1.0.2
       concat-map: 0.0.1
-
-  brace-expansion@2.0.2:
-    dependencies:
-      balanced-match: 1.0.2
 
   brace-expansion@5.0.4:
     dependencies:
@@ -6502,18 +6496,18 @@ snapshots:
     dependencies:
       json-buffer: 3.0.1
 
-  kysely-codegen@0.11.0(kysely@0.26.3)(pg@8.20.0):
+  kysely-codegen@0.11.0(kysely@0.28.13)(pg@8.20.0):
     dependencies:
       chalk: 4.1.2
       dotenv: 16.6.1
       git-diff: 2.0.6
-      kysely: 0.26.3
+      kysely: 0.28.13
       micromatch: 4.0.8
       minimist: 1.2.8
     optionalDependencies:
       pg: 8.20.0
 
-  kysely@0.26.3: {}
+  kysely@0.28.13: {}
 
   language-subtag-registry@0.3.23: {}
 
@@ -6645,10 +6639,6 @@ snapshots:
   minimatch@3.1.5:
     dependencies:
       brace-expansion: 1.1.12
-
-  minimatch@9.0.3:
-    dependencies:
-      brace-expansion: 2.0.2
 
   minimist@1.2.8: {}
 
