@@ -5,9 +5,10 @@ import { db } from "@/db-config";
 import SpotifyProvider from "next-auth/providers/spotify";
 import { TokenSet } from "@auth/core/types";
 
+const adapter = process.env.POSTGRES_URL ? KyselyAdapter(db as any) : undefined;
+
 export const authConfig = {
-  // @ts-ignore
-  adapter: KyselyAdapter(db),
+  adapter,
   providers: [
     SpotifyProvider({
       clientId: process.env.AUTH_SPOTIFY_CLIENT_ID,
@@ -16,6 +17,10 @@ export const authConfig = {
   ],
   callbacks: {
     async session({ session, user }) {
+      if (!adapter) {
+        return session;
+      }
+
       session.user.id = user.id;
 
       const result = await db

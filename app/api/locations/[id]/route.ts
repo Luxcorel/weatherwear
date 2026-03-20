@@ -9,7 +9,8 @@ const updateLocationSchema = z.object({
 });
 
 // Get specific location for the logged in user
-export async function GET(request: Request, { params }: { params: { id: string } }) {
+export async function GET(request: Request, props: { params: Promise<{ id: string }> }) {
+  const params = await props.params;
   const session = await auth();
   if (!session?.user) {
     return Response.json({}, { status: 401 });
@@ -30,7 +31,8 @@ export async function GET(request: Request, { params }: { params: { id: string }
 }
 
 // Update specific location for the logged in user
-export async function PUT(request: Request, { params }: { params: { id: string } }) {
+export async function PUT(request: Request, props: { params: Promise<{ id: string }> }) {
+  const params = await props.params;
   const session = await auth();
   if (!session?.user) {
     return Response.json({}, { status: 401 });
@@ -61,7 +63,8 @@ export async function PUT(request: Request, { params }: { params: { id: string }
 }
 
 // Delete specific location for the logged in user
-export async function DELETE(request: Request, { params }: { params: { id: string } }) {
+export async function DELETE(request: Request, props: { params: Promise<{ id: string }> }) {
+  const params = await props.params;
   const session = await auth();
   if (!session?.user) {
     return Response.json({}, { status: 401 });

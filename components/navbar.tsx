@@ -1,12 +1,11 @@
 import Link from "next/link";
 import { Button } from "@/components/ui/button";
 import { ThemeToggle } from "@/components/theme-toggle";
-import { auth } from "@/auth-config";
 import React from "react";
 import { PreloadData } from "@/components/preloadData";
 
 export default async function Navbar() {
-    const session = await auth();
+    const session = process.env.POSTGRES_URL ? await (await import("@/auth-config")).auth() : null;
 
     // TODO fix navbar so that it is dynamic
     return (

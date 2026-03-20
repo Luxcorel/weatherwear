@@ -19,7 +19,7 @@ async function getWeatherInfo(latitude: number, longitude: number) {
 }
 
 export default async function Home() {
-    const cookieStore = cookies();
+    const cookieStore = await cookies();
     const latitudeCookie = cookieStore.get("latitude");
     const longitudeCookie = cookieStore.get("longitude");
     const musicGenreCookie = cookieStore.get("genre");
