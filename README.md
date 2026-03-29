@@ -70,7 +70,8 @@ WeatherWear is a web app that suggests what to wear based on the current weather
 
 ### Prerequisites
 
--   [Node.js](https://nodejs.org/)
+-   [Node.js](https://nodejs.org/) 20.9 or newer
+-   [pnpm](https://pnpm.io/) 10
 -   [Spotify API key](https://developer.spotify.com/documentation/web-api)
 -   [WeatherAPI.com API key](https://www.weatherapi.com/)
 -   [Vercel PostgreSQL DB](https://vercel.com/docs/storage/vercel-postgres/quickstart)
@@ -84,8 +85,8 @@ WeatherWear is a web app that suggests what to wear based on the current weather
 
 0. Make sure the database is running and is set up using the schema.sql script.
 1. Rename `.env.example` to `.env.local` and fill in the environment variables.
-2. Run `npm install` to install dependencies.
-3. Run `npm run dev` to start the development server.
+2. Run `pnpm install` to install dependencies.
+3. Run `pnpm run dev` to start the development server.
 4. Open [http://localhost:3000](http://localhost:3000).
 
 ### Hosted setup using Vercel
